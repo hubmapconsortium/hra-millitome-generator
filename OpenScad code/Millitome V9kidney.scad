@@ -53,12 +53,12 @@ organ_zdim      = 64 * organ_scale;
 // user settings -- technically the only user input happens here
 type            = 3;    // 1 = fixed block size, 2 = user block size, 3 = user block count
 
-block_size      = 20;   // used for mode 1, fixed block size for cubes, only used there
+block_size      = 20;   // used for type 1, fixed block size for cubes, only used there
 
-block_xsize     = 15;   // used for mode 2, different x/y block size
+block_xsize     = 15;   // used for type 2, different x/y block size
 block_ysize     = 20;
 
-blocks_x        = 4;    // used for mode 3, number of blocks along x, used for calculated block_size
+blocks_x        = 4;    // used for type 3, number of blocks along x, used for calculated block_size
 blocks_y        = 7;    // number of blocks along y
 
 //================================================================
