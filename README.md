@@ -1,6 +1,6 @@
-# Millitome Generator V10
+# Millitome Generator
 
-"Millitome Generator V10" was programmed in OpenScad 2021.1 on MacOS.
+"Millitome Generator" was programmed in OpenScad 2021.1 on MacOS.
 
 OpenScad is open source software https://openscad.org.
 
