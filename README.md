@@ -10,3 +10,7 @@ A millitome is a device designed to hold a freshly procured organ and facilitate
 
 Millitome Generator uses modified 3D-models from the HuBMAP organ repository to generate 3D-printable millitomes, delivered as STL files. The exact shape, proportions and dimensions of the generated millitome depend directly on the properties of the organ model used.
 
+Unlike regular 3D modelers, which rely on a visual point-and-click interface, OpenScad is fully code based. That means, the 3D geometry is only created after the user executes the text-based code. This makes it easy to create variations of a 3D object (e.g., millitomes for different organ sizes or tissue block sizes) by changing relevant parameters in the code.
+
+The user adjusts a handfull of variables, such as organ type, gender, block size and selects which part of the millitome (top, bottom) should be generated. OpenScad will build the requested geometry, which can then be exported as an STL file for 3D-printing.
+
