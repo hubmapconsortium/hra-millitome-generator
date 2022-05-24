@@ -28,6 +28,7 @@
 //  - dimension adjustments after test print (construction variables)
 //  - changed: bottom_height=6, inner_frame_block=15, cut_width=2
 //  - adjusted coordinate system letters/number sixe and position
+//  - fixed wrong dimensions of insert_box_cut() & inserttop_box_cut()
 
 
 // dimensions are in mm
@@ -51,12 +52,12 @@ $fs = 0.4;
 //  - blocking mode and properties
 //================================================================
 gender          = 1;    // 0=female, 1=male, needs to be integer selector
-organ_id        = 2;    // index for list lookup     
-organ_scale     = 1;    // scale 1 = 100%, 1.1 = 110% etc
+organ_id        = 1;    // index for list lookup     
+organ_scale     = 0.5;    // scale 1 = 100%, 1.1 = 110% etc
 
 type            = 1;    // 1 = fixed block size, 2 = user block size, 3 = user block count
 
-block_size      = 10;   // used for type 1, fixed block size for cubes, only used there
+block_size      = 10 ;   // used for type 1, fixed block size for cubes, only used there
 
 block_xsize     = 10;   // used for type 2, different x/y block size
 block_ysize     = 20;
@@ -70,8 +71,8 @@ blocks_y        = 7;    // number of blocks along y
 //================================================================
 
 //=== full millitome with the requested parameters, for 3d printing
-complete_bottom();            // bottom half of millitome
-//complete_top();               // top half of millitome
+//complete_bottom();            // bottom half of millitome
+complete_top();               // top half of millitome
 
 
 //===matching block array functions, for use in RUI selection interface or illustrations
@@ -131,7 +132,10 @@ dimensions();
 //outer_box();                    // dimensions of outer frame box (type dependent)
 //bounding_box();                 // box enclosing the organ exactly
 //insert_box();
-//inserttop_box();  
+//inserttop_box(); 
+
+//insert_box_cut();
+//inserttop_box_cut();
 
 //inner_box();                    // box for inner part
 //innertop_box();                 // same for top
@@ -144,7 +148,7 @@ dimensions();
 //================================================================
 wall_width      = 20;       // thickness for walls and bottoms
 wall_height     = 20;       // height of outer box wall
-bottom_height   = 6;       // was 10; thickness of bottom of outer box (don't use if printing single MT)
+bottom_height   = 5;       // was 10; thickness of bottom of outer box (don't use if printing single MT)
 
 inner_frame_block  = 15;    // was 20; inner frame block size around insert
 
@@ -345,16 +349,15 @@ module inserttop_box() {
 
 
 
-
 // cut insert_box opening into inner_box to make inner_frame
 module insert_box_cut() {
-    translate([0,-insert_box_ydim,-organ_zreal/2]) 
-        cube([insert_box_xdim,insert_box_ydim,insert_box_zdim+wall_height]);      
+    translate([0,-insert_box_ydim,-(insert_box_zdim)]) 
+        cube([insert_box_xdim,insert_box_ydim,insert_box_zdim+cut_width]);   
 }
 
 module inserttop_box_cut() {
-    translate([0,-insert_box_ydim,0]) 
-        cube([insert_box_xdim,insert_box_ydim,insert_box_zdim+wall_height-organ_zreal/2]);      
+    translate([0,-insert_box_ydim,-cut_width])
+        cube([insert_box_xdim,insert_box_ydim,insert_box_zdim+cut_width]);    
 }
 
 
