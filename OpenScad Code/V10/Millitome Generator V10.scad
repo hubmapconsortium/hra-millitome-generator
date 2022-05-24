@@ -24,7 +24,12 @@
 //  - added dimensions() output in console (look for ECHO: statements)
 //  2022-5-18
 //  - organ files now aquired from organ_folder 
-//
+//  2022-5-26
+//  - dimension adjustments after test print (construction variables)
+//  - changed: bottom_height=6, inner_frame_block=15, cut_width=2
+//  - adjusted coordinate system letters/number sixe and position
+
+
 // dimensions are in mm
 //
 // in 3D editor usually X & Z are in the plane, Y is height ==> OpenScad reverses Y<==>Z!!
@@ -47,7 +52,7 @@ $fs = 0.4;
 //================================================================
 gender          = 1;    // 0=female, 1=male, needs to be integer selector
 organ_id        = 2;    // index for list lookup     
-organ_scale     = 0.85;    // scale 1 = 100%, 1.1 = 110% etc
+organ_scale     = 1;    // scale 1 = 100%, 1.1 = 110% etc
 
 type            = 1;    // 1 = fixed block size, 2 = user block size, 3 = user block count
 
@@ -139,11 +144,11 @@ dimensions();
 //================================================================
 wall_width      = 20;       // thickness for walls and bottoms
 wall_height     = 20;       // height of outer box wall
-bottom_height   = 10;       // thickness of bottom of outer box (don't use if printing single MT)
+bottom_height   = 6;       // was 10; thickness of bottom of outer box (don't use if printing single MT)
 
-inner_frame_block  = 20;    // inner frame block size around insert
+inner_frame_block  = 15;    // was 20; inner frame block size around insert
 
-cut_width       = 1;        // width of cutting tool
+cut_width       = 2;        // was 1; width of cutting tool
 cut_depth       = 1;        // how far to cut below specimen
 
 start_character = 65;       // is A - for column letters
@@ -622,12 +627,12 @@ module row_slot_array() {
 // output one number character, position shifted, font size adjusted
 module block_number(character) {
     //for character centering in x (y can stay static) 
-    font_size   = block_ydim/2;
+    font_size   = block_ydim/2.5;
     font_width  = font_size/1.375;
     font_gap    = (inner_frame_block-font_width)/2;
     
     linear_extrude(type_thickness)
-    translate([-(font_width+font_gap),-block_ydim*0.75,0])    //-inner_frame_block*0.75
+    translate([-(font_width+font_gap),-block_ydim*0.6,0])    //-inner_frame_block*0.75
     
     // interprets two-digit numbers up to 29
     if (character < start_number+9)
@@ -663,11 +668,11 @@ module numbertop_array(character) {
 
 // output one letter character, position shifted, font size&position adjusted
 module block_letter(character) {
-    font_size   = block_xdim/2;
+    font_size   = block_xdim/2.5;
     font_gap    = (inner_frame_block-font_size)/2;
     
     linear_extrude(type_thickness)
-    translate([block_xdim*0.25,font_gap,0])
+    translate([block_xdim*0.3,font_gap,0])
     text(chr(character),size=font_size);
 }
 
