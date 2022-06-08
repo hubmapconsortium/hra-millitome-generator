@@ -13,7 +13,7 @@ Contains 24 files in STL format, used by <em>Millitome Generator V10</em> to cut
 There are three STL files for each organ:
 
 Edited, simplified geometry of left female kidney.<br>
-<em>f_0_kidney_l.stl</em>
+<em>f_0_kidney_l.stl</em><br>
 ![f_0_kidney_l.png!](V10/images/f_0_kidney_l.png "f_0_kidney_l.png")
 
 Model with straight extended top; used to cut bottom molds.
