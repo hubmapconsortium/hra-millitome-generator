@@ -26,7 +26,7 @@ Model with straight extended bottom; used to cut top molds:<br>
 <em>_tf_0_kidney_l.stl</em><br>
 ![_tf_0_kidney_l.png!](images/_tf_0_kidney_l.png "_tf_0_kidney_l.png")
 
-<h4>Millitome Generator V10.scad</h4>
+<h4>MT-Generator.scad</h4>
 Program code to be run in Openscad.
 
 # Configuration 
