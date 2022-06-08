@@ -29,6 +29,6 @@ Contents are identical to V10.
 Program code to be run in Openscad.
 
 <h4>mt_export.bash</h4>
-This bash terminal script will create all STL and CSV files as configured by calling <em>MT-Generator.scad</em> with the properly formed command line. It must reside in the same directory as <em>MT-Generator.scad</em>. To invoke the script enter this command: <em>bash mt_export.bash</em><br><br>
+This bash terminal script will create all STL and CSV files as configured by calling <em>MT-Generator.scad</em> with the properly formed command line. It must reside in the same directory as <em>MT-Generator.scad</em>. To invoke the script navigate the terminal to the folder containg <em>MT-Generator.scad</em> and enter this command: <em>bash mt_export.bash</em><br><br>
 
 STL files will export to a folder called <em>exports_stl</em>. CSV files will export to a folder called <em>exports_csv</em>. Both folders will be created if not already present. Files already present in either folder will be overwritten.
