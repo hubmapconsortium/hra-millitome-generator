@@ -7,7 +7,7 @@ Version 10 is the first fully working version of Openscad code to produce millit
 <h4>images</h4>
 This folder contains images used for documentation. Not required for proper operation of <em>Millitome Generator V10</em>.
 
-<h4>organ</h4>
+<h4>organs</h4>
 Contains 24 files in STL format, used by <em>Millitome Generator V10</em> to cut the correct mold shapes. This folder must reside in the same directory from which <em>Millitome Generator V10.scad </em> is launched.<br><br>
 
 There are three STL files for each organ:
