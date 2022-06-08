@@ -24,6 +24,9 @@ Model with straight extended bottom; used to cut top molds:<br>
 <em>_tf_0_kidney_l.stl</em><br>
 ![_tf_0_kidney_l.png!](V10/images/_tf_0_kidney_l.png "_tf_0_kidney_l.png")
 
+<h4>Millitome Generator V10.scad</h4>
+Program code to be run in Openscad.
+
 <h3>V11</h3>
 
 Version 11 is based on the same millitome creation engine as version 10. While it can still be used as a standalone application running in Openscad, it can now be launched from the computer's Terminal application and be configured from the command line. This allows to run the application from a <em>bash shell script</em> to output many differently configured millitomes, properly named, in one single operation. In addition it will also create lookup files in CSV format. To facilitate commandline usage the Openscad code was renamed to <em>MT-Generator.scad</em>.
