@@ -147,3 +147,21 @@ These functions are in the Object Generation Area. To generate exportable geomet
 > blockbottom_box();    // dimensions of block array box (type dependent)
 > 
 > blocktop_box();    // same for top
+
+# Folder Contents
+
+
+There are three STL files for each organ:
+
+Edited, simplified geometry of left female kidney:<br>
+<em>f_0_kidney_l.stl</em><br>
+![f_0_kidney_l.png!](images/f_0_kidney_l.png "f_0_kidney_l.png")
+
+Model with straight extended top; used to cut bottom molds:<br>
+<em>_bf_0_kidney_l.stl</em><br>
+![_bf_0_kidney_l.png!](images/_bf_0_kidney_l.png "_bf_0_kidney_l.png")
+
+Model with straight extended bottom; used to cut top molds:<br>
+<em>_tf_0_kidney_l.stl</em><br>
+![_tf_0_kidney_l.png!](images/_tf_0_kidney_l.png "_tf_0_kidney_l.png")
+
