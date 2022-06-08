@@ -10,8 +10,9 @@ This folder contains images used for documentation. Not required for proper oper
 <h4>organ</h4>
 Contains 24 files in STL format, used by <em>Millitome Generator V10</em> to cut the correct mold shapes. This folder must reside in the same directory from which <em>Millitome Generator V10.scad </em> is launched. 
 
-There are three STL files for each organ.
+There are three STL files for each organ:
 
+Edited, simplified geometry of left female kidney.
 ![f_0_kidney_l.png!](V10/images/f_0_kidney_l.png "f_0_kidney_l.png")
 
 
