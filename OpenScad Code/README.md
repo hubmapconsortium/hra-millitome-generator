@@ -26,4 +26,4 @@ Model with straight extended bottom; used to cut top molds:<br>
 
 <h3>V11</h3>
 
-Version 11 is based on the same millitome creation engine as version 10. While it can still be used as a standalone application running in Openscad it can now be launched from the computer's Terminal application, and be configured from the command line. A bash script allows to output many differently configured millitomes, properly named, in one signle operation. In addition it will also create lookup files in CSV format. 
+Version 11 is based on the same millitome creation engine as version 10. While it can still be used as a standalone application running in Openscad, it can now be launched from the computer's Terminal application and be configured from the command line. This allows to run the application from a <em>bash shell script</em> to output many differently configured millitomes, properly named, in one single operation. In addition it will also create lookup files in CSV format. 
