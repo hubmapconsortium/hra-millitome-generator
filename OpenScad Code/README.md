@@ -20,7 +20,7 @@ Model with straight extended top; used to cut bottom molds:<br>
 <em>_bf_0_kidney_l.stl</em><br>
 ![_bf_0_kidney_l.png!](V10/images/_bf_0_kidney_l.png "_bf_0_kidney_l.png")
 
-Model with straight extended bottom; used to cut top molds:br>
+Model with straight extended bottom; used to cut top molds:<br>
 <em>_tf_0_kidney_l.stl</em><br>
 ![_tf_0_kidney_l.png!](V10/images/_tf_0_kidney_l.png "_tf_0_kidney_l.png")
 
