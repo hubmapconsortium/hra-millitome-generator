@@ -5,10 +5,15 @@
 Version 10 is the first fully working version of Openscad code to produce millitome STL files. Through configuration variables at the top of the code, it can cover a wide variety of organ types, sizes and millitome layouts.
 
 <h4>images</h4>
-This folder contains images used for documentation. Not required for proper operation of Millitome Generato V10.
+This folder contains images used for documentation. Not required for proper operation of <em>Millitome Generato V10</em>.
 
 <h4>organ</h4>
-Contains 24 files in STL format used by Millitome Generator V10 to cut the correct mold shapes. 
+Contains 24 files in STL format, used by <em>Millitome Generator V10</em> to cut the correct mold shapes. This folder must reside in the same directory from which <em>Millitome Generator V10.scad </em> is launched. 
+
+There are three STL files for each organ.
+
+![f_0_kidney_l.png!](V10/images/f_0_kidney_l.png "f_0_kidney_l.png")
+
 
 <h3>V11</h3>
 
