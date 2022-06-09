@@ -2,7 +2,7 @@
 
 ![MT-Generator!](images/MT-Generator.png "MT-Generator")
 
-Implemented in OpenScad 2021.1.<br>
+Implemented in OpenScad 2021.1. Developed on MacOS 12.4. Terminal procedures and commands are Mac-specific.
 
 # Folder Contents
 
