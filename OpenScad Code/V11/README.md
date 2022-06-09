@@ -3,6 +3,10 @@
 ![MT-Generator!](images/MT-Generator.png "MT-Generator")
 
 Implemented in OpenScad 2021.1. Developed on MacOS 12.4. Terminal procedures and commands are Mac-specific.
+Proper installation requires these items in the same directory location:
+<em>organs</em> (folder)
+<em>MT-Generator.scad</em> (program code to run in Openscad)
+<em>mt_export.bash</em> (bash shell script)
 
 # Folder Contents
 
