@@ -6,6 +6,8 @@ A millitome is a device designed to hold a freshly procured organ and facilitate
 
 Millitome Generator uses modified 3D-models from the HuBMAP organ repository to generate 3D-printable millitomes, delivered as STL files. The exact shape, proportions and dimensions of the generated millitome depend directly on the properties of the organ model used.
 
+Along with the 3d-printed millitome a researcher needs a lookup document. This comes in the form of a spreadsheet file, where data about the individual sample blocks can be recorded. This lookup file is needed in CSV format.
+
 <h3>Software Tools</h3>
 
 In order to match millitomes to specific organs, a 3d modeling application such as Blender, Maya or Cinema 4D is used to simplify the organ model. This modified organ is then used in <a href="https://openscad.org">Openscad</a> to generate the matching STL file.
@@ -14,6 +16,12 @@ Unlike regular 3D modelers, which rely on a visual point-and-click interface, Op
 
 The user adjusts a handfull of variables, such as organ type, gender, block size and selects which part of the millitome (top, bottom) should be generated. OpenScad will build the requested geometry, which can then be exported as an STL file for 3D-printing.
 
+To create a matching CSV file for a specific millitome any spreadsheet application can be used, or even a text editor.
+
 <h3><a href="https://github.com/hubmapconsortium/hra-millitome-generator/tree/main/OpenScad%20Code/V10">Millitome Generator V10</a></h3>
 
 V10 was programmed to export one single Millitome STL after setting the required properties directly in the Openscad code. This is practical to produce a handful of STL files or to troubleshoot errors in the code or parameters. Complete millitome sets for several organs can require 100 or more individual STL files. It is very time-consuming to tweak parameters and export each STL manually.
+
+<h3><a href="https://github.com/hubmapconsortium/hra-millitome-generator/tree/main/OpenScad%20Code/V11">Millitome Generator V11</a></h3>
+
+Just like V10, V11 can still be used to export individual STL files. But now it can also be executed through commands in a Terminal app. A bash terminal script automates the creation of (at the moment) 144 individual STL files; all named consistently, created into matching folders, each folder compressed into a ZIP file.
