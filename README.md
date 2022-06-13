@@ -24,4 +24,4 @@ V10 was programmed to export one single Millitome STL after setting the required
 
 <h3><a href="https://github.com/hubmapconsortium/hra-millitome-generator/tree/main/OpenScad%20Code/V11">Millitome Generator V11</a></h3>
 
-Just like V10, V11 can still be used to export individual STL files. But now it can also be executed through commands in a Terminal app. A bash terminal script automates the creation of (at the moment) 144 individual STL files; all named consistently, created into matching folders, each folder compressed into a ZIP file.
+Just like V10, V11 can still be used to export individual STL files. But now this can also be initiated through commands in a Terminal app. A bash terminal script automates the creation of (at the moment) 144 individual STL files; all named consistently, created into matching folders, each folder compressed into a ZIP file.
