@@ -8,12 +8,12 @@ Millitome Generator uses modified 3D-models from the HuBMAP organ repository to 
 
 <h3>Software Tools</h3>
 
-In order to match millitomes to specific organs, a 3d modeling application such as Blender, Maya or Cinema 4D is used to simplify the organ model. This modified organ is then used in Openscad (a https://openscad.org
-
-[link](https://www.example.com/my%20great%20page)
-
-<a href="https://www.example.com/my great page">link</a>
+In order to match millitomes to specific organs, a 3d modeling application such as Blender, Maya or Cinema 4D is used to simplify the organ model. This modified organ is then used in <a href="https://openscad.org">Openscad</a> to generate the matching STL file.
 
 Unlike regular 3D modelers, which rely on a visual point-and-click interface, OpenScad is fully code based. That means, the 3D geometry is only created after the user executes the text-based code. This makes it easy to create variations of a 3D object (e.g., millitomes for different organ sizes or tissue block sizes) by changing relevant parameters in the code.
 
 The user adjusts a handfull of variables, such as organ type, gender, block size and selects which part of the millitome (top, bottom) should be generated. OpenScad will build the requested geometry, which can then be exported as an STL file for 3D-printing.
+
+<h3><a href="https://github.com/hubmapconsortium/hra-millitome-generator/tree/main/OpenScad%20Code/V10">Millitome Generator V10</a></h3>
+
+V10 was programmed to export one single Millitome STL after setting the required properties directly in the Openscad code. This is practical to produce a handful of STL files or to troubleshoot errors in the code or parameters. Complete millitome sets for several organs can require 100 or more individual STL files. It is very time-consuming to tweak parameters and export each STL manually.
