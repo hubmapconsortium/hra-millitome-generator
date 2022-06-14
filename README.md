@@ -26,4 +26,4 @@ V10 was programmed to export one single Millitome STL after setting the required
 
 Just like V10, V11 can be used to export individual STL files. But now millitome generation can also be initiated through the command line in a terminal app. A bash terminal script automates the creation of (at the moment) 144 individual STL files; all named consistently, created into matching folders, each folder compressed into a ZIP file.
 
-While the terminal script is running Openscad, it also generates a correctly configured and named CSV lookup file for each STL file. CSV files are also saved into the correct folder and included in the generated ZIP file.
+While the terminal script is running Openscad, it also generates a correctly configured and named CSV lookup file for each STL file. CSV files are also saved into the output folder and included in the generated ZIP file.
