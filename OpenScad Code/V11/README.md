@@ -61,6 +61,8 @@ Here are the properties:
 <b>laterality</b><br>
 0=bottom, 1=top<br>    
 
+<h3>Millitome Generation from Openscad</h3>
 
+In the Openscad code editor navigate to the lines shown. Edit the parameters as required. <em>Save</em> to save the modified code and see preview. <em>Render</em> to create exportable geometry. When satisfied <em>Export STL</em>. 
 
 ![MT-Generator-Properties!](images/MT-Generator-properties.png "MT-Generator Properties")
