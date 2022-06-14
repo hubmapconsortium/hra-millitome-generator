@@ -2,7 +2,7 @@
 
 # V10
 
-Version 10 is the first fully working version of Openscad code to produce millitome STL files. Through configuration variables at the top of the code, it can cover a wide variety of organ types, sizes and millitome layouts. However, it can only output a single millitome per run, requiring the user to manually configure, render and export each individual file, while typing in the correct file names.
+Version 10 is the first fully working version of <a href="https://openscad.org">Openscad</a> code to produce millitome STL files. Through configuration variables at the top of the code, it can cover a wide variety of organ types, sizes and millitome layouts. However, it can only output a single millitome per run, requiring the user to manually configure, render and export each individual file, while typing in the correct file names.
 
 <h4>images</h4>
 This folder contains images used for documentation. Not required for proper operation of <em>Millitome Generator V10</em>.
