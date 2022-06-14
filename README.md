@@ -20,7 +20,7 @@ To create a matching Lookup file in CSV format for a specific millitome, any spr
 
 <h3><a href="https://github.com/hubmapconsortium/hra-millitome-generator/tree/main/OpenScad%20Code/V10">Millitome Generator V10</a></h3>
 
-V10 was programmed to export one single Millitome STL after setting the required properties directly in the Openscad code. This is practical to produce a handful of STL files or to troubleshoot errors in the code or parameters. Complete millitome sets for several organs can require 100 or more individual STL files. It is very time-consuming to tweak parameters and export each STL manually.
+V10 was programmed to export one single Millitome STL after setting the required properties directly in the Openscad code. This is practical to produce a handful of STL files or to troubleshoot errors in the code or parameters. Complete millitome sets for several organs can require 100 or more individual STL files. It is very time-consuming to tweak the parameters for every millitome variation, and then export STL manually.
 
 <h3><a href="https://github.com/hubmapconsortium/hra-millitome-generator/tree/main/OpenScad%20Code/V11">Millitome Generator V11</a></h3>
 
