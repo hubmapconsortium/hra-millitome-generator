@@ -61,8 +61,21 @@ Here are the properties:
 <b>laterality</b><br>
 0=bottom, 1=top<br>    
 
-<h3>Millitome Generation from Openscad</h3>
+<h3>Millitome generation from openscad</h3>
 
 In the Openscad code editor navigate to the lines shown. Edit the parameters as required. <em>Save</em> to save the modified code and see preview. <em>Render</em> to create exportable geometry. When satisfied <em>Export STL</em>. 
 
 ![MT-Generator-Properties!](images/MT-Generator-properties.png "MT-Generator Properties")
+
+<h3>Millitome generation using terminal commands</h3>
+
+<h4>Prerequisite to commandline use of openscad</h4>
+
+<a href="https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Using_OpenSCAD_in_a_command_line_environment">Using Openscad in command line environment</a>
+
+
+openscad ${mtGenerator} -o ${outputFolder}/${outputSubfolder}/VH_${gender}_${organ}_${blocksize}_${scale}_${laterality}.stl -D laterality=${lateralityID} -D gender=${genderID} -D organ_id=${organID} -D organ_scale=${scaleID} -D block_size=${blocksize} -D output_flag=${outputFlag}
+
+
+<h3>Millitome generation using terminal script</h3>
+
