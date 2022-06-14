@@ -6,7 +6,7 @@ A millitome is a device designed to hold a freshly procured organ and facilitate
 
 Millitome Generator uses modified 3D-models from the HuBMAP organ repository to generate 3D-printable millitomes, delivered as STL files. The exact shape, proportions and dimensions of the generated millitome depend directly on the properties of the organ model used.
 
-Along with the 3d-printed millitome a researcher needs a lookup document. This comes in the form of a spreadsheet file, where data about the individual sample blocks can be recorded. This lookup file is needed in CSV format.
+Along with the 3d-printed millitome the researcher needs a lookup document. This comes in the form of a spreadsheet file, where data about the individual sample blocks can be recorded. This lookup file is needed in CSV format.
 
 <h3>Software Tools</h3>
 
