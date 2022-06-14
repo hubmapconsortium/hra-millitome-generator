@@ -70,7 +70,9 @@ In the Openscad code editor navigate to the lines shown. Edit the parameters as 
 <h3>Millitome generation using terminal commands</h3>
 
 This webpage contains information about using Openscad in Windows and MacOS environments.
+
 <a href="https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Using_OpenSCAD_in_a_command_line_environment">Using Openscad in command line environment</a>
+
 All following instructions assume Openscad can be accessed in the terminal by typing "openscad"<return> at the command prompt. 
 
 openscad ${mtGenerator} -o ${outputFolder}/${outputSubfolder}/VH_${gender}_${organ}_${blocksize}_${scale}_${laterality}.stl -D laterality=${lateralityID} -D gender=${genderID} -D organ_id=${organID} -D organ_scale=${scaleID} -D block_size=${blocksize} -D output_flag=${outputFlag}
