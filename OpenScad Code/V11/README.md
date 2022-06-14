@@ -34,7 +34,7 @@ Model with straight extended bottom; used to cut top molds:<br>
 Program code to be run in Openscad.
 
 <h4>mt_export.bash</h4>
-Terminal script file to run <em>MT-Generator</em> automatically from bash Terminal.
+Terminal script file to run <em>MT-Generator</em> automatically from bash terminal.
 
 # Operation Instructions 
 
