@@ -60,3 +60,7 @@ Here are the properties:
 
 <b>laterality</b><br>
 0=bottom, 1=top<br>    
+
+
+
+![MT-Generator-Properties!](images/MT-Generator-properties.png "MT-Generator Properties")
