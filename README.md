@@ -16,7 +16,7 @@ Unlike regular 3D modelling software, which relies on a visual point-and-click i
 
 The user adjusts a handfull of variables, such as organ type, gender, block size and selects which part of the millitome (top, bottom) should be generated. OpenScad will build the requested geometry, which can then be exported as an STL file for 3D-printing.
 
-To create a matching Lookup file in CSV format for a specific millitome, any spreadsheet application can be used, or even a text editor.
+To create a matching lookup file in CSV format for a specific millitome, any spreadsheet application can be used, or even a text editor.
 
 <h3><a href="https://github.com/hubmapconsortium/hra-millitome-generator/tree/main/OpenScad%20Code/V10">Millitome Generator V10</a></h3>
 
