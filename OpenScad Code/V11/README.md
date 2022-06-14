@@ -47,8 +47,11 @@ In the <em>MT_Generator.scad</em> code properties for specific millitomes are de
 Here are the properties:
 
 <b>gender</b><br>
-0=female, 1=male, needs to be integer selector<br>
-organ_id        = 0;    // index for list lookup  
+0=female, 1=male<br>
+
+<b>organ_id</b><br>
+0=left kidney, 1=right kidney, 2=spleen, 3=pancreas<br>
+
 block_size      = 10 ;  // used for type 1, uniform x/y block size for cubes
 organ_scale     = 0;    // 0=large,1=medium,2=small
 laterality      = 0;    // 0 = bottom, 1 = top, 2 = bypass MT creation      
