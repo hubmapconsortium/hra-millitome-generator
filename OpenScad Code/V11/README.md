@@ -36,28 +36,20 @@ Program code to be run in Openscad.
 <h4>mt_export.bash</h4>
 Terminal script file to run <em>MT-Generator</em> automatically from bash terminal.
 
-# Operation Instructions 
+# Operating Instructions 
 
-<em>MT_Generator.scad</em> is a text based code file. When double-clicked, it will launch the Openscad 3d graphics application and display the code, a text console and a preview of the model produced by the code. Rendering the current model will produce the actual 3d geometry which can then be exported as an STL file. While the <em>MT_Generator</em> code uses several discreet 3d objects, such as boxes, letters and others, to assemble the requested millitome, the STL file contains one single 3d object.
+<em>MT_Generator.scad</em> is a text based code file. When double-clicked, it will launch the Openscad 3d graphics application and display the code, a text console and a preview of the model produced by the code. Rendering the current model will produce the actual 3d geometry which can then be exported as an STL file. While the <em>MT_Generator</em> code uses several discreet 3d objects, such as boxes, letters and others, to assemble the requested millitome, the exported STL file contains only one single 3d object.
 
 <h3>Customization Properties</h3>
 
+In the <em>MT_Generator.scad</em> code properties for specific millitomes are determined by a short list of parameters. Each of these parameters can be modifed and Openscad will show a preview of the resulting millitome after saving the code file or initiating a refresh of the preview.
 
+Here are the properties:
 
-
-output_flag     = 0;    // 0 = ECHO everything, 1 = ECHO insert line only, 2 = ECHO col/row insert ONLY
-
-laterality      = 0;    // 0 = bottom, 1 = top, 2 = bypass MT creation      
 gender          = 0;    // 0=female, 1=male, needs to be integer selector
-organ_id        = 0;    // index for list lookup   
-organ_scale     = 0;    // 0=large,1=medium,2=small                    
-
-type            = 1;    // 1 = fixed block size, 2 = user block size, 3 = user block count
-
+organ_id        = 0;    // index for list lookup  
 block_size      = 10 ;  // used for type 1, uniform x/y block size for cubes
-
-block_xsize     = 10;   // used for type 2, different x/y block size
-block_ysize     = 20;
-
-blocks_x        = 2;    // used for type 3, number of blocks along x, used for calculated block_size
-blocks_y        = 7;    // number of blocks along y
+organ_scale     = 0;    // 0=large,1=medium,2=small
+laterality      = 0;    // 0 = bottom, 1 = top, 2 = bypass MT creation      
+                
+output_flag     = 0;    // 0 = ECHO everything, 1 = ECHO insert line only, 2 = ECHO col/row insert ONLY
