@@ -12,7 +12,7 @@ Along with the 3d-printed millitome the researcher needs a lookup document. This
 
 In order to match millitomes to specific organs, a 3d modeling application such as Blender, Maya or Cinema 4D is used to simplify the organ model. This modified organ is then used in <a href="https://openscad.org">Openscad</a> to generate the matching STL file.
 
-Unlike regular 3D modelling software, which relies on a visual point-and-click interface, OpenScad is fully code based. That means, the 3D geometry is only created after the user executes the text-based code. This makes it easy to create variations of a 3D object (e.g., millitomes for different organ sizes or tissue block sizes) by changing relevant parameters in the code.
+Unlike regular 3D modelling software, which relies on a visual point-and-click interface, OpenScad is fully code based. That means, the 3D geometry is created after the user executes the text-based code. This makes it easy to create variations of a 3D object (e.g., millitomes for different organ sizes or tissue block sizes) by changing relevant parameters in the code.
 
 The user adjusts a handfull of variables, such as organ type, gender, block size and selects which part of the millitome (top, bottom) should be generated. OpenScad will build the requested geometry, which can then be exported as an STL file for 3D-printing.
 
