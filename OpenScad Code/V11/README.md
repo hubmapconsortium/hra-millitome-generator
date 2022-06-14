@@ -42,11 +42,11 @@ Terminal script file to run <em>MT-Generator</em> automatically from bash termin
 
 <h3>Customization Properties</h3>
 
-In the <em>MT_Generator.scad</em> code properties for specific millitomes are determined by a short list of parameters. Each of these parameters can be modifed and Openscad will show a preview of the resulting millitome after saving the code file or initiating a refresh of the preview.
+In the <em>MT_Generator.scad</em> code properties for specific millitomes are determined by a short list of parameters. Each of these parameters can be modifed and Openscad will show a preview of the resulting millitome after saving the code file or initiating a refresh of the preview. All the properties are defined as integers.
 
 Here are the properties:
 
-gender          = 0;    // 0=female, 1=male, needs to be integer selector
+<b>gender</b> 0=female, 1=male, needs to be integer selector<br>
 organ_id        = 0;    // index for list lookup  
 block_size      = 10 ;  // used for type 1, uniform x/y block size for cubes
 organ_scale     = 0;    // 0=large,1=medium,2=small
