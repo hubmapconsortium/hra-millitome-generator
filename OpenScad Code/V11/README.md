@@ -52,8 +52,11 @@ Here are the properties:
 <b>organ_id</b><br>
 0=left kidney, 1=right kidney, 2=spleen, 3=pancreas<br>
 
-block_size      = 10 ;  // used for type 1, uniform x/y block size for cubes
-organ_scale     = 0;    // 0=large,1=medium,2=small
-laterality      = 0;    // 0 = bottom, 1 = top, 2 = bypass MT creation      
-                
-output_flag     = 0;    // 0 = ECHO everything, 1 = ECHO insert line only, 2 = ECHO col/row insert ONLY
+<b>block_size</b><br>
+10, 15, 20 (size of one sample block in millimeters)<br>
+
+<b>organ_scale</b><br>
+0=large (115%), 1=medium (100%), 2=small (85%) (to account for size variations in organ samples)<br>
+
+<b>laterality</b><br>
+0=bottom, 1=top<br>    
