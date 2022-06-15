@@ -17,7 +17,7 @@ Program code to be run in Openscad.
 
 Version 11 is based on the same millitome creation engine as version 10. While it can be used as a stand-alone application running in Openscad, it can now also be launched from the computer's terminal application and be configured from the command line. This allows to run the application from a <em>bash shell script</em> to output many differently configured millitomes, properly named, in one single operation. In addition it will also create matching lookup files in CSV format. To facilitate command line usage the Openscad code file was renamed to <em>MT-Generator.scad</em>.
 
-Currently running the complete export procedure will create 144 files each of STL and CSV files. Depending on the hardware expect a duration of 3-4 hours.
+Running the complete current export procedure will create 144 files each of STL and CSV files. Depending on the hardware expect a duration of 3-4 hours.
 
 <h4>images</h4>
 This folder contains images used for documentation. Not required for proper operation of <em>MT-Generator</em>.
