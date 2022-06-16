@@ -12,10 +12,7 @@
   - [Millitome Generation using Terminal Commands](#millitome-generation-using-terminal-commands)
   - [Millitome Generation using Terminal Script](#millitome-generation-using-terminal-script)
     - [Running the Terminal Script](#running-the-terminal-script)
-
-### Closer Look at the Terminal Script
-
-### Closer Look at the Terminal Script
+    - [Closer Look at the Terminal Script](#closer-look-at-the-terminal-script)
 
 # Requirements
 
