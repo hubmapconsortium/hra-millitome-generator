@@ -33,16 +33,16 @@ Contains 24 files in STL format, used by <em>MT-Generator</em> to cut the correc
 
 There are three STL files for each organ:
 
-Edited, simplified geometry of left female kidney:
+Edited, simplified geometry of left female kidney:<br>
 [<em>f_0_kidney_l.stl</em>](https://github.com/hubmapconsortium/hra-millitome-generator/blob/7fc45ea5e9f6eb0297473e38da1884ab637b68ce/OpenScad%20Code/V11/organs/f_0_kidney_l.stl)
 ![f_0_kidney_l.png!](images/f_0_kidney_l.png "f_0_kidney_l.png")
 
 Model with straight extended top; used to cut bottom molds:<br>
-<em>_bf_0_kidney_l.stl</em><br>
+[<em>_bf_0_kidney_l.stl</em>](https://github.com/hubmapconsortium/hra-millitome-generator/blob/646edafee4bd8995ceebeda2937633f550995781/OpenScad%20Code/V11/organs/_bf_0_kidney_l.stl)<br>
 ![_bf_0_kidney_l.png!](images/_bf_0_kidney_l.png "_bf_0_kidney_l.png")
 
 Model with straight extended bottom; used to cut top molds:<br>
-<em>_tf_0_kidney_l.stl</em><br>
+[<em>_tf_0_kidney_l.stl</em>](https://github.com/hubmapconsortium/hra-millitome-generator/blob/646edafee4bd8995ceebeda2937633f550995781/OpenScad%20Code/V11/organs/_tf_0_kidney_l.stl)<br>
 ![_tf_0_kidney_l.png!](images/_tf_0_kidney_l.png "_tf_0_kidney_l.png")
 
 #### MT-Generator.scad
