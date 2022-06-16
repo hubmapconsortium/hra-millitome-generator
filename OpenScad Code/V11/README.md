@@ -8,9 +8,9 @@
 - [Folder Contents](#folder-contents)
 - [Operating Instructions](#operating-instructions)
   - [Customization Properties](#customization-properties)
-  - [Millitome Generation from Openscad](#mt-generating-openscad)
-  - [Millitome Generation using Terminal Commands](#mt-generation-terminal)
-  - [Millitome Generation using Terminal Script](#mt-generation-script)
+  - [Millitome Generation from Openscad](#millitome-generation-from-openscad)
+  - [Millitome Generation using Terminal Commands](#millitome-generation-using-terminal-commands)
+  - [Millitome Generation using Terminal Script](#millitomegeneration-using-terminal-script)
 
 # Requirements
 
