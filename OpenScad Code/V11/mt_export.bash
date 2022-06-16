@@ -128,6 +128,7 @@ for genderID in ${genderIDs[@]}; do     # genders: 2
                             ((rowCounter++))
                         done
                         cd -    # back to main folder
+                        echo $csvName
                     done
                 done
                 # here after folder is done
