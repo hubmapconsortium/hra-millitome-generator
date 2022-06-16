@@ -45,10 +45,10 @@ Model with straight extended bottom; used to cut top molds:<br>
 [<em>_tf_0_kidney_l.stl</em>](https://github.com/hubmapconsortium/hra-millitome-generator/blob/646edafee4bd8995ceebeda2937633f550995781/OpenScad%20Code/V11/organs/_tf_0_kidney_l.stl)<br>
 ![_tf_0_kidney_l.png!](images/_tf_0_kidney_l.png "_tf_0_kidney_l.png")
 
-#### MT-Generator.scad
+#### [MT-Generator.scad](https://github.com/hubmapconsortium/hra-millitome-generator/blob/d9b2529c8e3caacc66053ad367b275fbb6c62047/OpenScad%20Code/V11/MT-Generator.scad)
 Program code to be run in Openscad.
 
-#### mt_export.bash
+#### [mt_export.bash](https://github.com/hubmapconsortium/hra-millitome-generator/blob/d9b2529c8e3caacc66053ad367b275fbb6c62047/OpenScad%20Code/V11/mt_export.bash)
 Terminal script file to run <em>MT-Generator</em> automatically from bash terminal.
 
 # Operating Instructions 
