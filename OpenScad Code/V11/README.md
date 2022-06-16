@@ -127,7 +127,7 @@ The script will create an <em>exports</em> folder and a subfolder for the first 
 While the script is running, text output in the terminal console will show the working directory and the name of the last created millitome.
 ![directory-switching!](images/terminal-2.png "directory switching")
 
-Every time the script has created all six STL files and matching CSV files for a specific millitome the folder iz compressed into a ZIP file and the source folder is deleted.
+Every time the script has created all six STL files and matching CSV files for a specific millitome, the folder is compressed into a ZIP file and the source folder is deleted.
 
 ![zip-compressing!](images/terminal-3.png "zip compressing")
 
