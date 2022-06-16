@@ -11,6 +11,11 @@
   - [Millitome Generation from Openscad](#millitome-generation-from-openscad)
   - [Millitome Generation using Terminal Commands](#millitome-generation-using-terminal-commands)
   - [Millitome Generation using Terminal Script](#millitome-generation-using-terminal-script)
+    - [Running the Terminal Script](#running-the-terminal-script)
+
+### Closer Look at the Terminal Script
+
+### Closer Look at the Terminal Script
 
 # Requirements
 
@@ -105,7 +110,9 @@ This command line will create an output file, "MT-output.stl", in the working di
 
 Both previous methods of millitome generation produce one single STL file per run. One full set of millitomes for a specific organ and sample block size contains six individual STL files. This is to account for organ size variations and laterality. With four distinct organs and two genders the total number of STL files comes 144! Depending on the configuration properties of the millitome it takes about one to five minutes for Openscad to render and save one STL file. Every STL file must be saved using a very specific filename and sorted into a folder hierarchy. It is a perfect task for a script.
 
+### Running the Terminal Script
 
+### Closer Look at the Terminal Script
 
 
 openscad ${mtGenerator} -o ${outputFolder}/${outputSubfolder}/VH_${gender}_${organ}_${blocksize}_${scale}_${laterality}.stl -D laterality=${lateralityID} -D gender=${genderID} -D organ_id=${organID} -D organ_scale=${scaleID} -D block_size=${blocksize} -D output_flag=${outputFlag}
