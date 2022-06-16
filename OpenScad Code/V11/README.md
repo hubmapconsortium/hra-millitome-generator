@@ -57,7 +57,7 @@ Terminal script file to run <em>MT-Generator</em> automatically from bash termin
 
 ## Customization Properties
 
-In the <em>MT_Generator.scad</em> code properties for specific millitomes are determined by a short list of parameters. Each of these parameters can be modifed and Openscad will show a preview of the resulting millitome after saving the code file or initiating a refresh of the preview. All properties are defined as integers.
+Properties for specific millitomes are determined by a short list of parameters at the top of the <em>MT_Generator.scad</em> code. Each of these parameters can be modifed and Openscad will show a preview of the resulting millitome after saving the code file or initiating a refresh of the preview. All properties are defined as integers.
 
 Here are the properties:
 
