@@ -7,10 +7,10 @@
 - [Requirements](#requirements)
 - [Folder Contents](#folder-contents)
 - [Operating Instructions](#operating-instructions)
-  - [Kidney](#kidney)
-  - [Pancreas](#pancreas)
-  - [Spleen](#spleen)
-
+  - [Customization Properties](#customization-properties)
+  - [Millitome Generation from Openscad](#mt-generating-openscad)
+  - [Millitome Generation using Terminal Commands](#mt-generation-terminal)
+  - [Millitome Generation using Terminal Script](#mt-generation-script)
 
 # Requirements
 
@@ -73,13 +73,13 @@ Here are the properties:
 <b>laterality</b><br>
 0=bottom, 1=top<br>    
 
-### Millitome generation from openscad
+## Millitome Generation from Openscad
 
 In the Openscad code editor navigate to the lines shown. Edit the parameters as required. <em>Save</em> to save the modified code and see preview. <em>Render</em> to create exportable geometry. When satisfied <em>Export STL</em>. 
 
 ![MT-Generator-Properties!](images/MT-Generator-properties.png "MT-Generator Properties")
 
-### Millitome generation using terminal commands
+## Millitome Generation using Terminal Commands
 
 <a href="https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Using_OpenSCAD_in_a_command_line_environment">This webpage contains information about how to set up command line access of Openscad on Windows and MacOS.</a><br>
 All following instructions assume Openscad can be accessed in the terminal by typing "openscad" followed by the <em>Return</em> key at the command prompt. 
@@ -98,5 +98,5 @@ If everything is properly set up the Openscad application will launch without lo
 openscad ${mtGenerator} -o ${outputFolder}/${outputSubfolder}/VH_${gender}_${organ}_${blocksize}_${scale}_${laterality}.stl -D laterality=${lateralityID} -D gender=${genderID} -D organ_id=${organID} -D organ_scale=${scaleID} -D block_size=${blocksize} -D output_flag=${outputFlag}
 
 
-### Millitome generation using terminal script
+## Millitome Generation using Terminal Script
 
