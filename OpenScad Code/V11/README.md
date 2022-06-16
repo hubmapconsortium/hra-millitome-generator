@@ -15,7 +15,7 @@
 # Requirements
 
 Implemented in OpenScad 2021.1. Developed on MacOS 12.4. Terminal procedures and commands are Mac-specific.
-Proper installation requires these items in the same directory location:<br><br>
+Proper installation requires these items in the same directory location:
 
 <b>organs</b> (folder)<br>
 <b>MT-Generator.scad</b> (program code to run in Openscad)<br>
