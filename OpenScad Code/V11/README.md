@@ -120,7 +120,10 @@ Make sure the terminal's working directory is set correctly and you have the req
 At the prompt enter this command:<br>
 <em>bash mt_export.bash</em><br>
 
+The script will create an <em>exports</em> folder and a subfolder for the first millitome set. A file called <em>_logfile.txt</em> will appear in the working directory. This logfile is used by the script to parse console output. 
 
+While the script is running, text output in the terminal console will show switching between working directories. 
+![directory-switching!](images/terminal-2.png "directory switching")
 
 ### Closer Look at the Terminal Script
 
