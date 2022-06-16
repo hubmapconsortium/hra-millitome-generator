@@ -117,6 +117,11 @@ Make sure the terminal's working directory is set correctly and you have the req
 
 ![working-directory!](images/terminal-1.png "working directory")
 
+At the prompt enter this command:<br>
+<em>bash mt_export.bash</em><br>
+
+
+
 ### Closer Look at the Terminal Script
 
 
