@@ -14,14 +14,14 @@
 
 # Requirements
 
-Implemented in OpenScad 2021.1. Developed on MacOS 12.4. Terminal procedures and commands are Mac-specific.
+Implemented in [OpenScad 2021.1](https://openscad.org). Developed on MacOS 12.4. Terminal procedures and commands are Mac-specific.
 Proper installation requires these items in the same directory location:
 
 <b>organs</b> (folder)<br>
 <b>MT-Generator.scad</b> (program code to run in Openscad)<br>
 <b>mt_export.bash</b> (bash shell script)
 
-In addition the Openscad application must be installed on the computer and configured for [command line access](https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Using_OpenSCAD_in_a_command_line_environment).
+In addition the [Openscad](https://openscad.org) application must be installed on the computer and configured for [command line access](https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Using_OpenSCAD_in_a_command_line_environment).
 
 # Folder Contents
 
