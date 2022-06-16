@@ -75,7 +75,7 @@ Here are the properties:
 
 ## Millitome Generation from Openscad
 
-In the Openscad code editor navigate to the lines shown. Edit the parameters as required. <em>Save</em> to save the modified code and see preview. <em>Render</em> to create exportable geometry. When satisfied <em>Export STL</em>. 
+In the Openscad code editor navigate to the lines shown. Edit the parameters as required. <em>Save</em> the modified code and see updated preview. <em>Render</em> to create exportable geometry. When satisfied <em>Export STL</em>. 
 
 ![MT-Generator-Properties!](images/MT-Generator-properties.png "MT-Generator Properties")
 
