@@ -75,6 +75,9 @@ All following instructions assume Openscad can be accessed in the terminal by ty
 Step-by-step:
 Launch the terminal app. At the prompt type:<br>
 <em>openscad</em><br>
+
+If everything is properly set up the Openscad application will launch with an empty code area.
+
     
   
   
