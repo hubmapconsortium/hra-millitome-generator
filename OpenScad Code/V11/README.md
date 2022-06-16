@@ -96,7 +96,7 @@ In order to make Openscad export a millitome of a specific type the command line
 
 <em>openscad MT-Generator.scad -o MT-output.stl -D laterality=0 -D gender=0 -D organ_id=1 -D organ_scale=1 -D block_size=20</em>
 
-This command line will create an output file, "MT-output.stl", in the working directory. This millitome will be the "bottom" for a "female" "kidney right" scaled to 100% with a block size of 20mm.
+This command line will create an output file, "MT-output.stl", in the working directory. This millitome will be the "bottom" for a "female" "kidney right" scaled to 100% with a block size of 20mm. The "-D" directive forces Openscad to override named variables defined in the code file.
 
 ![test-millitome!](images/bash-test-mt.jpg "test millitome")
 
