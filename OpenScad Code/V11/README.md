@@ -125,6 +125,10 @@ The script will create an <em>exports</em> folder and a subfolder for the first 
 While the script is running, text output in the terminal console will show switching between working directories. 
 ![directory-switching!](images/terminal-2.png "directory switching")
 
+Every time the script has created all six STL files and matching CSV files for a specific millitome the folder iz compressed into a ZIP file and the source folder is deleted.
+
+![zip-compressing!](images/terminal-3.png "zip compressing")
+
 ### Closer Look at the Terminal Script
 
 
