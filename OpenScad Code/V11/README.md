@@ -124,7 +124,7 @@ At the prompt enter this command:<br>
 
 The script will create an <em>exports</em> folder and a subfolder for the first millitome set. A file called <em>_logfile.txt</em> will appear in the working directory. This logfile is used by the script to parse console output. 
 
-While the script is running, text output in the terminal console will show switching between working directories. And the name of the last created millitome.
+While the script is running, text output in the terminal console will show the working directoriy and the name of the last created millitome.
 ![directory-switching!](images/terminal-2.png "directory switching")
 
 Every time the script has created all six STL files and matching CSV files for a specific millitome the folder iz compressed into a ZIP file and the source folder is deleted.
