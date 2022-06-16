@@ -2,8 +2,14 @@
 
 ![MT-Generator!](images/MT-Generator.png "MT-Generator")
 
-# Table of Contents
+## Table of Contents
 
+- [Requirements](#requirements)
+- [Folder Contents](#folder-contents)
+- [Operating Instructions](#operating-instructions)
+  - [Kidney](#kidney)
+  - [Pancreas](#pancreas)
+  - [Spleen](#spleen)
 
 
 # Requirements
@@ -16,7 +22,7 @@ Proper installation requires these items in the same directory location:<br>
 
 # Folder Contents
 
-<h4>images</h4>
+#### images
 This folder contains images used for documentation. Not required for proper operation of <em>MT-Generator</em>.
 
 <h4>organs</h4>
