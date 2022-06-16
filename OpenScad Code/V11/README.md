@@ -10,7 +10,7 @@
   - [Customization Properties](#customization-properties)
   - [Millitome Generation from Openscad](#millitome-generation-from-openscad)
   - [Millitome Generation using Terminal Commands](#millitome-generation-using-terminal-commands)
-  - [Millitome Generation using Terminal Script](#millitomegeneration-using-terminal-script)
+  - [Millitome Generation using Terminal Script](#millitome-generation-using-terminal-script)
 
 # Requirements
 
