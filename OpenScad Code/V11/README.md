@@ -109,6 +109,13 @@ Both previous methods of millitome generation produce one single STL file per ru
 
 ### Running the Terminal Script
 
+Make sure the terminal's working directory is set correctly and you have the required user priviliges. These three items must be present in the directory:
+<em>MT-Generator.scad</em><br>
+<em>mt_export.bash</em><br>
+<em>organs</em><br>
+
+![working-directory!](images/terminal-1.png "working directory")
+
 ### Closer Look at the Terminal Script
 
 
