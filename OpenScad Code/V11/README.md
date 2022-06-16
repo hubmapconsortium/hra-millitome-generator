@@ -76,8 +76,9 @@ Step-by-step:
 Launch the terminal app. At the prompt type:<br>
 <em>openscad</em><br>
 
-If everything is properly set up the Openscad application will launch with an empty code area.
+If everything is properly set up the Openscad application will launch without loading a file.
 
+![openscad-from-bash!](images/bash-open-openscad.jpg "openscad from bash")
     
   
   
