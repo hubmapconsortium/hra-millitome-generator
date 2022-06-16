@@ -93,7 +93,7 @@ If everything is properly set up, the Openscad application will launch without l
 
 ![openscad-from-bash!](images/bash-open-openscad.jpg "openscad from bash")
 
-In order to make Openscad export a millitome of a specific type the command line has to include information about the Openscad source code file, the name of the STL file to be created, and properties of the requested millitome.
+In order to make Openscad export a millitome of a specific type the command line has to include information about the Openscad source code file, the name of the STL file to be created, and properties of the requested millitome:
 
 <em>openscad MT-Generator.scad -o MT-output.stl -D laterality=0 -D gender=0 -D organ_id=1 -D organ_scale=1 -D block_size=20</em>
 
