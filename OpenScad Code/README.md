@@ -29,4 +29,4 @@ Contents are identical to V10.
 Program code to be run in Openscad.
 
 ### mt_export.bash
-This bash terminal script will create all STL and CSV files as configured, by calling *MT-Generator.scad* with the properly formed command line.]
+This bash terminal script will create all STL and CSV files as configured, by calling *MT-Generator.scad* with the properly formed command line.
