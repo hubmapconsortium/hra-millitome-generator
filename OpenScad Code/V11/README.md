@@ -146,14 +146,13 @@ scaleIDs=(0 1 2)<br>
 
 Corresponding lists are used to look up letters, dimensions and complete words needed to build the filenames and CSV file content.
 
-genderList=(F M)  
-
-genderNamesList=(Female Male)<br>
-organList=(Kidney_L Kidney_R Spleen Pancreas)<br>
-organList2=("Kidney left" "Kidney right" Spleen Pancreas)<br>
-blocksizeList=(10 15 20)
-lateralityList=(Bottom Top)
-scaleList=(Large Medium Small)
+genderList=(F M)\
+genderNamesList=(Female Male)\
+organList=(Kidney_L Kidney_R Spleen Pancreas)\
+organList2=("Kidney left" "Kidney right" Spleen Pancreas)\
+blocksizeList=(10 15 20)\
+lateralityList=(Bottom Top)\
+scaleList=(Large Medium Small)\
 
 
 openscad ${mtGenerator} -o ${outputFolder}/${outputSubfolder}/VH_${gender}_${organ}_${blocksize}_${scale}_${laterality}.stl -D laterality=${lateralityID} -D gender=${genderID} -D organ_id=${organID} -D organ_scale=${scaleID} -D block_size=${blocksize} -D output_flag=${outputFlag}
