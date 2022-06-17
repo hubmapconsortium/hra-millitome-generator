@@ -107,7 +107,7 @@ This command line will create an output file, "MT-output.stl", in the working di
 
 ## Millitome Generation using Terminal Script
 
-Both previous methods of millitome generation produce one single STL file per run. One full set of millitomes for a specific organ and sample block size contains six individual STL files. This is to account for organ size variations and laterality. With four distinct organs and two genders the total number of STL files comes 144! Depending on the configuration properties of the millitome it takes about one to five minutes for Openscad to render and save one STL file. Every STL file must be saved using a very specific filename and sorted into a folder hierarchy. It is a perfect task for a script.
+Both previous methods of millitome generation produce one single STL file per run. One full set of millitomes for a specific organ and sample block size contains six individual STL files. This is to account for organ size variations and laterality. With four distinct organs and two genders the total number of exported STL files comes 144! Depending on the configuration properties of the millitome it takes about one to five minutes for Openscad to render and save one STL file. Every STL file must be saved using a very specific filename and sorted into a folder hierarchy. It is a perfect task for a script.
 
 ### Running the Terminal Script
 
