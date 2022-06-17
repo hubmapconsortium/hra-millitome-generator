@@ -85,11 +85,11 @@ In the Openscad code editor navigate to the lines shown. Edit the parameters as 
 ## Millitome Generation using Terminal Commands
 
 [This webpage](https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Using_OpenSCAD_in_a_command_line_environment)  contains information about how to set up command line access of Openscad on Windows and MacOS.
-All following instructions assume Openscad can be accessed in the terminal by typing "openscad" followed by the <em>Return</em> key at the command prompt. 
+All following instructions assume Openscad can be accessed in the terminal by typing "openscad" followed by the *Return* key at the command prompt. 
   
 To test:
 Launch the terminal app. At the prompt type:<br>
-<em>openscad</em><br>
+*openscad*<br>
 
 If everything is properly set up, the Openscad application will launch without loading a file.
 
@@ -97,7 +97,7 @@ If everything is properly set up, the Openscad application will launch without l
 
 In order to make Openscad export a millitome of a specific type the command line has to include information about the Openscad source code file, the name of the STL file to be created, and properties of the requested millitome:
 
-<em>openscad MT-Generator.scad -o MT-output.stl -D laterality=0 -D gender=0 -D organ_id=1 -D organ_scale=1 -D block_size=20</em>
+*openscad MT-Generator.scad -o MT-output.stl -D laterality=0 -D gender=0 -D organ_id=1 -D organ_scale=1 -D block_size=20*
 
 This command line will create an output file, "MT-output.stl", in the working directory. This millitome will be the "bottom" for a "female" "kidney right" scaled to 100% with a block size of 20mm. The "-D" option forces Openscad to override a named variable defined in the code file.
 
@@ -113,16 +113,16 @@ Both previous methods of millitome generation produce one single STL file per ru
 
 Make sure the terminal's working directory is set correctly and you have the required user priviliges. These three items must be present in the working directory:
 
-<em>MT-Generator.scad</em><br>
-<em>mt_export.bash</em><br>
-<em>organs</em><br>
+*MT-Generator.scad*<br>
+*mt_export.bash*<br>
+*organs*<br>
 
 ![working-directory!](images/terminal-1.png "working directory")
 
 At the prompt enter this command:<br>
-<em>bash mt_export.bash</em><br>
+*bash mt_export.bash*<br>
 
-The script will create an <em>exports</em> folder and a subfolder for the first millitome set. A file called <em>_logfile.txt</em> will appear in the working directory. This logfile is used by the script to parse console output. 
+The script will create an *exports* folder and a subfolder for the first millitome set. A file called *_logfile.txt* will appear in the working directory. This logfile is used by the script to parse console output. 
 
 While the script is running, text output in the terminal console will show the working directory and the name of the last created millitome.
 
@@ -132,7 +132,7 @@ Every time the script has created all six STL files and matching CSV files for a
 
 ![zip-compressing!](images/terminal-3.png "zip compressing")
 
-In total 24 ZIP files will be created inside <em>exports</em>. Each ZIP file contains six STL files and six CSV files. Expect this to take several hours. The script can be stopped from the terminal by pressing <em>Control-z</em>.
+In total 24 ZIP files will be created inside *exports*. Each ZIP file contains six STL files and six CSV files. Expect this to take several hours. The script can be stopped from the terminal by pressing *Control-z*.
 
 ### Closer Look at the Terminal Script
 
