@@ -136,7 +136,7 @@ In total 24 ZIP files will be created inside *exports*. Each ZIP file contains s
 
 ### Closer Look at the Terminal Script
 
-The program code in *mt_export.bash* contains all the instructions to repeatedly launch Openscad, each run with different configuration parameters which are obtained from five short property ID lists. There are two gender IDs, four organ IDs, etc.
+The program code in *[mt_export.bash](https://github.com/hubmapconsortium/hra-millitome-generator/blob/d9b2529c8e3caacc66053ad367b275fbb6c62047/OpenScad%20Code/V11/mt_export.bash)* contains all the instructions to repeatedly launch Openscad, each run with different configuration parameters which are obtained from five short property ID lists. There are two gender IDs, four organ IDs, etc.
 
 genderIDs=(0 1)\
 organIDs=(0 1 2 3)\
