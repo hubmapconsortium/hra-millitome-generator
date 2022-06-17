@@ -136,6 +136,14 @@ In total 24 ZIP files will be created inside *exports*. Each ZIP file contains s
 
 ### Closer Look at the Terminal Script
 
+The program code in *mt_export.bash* contains all the instructions to repeatedly launch Openscad, each run with different configuration parameters which are obtained from five short property ID lists:
+
+genderIDs=(0 1)
+organIDs=(0 1 2 3)
+blocksizeIDs=(0 1 2)
+lateralityIDs=(0 1)
+scaleIDs=(0 1 2)
+
 
 openscad ${mtGenerator} -o ${outputFolder}/${outputSubfolder}/VH_${gender}_${organ}_${blocksize}_${scale}_${laterality}.stl -D laterality=${lateralityID} -D gender=${genderID} -D organ_id=${organID} -D organ_scale=${scaleID} -D block_size=${blocksize} -D output_flag=${outputFlag}
 
