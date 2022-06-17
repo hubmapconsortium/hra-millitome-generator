@@ -167,3 +167,15 @@ where:\
 the components which make up the complete filename\
 *-D* followed by a property name means Openscad will use that value to override internally defined variables
 
+Openscad will take approximately 1-5 minutes to render and save one millitome STL. During and after the render, it prints status information to the terminal console - at that point console output is being captured into the logfile. Setting the output_flag=2 ensures that these two lines are echoed into the logfile:\
+*ECHO: ">col:5<col"*\
+*ECHO: ">row:9<row"*
+
+The accurate column and row count of the current millitome is needed to assemble a matching CSV file.
+
+At the end of each block_size loop the output subfolder is compressed into a ZIP file and the source folder is deleted.
+
+
+
+
+
