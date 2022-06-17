@@ -154,7 +154,7 @@ blocksizeList=(10 15 20)\
 lateralityList=(Bottom Top)\
 scaleList=(Large Medium Small)
 
-After declaring some variables and filenames the main output folder is created. Then the script starts iterating through the property ID lists in five nested "for..." loops. Every time the script works on a new block size a new subfolder if created.
+After declaring some variables and filenames the main output folder is created. Then the script starts iterating through the property ID lists in five nested "for..." loops. Every time the script works on a new block size a new subfolder is created.
 
 Inside each loop Openscad is launched using this command line, with the property variables set to the correct values:
 
