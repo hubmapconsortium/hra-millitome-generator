@@ -171,7 +171,7 @@ Openscad will take approximately 1-5 minutes to render and save one millitome ST
 *ECHO: ">col:5<col"*\
 *ECHO: ">row:9<row"*
 
-The accurate column and row count of the current millitome is needed to assemble a matching CSV file.
+An accurate column and row count of the current millitome is needed to assemble a matching CSV file.
 
 At the end of each block_size loop the output subfolder is compressed into a ZIP file and the source folder is deleted.
 
