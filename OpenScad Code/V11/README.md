@@ -19,8 +19,8 @@
 Implemented in [OpenScad 2021.01](https://openscad.org). Developed on MacOS 12.4. Terminal procedures and commands are Mac-specific.
 Proper installation requires these items in the same directory location:
 
-**organs** (folder)<br>
-**MT-Generator.scad** (program code to run in Openscad)<br>
+**organs** (folder)\
+**MT-Generator.scad** (program code to run in Openscad)\
 **mt_export.bash** (bash shell script)
 
 In addition the [Openscad](https://openscad.org) application must be installed on the computer and configured for [command line access](https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Using_OpenSCAD_in_a_command_line_environment).
@@ -35,16 +35,16 @@ Contains 24 files in STL format, used by *MT-Generator* to cut the correct mold 
 
 There are three STL files for each organ:
 
-Edited, simplified geometry of left female kidney:<br>
-[*f_0_kidney_l.stl*](https://github.com/hubmapconsortium/hra-millitome-generator/blob/7fc45ea5e9f6eb0297473e38da1884ab637b68ce/OpenScad%20Code/V11/organs/f_0_kidney_l.stl)<br>
+Edited, simplified geometry of left female kidney:\
+[*f_0_kidney_l.stl*](https://github.com/hubmapconsortium/hra-millitome-generator/blob/7fc45ea5e9f6eb0297473e38da1884ab637b68ce/OpenScad%20Code/V11/organs/f_0_kidney_l.stl)\
 ![f_0_kidney_l.png!](images/f_0_kidney_l.png "f_0_kidney_l.png")
 
-Model with straight extended top; used to cut bottom molds:<br>
-[*_bf_0_kidney_l.stl*](https://github.com/hubmapconsortium/hra-millitome-generator/blob/646edafee4bd8995ceebeda2937633f550995781/OpenScad%20Code/V11/organs/_bf_0_kidney_l.stl)<br>
+Model with straight extended top; used to cut bottom molds:\
+[*_bf_0_kidney_l.stl*](https://github.com/hubmapconsortium/hra-millitome-generator/blob/646edafee4bd8995ceebeda2937633f550995781/OpenScad%20Code/V11/organs/_bf_0_kidney_l.stl)\
 ![_bf_0_kidney_l.png!](images/_bf_0_kidney_l.png "_bf_0_kidney_l.png")
 
-Model with straight extended bottom; used to cut top molds:<br>
-[*_tf_0_kidney_l.stl*](https://github.com/hubmapconsortium/hra-millitome-generator/blob/646edafee4bd8995ceebeda2937633f550995781/OpenScad%20Code/V11/organs/_tf_0_kidney_l.stl)<br>
+Model with straight extended bottom; used to cut top molds:\
+[*_tf_0_kidney_l.stl*](https://github.com/hubmapconsortium/hra-millitome-generator/blob/646edafee4bd8995ceebeda2937633f550995781/OpenScad%20Code/V11/organs/_tf_0_kidney_l.stl)\
 ![_tf_0_kidney_l.png!](images/_tf_0_kidney_l.png "_tf_0_kidney_l.png")
 
 #### [MT-Generator.scad](https://github.com/hubmapconsortium/hra-millitome-generator/blob/d9b2529c8e3caacc66053ad367b275fbb6c62047/OpenScad%20Code/V11/MT-Generator.scad)
@@ -61,8 +61,8 @@ Terminal script file to run <em>MT-Generator</em> automatically from bash termin
 
 Properties for specific millitomes are determined by a short list of parameters at the top of the *MT_Generator.scad* code. Each of these parameters can be modifed and Openscad will show a preview of the resulting millitome after saving the code file or initiating a refresh of the preview. All properties are defined as integers:
 
-**gender**<br>
-0=female, 1=male<br>
+**gender**\
+0=female, 1=male
 
 **organ_id**<br>
 0=left kidney, 1=right kidney, 2=spleen, 3=pancreas<br>
