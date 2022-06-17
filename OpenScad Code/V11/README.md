@@ -27,7 +27,7 @@ In addition the [Openscad](https://openscad.org) application must be installed o
 
 # Folder Contents
 
-#### images
+#### [images](https://github.com/hubmapconsortium/hra-millitome-generator/tree/main/OpenScad%20Code/V11/images)
 This folder contains images used for documentation. Not required for proper operation of <em>MT-Generator</em>.
 
 #### organs
