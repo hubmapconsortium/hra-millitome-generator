@@ -2,38 +2,38 @@
 
 ![Millitome Generator V10!](images/Millitome-Generator-V10.png "Millitome Generator V10")
 
-Implemented in OpenScad 2021.1.<br>
+Implemented in OpenScad 2021.01.<br>
 
 
 # Folder Contents
 
-<h4>images</h4>
-This folder contains images used for documentation. Not required for proper operation of <em>Millitome Generator V10</em>.
+### images
+This folder contains images used for documentation. Not required for proper operation of *Millitome Generator V10*.
 
-<h4>organs</h4>
-Contains 24 files in STL format, used by <em>Millitome Generator V10</em> to cut the correct mold shapes. This folder must reside in the same directory from which <em>Millitome Generator V10.scad </em> is launched.<br><br>
+### organs
+Contains 24 files in STL format, used by *Millitome Generator V10* to cut the correct mold shapes. This folder must reside in the same directory from which *Millitome Generator V10.scad* is launched.
 
 There are three STL files for each organ:
 
 Edited, simplified geometry of left female kidney:<br>
-<em>f_0_kidney_l.stl</em><br>
+*f_0_kidney_l.stl*<br>
 ![f_0_kidney_l.png!](images/f_0_kidney_l.png "f_0_kidney_l.png")
 
 Model with straight extended top; used to cut bottom molds:<br>
-<em>_bf_0_kidney_l.stl</em><br>
+*_bf_0_kidney_l.stl*<br>
 ![_bf_0_kidney_l.png!](images/_bf_0_kidney_l.png "_bf_0_kidney_l.png")
 
 Model with straight extended bottom; used to cut top molds:<br>
-<em>_tf_0_kidney_l.stl</em><br>
+*_tf_0_kidney_l.stl*<br>
 ![_tf_0_kidney_l.png!](images/_tf_0_kidney_l.png "_tf_0_kidney_l.png")
 
-<h4>Millitome Generator V10.scad</h4>
+### Millitome Generator V10.scad
 Program code to be run in Openscad.
 
 # Configuration 
 
-<h3>Customization variables</h3>
-<h4>Organ selection</h4>
+## Customization variables
+### Organ selection
 
 gender:<br> 
 0 = female<br>
@@ -50,7 +50,7 @@ organ_scale:<br>
 1.15 = 115%<br>
 0.85 = 85%<br>
 
-<h4>Blocking mode and properties</h4>
+### Blocking mode and properties
 type:<br>
 1 = fixed block size, length & width are equal<br>
 2 = user block size, length & width are different<br>
@@ -67,17 +67,17 @@ used for type 3, number of blocks along X (width), number of blocks = full organ
 blocks_y:<br>
 number of blocks along Y (length)<br>
 
-<h3>Object generation functions</h3>
+## Object generation functions
 
 These functions are in the Object Generation Area. To generate exportable geometry from OpenScad, uncomment any of the functions in the list below. Click the Preview button for quick preview. Click the Render button to generate geometry then Export As STL.<br>
 
-<h4>full millitome with the requested parameters, for 3d printing</h4>
+### full millitome with the requested parameters, for 3d printing
 
 > complete_bottom();  // bottom half of millitome
 > 
 > complete_top();   //top half of millitome
 
-<h4>matching block array functions, for use in RUI selection interface or illustrations</h4>
+### matching block array functions, for use in RUI selection interface or illustrations
 
 > blockbottom_cutout();    // blocks overlapping with the organ, for illustration, bottom
 > 
@@ -92,7 +92,7 @@ These functions are in the Object Generation Area. To generate exportable geomet
 > block_array_with_letters();    // blocks, dissectiong the actual organ, each block has a ID label
 
 
-<h4>often used components</h4>
+### often used components
 
 > insert();    // area immediately surrounding the organ, with organ mold
 > 
@@ -105,16 +105,16 @@ These functions are in the Object Generation Area. To generate exportable geomet
 > outer_frame();    // outer frame, with cutting slots, higher than inner frame, not really necessary
 
 
-<h4>display of organ percentage user setting, organ name & size, millitome dimensions in console (look for ECHO:)</h4>
+### display of organ percentage user setting, organ name & size, millitome dimensions in console (look for ECHO:)
 
 > dimensions(); 
 
-<h4>shows the 3d model of the used organ for reference</h4>
+### shows the 3d model of the used organ for reference
 
 > organ();
 
 
-<h4>following functions produce individual components; for documentation, etc, makes it easier to texture</h4>
+### following functions produce individual components; for documentation, etc, makes it easier to texture
 
 > inner_frame();    // inner frame (enclosure) around insert, no col/row IDs are produced
 > 
@@ -137,7 +137,7 @@ These functions are in the Object Generation Area. To generate exportable geomet
 > layer_info_bottom();    // produces "b" identifier in bottom layer
 
 
-<h4>basic components, for debugging and documentation</h4>
+### basic components, for debugging and documentation
 
 > column_slot_array();    // virtual blades cutting column slots in all components which need them
 > 
@@ -157,7 +157,7 @@ These functions are in the Object Generation Area. To generate exportable geomet
 > 
 > outer_box_hollow();    // outer frame without cutting slots, probably not used
 
-<h4>most basic components, just boxes for various components</h4>
+### most basic components, just boxes for various components
 
 > outer_box();    // dimensions of outer frame box (type dependent)
 > 
