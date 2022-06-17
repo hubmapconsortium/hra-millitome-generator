@@ -156,5 +156,14 @@ scaleList=(Large Medium Small)
 
 After declaring some variables and filenames the main output folder is created. Then the script starts iterating through the property ID lists in five nested "for..." loops. Every time the script works on a new block size a new subfolder if created.
 
-<small>*openscad ${mtGenerator} -o ${outputFolder}/${outputSubfolder}/VH_${gender}_${organ}_${blocksize}_${scale}_${laterality}.stl -D laterality=${lateralityID} -D gender=${genderID} -D organ_id=${organID} -D organ_scale=${scaleID} -D block_size=${blocksize} -D output_flag=${outputFlag}*</small>
+Inside each loop Openscad is launched using this command line, with the property variables set to the correct values:
+
+*openscad ${mtGenerator} -o ${outputFolder}/${outputSubfolder}/VH_${gender}_${organ}_${blocksize}_${scale}_${laterality}.stl -D laterality=${lateralityID} -D gender=${genderID} -D organ_id=${organID} -D organ_scale=${scaleID} -D block_size=${blocksize} -D output_flag=${outputFlag}*
+
+where:\
+*mtGenerator* is the name of the Openscad code file\
+*outputFolder* is the name of the output main folder\
+*outputSubfolder* is the name of the output subfolder which is zipped after it is complete, followed by....
+the components which make up the complete filename\
+*-D* followed by a property name means Openscad will use that value to override internally defined variables
 
