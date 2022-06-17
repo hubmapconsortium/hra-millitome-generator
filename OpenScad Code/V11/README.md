@@ -163,7 +163,7 @@ Inside each loop Openscad is launched using this command line, with the property
 where:\
 *mtGenerator* is the name of the Openscad code file\
 *outputFolder* is the name of the output main folder\
-*outputSubfolder* is the name of the output subfolder which is zipped after it is complete, followed by...\
+*outputSubfolder* is the name of the output subfolder, followed by...\
 the components which make up the complete filename\
 *-D* followed by a property name means Openscad will use that value to override internally defined variables
 
