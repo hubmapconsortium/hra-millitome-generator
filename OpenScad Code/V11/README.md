@@ -30,7 +30,7 @@ In addition the [Openscad](https://openscad.org) application must be installed o
 #### [images](https://github.com/hubmapconsortium/hra-millitome-generator/tree/main/OpenScad%20Code/V11/images)
 This folder contains images used for documentation. Not required for proper operation of <em>MT-Generator</em>.
 
-#### organs
+#### [organs](https://github.com/hubmapconsortium/hra-millitome-generator/tree/main/OpenScad%20Code/V11/organs)
 Contains 24 files in STL format, used by <em>MT-Generator</em> to cut the correct mold shapes. This folder must reside in the same directory from which <em>MT-Generator.scad </em> is launched.
 
 There are three STL files for each organ:
