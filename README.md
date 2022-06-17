@@ -1,6 +1,6 @@
 # Millitome Generator
 
-<h3>Function overview</h3>
+## Function overview
 
 A millitome is a device designed to hold a freshly procured organ and facilitate cutting it into many small tissue blocks for usage in single cell analysis. A millitome has discrete, equally placed cutting grooves in both the x and y directions to guide a carbon steel cutting knife. The millitome is used to produce uniformly sized slices or cubes of tissue material that can be registered to organs from the CCF 3D Reference Object Library.
 
@@ -8,7 +8,7 @@ Millitome Generator uses modified 3D-models from the HuBMAP organ repository to 
 
 Along with the 3d-printed millitome the researcher needs a lookup document. This comes in the form of a spreadsheet file, where data about the individual sample blocks can be recorded. This lookup file is provided in CSV format.
 
-<h3>Software Tools</h3>
+## Software Tools
 
 In order to match millitomes to specific organs, a 3d modeling application such as Blender, Maya or Cinema 4D is used to simplify the organ model. This modified organ is then used in <a href="https://openscad.org">Openscad</a> to generate the matching STL file.
 
@@ -18,11 +18,11 @@ The user adjusts a handfull of variables, such as organ type, gender, block size
 
 To create a matching lookup file in CSV format for a specific millitome, any spreadsheet application can be used, or even a text editor.
 
-<h3><a href="https://github.com/hubmapconsortium/hra-millitome-generator/tree/main/OpenScad%20Code/V10">Millitome Generator V10</a></h3>
+## <a href="https://github.com/hubmapconsortium/hra-millitome-generator/tree/main/OpenScad%20Code/V10">Millitome Generator V10</a>
 
 V10 was programmed to export one single millitome STL after setting the required properties directly in the Openscad code. This is practical to produce a handful of STL files or to troubleshoot errors in the code or parameters. But complete millitome sets for several organs can require 100 or more individual STL files. It is very time-consuming to tweak the parameters for every millitome variation, and then export each STL file manually.
 
-<h3><a href="https://github.com/hubmapconsortium/hra-millitome-generator/tree/main/OpenScad%20Code/V11">Millitome Generator V11</a></h3>
+## <a href="https://github.com/hubmapconsortium/hra-millitome-generator/tree/main/OpenScad%20Code/V11">Millitome Generator V11</a>
 
 Just like V10, V11 can be used to export individual STL files. But now millitome generation can also be initiated through the command line in a terminal app. A bash terminal script automates the creation of (at the moment) 144 individual STL files; all named consistently, created into matching folders, each folder compressed into a ZIP file.
 
