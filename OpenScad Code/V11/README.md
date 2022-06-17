@@ -136,13 +136,24 @@ In total 24 ZIP files will be created inside *exports*. Each ZIP file contains s
 
 ### Closer Look at the Terminal Script
 
-The program code in *mt_export.bash* contains all the instructions to repeatedly launch Openscad, each run with different configuration parameters which are obtained from five short property ID lists:
+The program code in *mt_export.bash* contains all the instructions to repeatedly launch Openscad, each run with different configuration parameters which are obtained from five short property ID lists. There are two gender IDs, four organ IDs, etc.
 
-genderIDs=(0 1)
-organIDs=(0 1 2 3)
-blocksizeIDs=(0 1 2)
-lateralityIDs=(0 1)
-scaleIDs=(0 1 2)
+genderIDs=(0 1)<br>
+organIDs=(0 1 2 3)<br>
+blocksizeIDs=(0 1 2)<br>
+lateralityIDs=(0 1)<br>
+scaleIDs=(0 1 2)<br>
+
+Corresponding lists are used to look up letters, dimensions and complete words needed to build the filenames and CSV file content.
+
+genderList=(F M)  
+
+genderNamesList=(Female Male)<br>
+organList=(Kidney_L Kidney_R Spleen Pancreas)<br>
+organList2=("Kidney left" "Kidney right" Spleen Pancreas)<br>
+blocksizeList=(10 15 20)
+lateralityList=(Bottom Top)
+scaleList=(Large Medium Small)
 
 
 openscad ${mtGenerator} -o ${outputFolder}/${outputSubfolder}/VH_${gender}_${organ}_${blocksize}_${scale}_${laterality}.stl -D laterality=${lateralityID} -D gender=${genderID} -D organ_id=${organID} -D organ_scale=${scaleID} -D block_size=${blocksize} -D output_flag=${outputFlag}
