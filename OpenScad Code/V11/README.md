@@ -40,11 +40,11 @@ Edited, simplified geometry of left female kidney:<br>
 ![f_0_kidney_l.png!](images/f_0_kidney_l.png "f_0_kidney_l.png")
 
 Model with straight extended top; used to cut bottom molds:<br>
-[<em>_bf_0_kidney_l.stl</em>](https://github.com/hubmapconsortium/hra-millitome-generator/blob/646edafee4bd8995ceebeda2937633f550995781/OpenScad%20Code/V11/organs/_bf_0_kidney_l.stl)<br>
+[*_bf_0_kidney_l.stl*](https://github.com/hubmapconsortium/hra-millitome-generator/blob/646edafee4bd8995ceebeda2937633f550995781/OpenScad%20Code/V11/organs/_bf_0_kidney_l.stl)<br>
 ![_bf_0_kidney_l.png!](images/_bf_0_kidney_l.png "_bf_0_kidney_l.png")
 
 Model with straight extended bottom; used to cut top molds:<br>
-[<em>_tf_0_kidney_l.stl</em>](https://github.com/hubmapconsortium/hra-millitome-generator/blob/646edafee4bd8995ceebeda2937633f550995781/OpenScad%20Code/V11/organs/_tf_0_kidney_l.stl)<br>
+[*_tf_0_kidney_l.stl*](https://github.com/hubmapconsortium/hra-millitome-generator/blob/646edafee4bd8995ceebeda2937633f550995781/OpenScad%20Code/V11/organs/_tf_0_kidney_l.stl)<br>
 ![_tf_0_kidney_l.png!](images/_tf_0_kidney_l.png "_tf_0_kidney_l.png")
 
 #### [MT-Generator.scad](https://github.com/hubmapconsortium/hra-millitome-generator/blob/d9b2529c8e3caacc66053ad367b275fbb6c62047/OpenScad%20Code/V11/MT-Generator.scad)
@@ -55,30 +55,30 @@ Terminal script file to run <em>MT-Generator</em> automatically from bash termin
 
 # Operating Instructions 
 
-<em>MT_Generator.scad</em> is a text based code file. When double-clicked, it will launch the Openscad 3d graphics application and display the program code, a text console and a preview of the model produced by the code. Rendering the current model will produce the actual 3d geometry, which can then be exported as an STL file. While the <em>MT_Generator</em> code internally uses many discreet 3d objects, such as boxes, letters and the simplified organ model in order to assemble the requested millitome, the exported STL file contains only one single 3d object.
+*MT_Generator.scad* is a text based code file. When double-clicked, it will launch the Openscad 3d graphics application and display the program code, a text console and a preview of the model produced by the code. Rendering the current model will produce the actual 3d geometry, which can then be exported as an STL file. While the *MT_Generator* code internally uses many discreet 3d objects, such as boxes, letters and the simplified organ model in order to assemble the requested millitome, the exported STL file contains only one single 3d object.
 
 ## Customization Properties
 
-Properties for specific millitomes are determined by a short list of parameters at the top of the <em>MT_Generator.scad</em> code. Each of these parameters can be modifed and Openscad will show a preview of the resulting millitome after saving the code file or initiating a refresh of the preview. All properties are defined as integers:
+Properties for specific millitomes are determined by a short list of parameters at the top of the *MT_Generator.scad* code. Each of these parameters can be modifed and Openscad will show a preview of the resulting millitome after saving the code file or initiating a refresh of the preview. All properties are defined as integers:
 
-<b>gender</b><br>
+**gender**<br>
 0=female, 1=male<br>
 
-<b>organ_id</b><br>
+**organ_id**<br>
 0=left kidney, 1=right kidney, 2=spleen, 3=pancreas<br>
 
-<b>block_size</b><br>
+**block_size**<br>
 10, 15, 20 (size of one sample block in millimeters)<br>
 
-<b>organ_scale</b><br>
+**organ_scale**<br>
 0=large (115%), 1=medium (100%), 2=small (85%) (to account for size variations in organ samples)<br>
 
-<b>laterality</b><br>
+**laterality**<br>
 0=bottom, 1=top<br>    
 
 ## Millitome Generation from Openscad
 
-In the Openscad code editor navigate to the lines shown. Edit the parameters as required. <em>Save</em> the modified code and see updated preview. <em>Render</em> to create exportable geometry. When satisfied <em>Export STL</em>. 
+In the Openscad code editor navigate to the lines shown. Edit the parameters as required. *Save* the modified code and see updated preview. *Render* to create exportable geometry. When satisfied *Export STL*. 
 
 ![MT-Generator-Properties!](images/MT-Generator-properties.png "MT-Generator Properties")
 
