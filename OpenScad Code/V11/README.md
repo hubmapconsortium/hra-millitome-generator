@@ -64,17 +64,17 @@ Properties for specific millitomes are determined by a short list of parameters 
 **gender**\
 0=female, 1=male
 
-**organ_id**<br>
-0=left kidney, 1=right kidney, 2=spleen, 3=pancreas<br>
+**organ_id**\
+0=left kidney, 1=right kidney, 2=spleen, 3=pancreas
 
-**block_size**<br>
-10, 15, 20 (size of one sample block in millimeters)<br>
+**block_size**\
+10, 15, 20 (size of one sample block in millimeters)
 
-**organ_scale**<br>
-0=large (115%), 1=medium (100%), 2=small (85%) (to account for size variations in organ samples)<br>
+**organ_scale**\
+0=large (115%), 1=medium (100%), 2=small (85%) (to account for size variations in organ samples)
 
-**laterality**<br>
-0=bottom, 1=top<br>    
+**laterality**\
+0=bottom, 1=top
 
 ## Millitome Generation from Openscad
 
@@ -88,8 +88,8 @@ In the Openscad code editor navigate to the lines shown. Edit the parameters as 
 All following instructions assume Openscad can be accessed in the terminal by typing "openscad" followed by the *Return* key at the command prompt. 
   
 To test:
-Launch the terminal app. At the prompt type:<br>
-*openscad*<br>
+Launch the terminal app. At the prompt type:\
+*openscad*
 
 If everything is properly set up, the Openscad application will launch without loading a file.
 
@@ -113,14 +113,14 @@ Both previous methods of millitome generation produce one single STL file per ru
 
 Make sure the terminal is pointing to the correct working directory and that you have the required user priviliges. These three items must be present in the working directory:
 
-*MT-Generator.scad*<br>
-*mt_export.bash*<br>
-*organs*<br>
+*MT-Generator.scad*\
+*mt_export.bash*\
+*organs*
 
 ![working-directory!](images/terminal-1.png "working directory")
 
-At the prompt enter this command:<br>
-*bash mt_export.bash*<br>
+At the prompt enter this command:\
+*bash mt_export.bash*
 
 The script will create an *exports* folder and a subfolder for the first millitome set. A file called *_logfile.txt* will appear in the working directory. This logfile is used by the script to parse console output. 
 
