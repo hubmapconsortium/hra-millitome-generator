@@ -17,7 +17,7 @@
 # Requirements
 
 Implemented in [OpenScad 2021.01](https://openscad.org). Developed on MacOS 12.4.
-Successfully tested on Raspberry Pi 4 running Raspberry Pi OS (64-bit).
+[Successfully tested on Raspberry Pi 4 running Raspberry Pi OS (64-bit)](https://github.com/hubmapconsortium/hra-millitome-generator/blob/e3ca6c1f054a2bb00257ef67d6a17d013c5d8c42/OpenScad%20Code/V11/Raspberry%20Pi%204%20Installation.md).
 
 Proper installation requires these items in the same directory location:
 
