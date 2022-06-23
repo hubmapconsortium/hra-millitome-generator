@@ -16,7 +16,7 @@
 
 # Requirements
 
-Implemented in [OpenScad 2021.01](https://openscad.org). Developed on MacOS 12.4. Terminal procedures and commands are Mac-specific.
+Implemented in [OpenScad 2021.01](https://openscad.org). Developed on MacOS 12.4. Terminal procedures and commands are Mac-specific. Successfully tested on Raspberry Pi 4
 Proper installation requires these items in the same directory location:
 
 **organs** (folder)\
