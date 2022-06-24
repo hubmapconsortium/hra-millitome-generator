@@ -1,6 +1,6 @@
 # Using millitome generator on Raspberry Pi 4
 
-"The Raspberry Pi is a low cost, credit-card sized computer that plugs into a computer monitor or TV, and uses a standard keyboard and mouse." [more...](https://www.raspberrypi.org/help/what-%20is-a-raspberry-pi/)
+*"The Raspberry Pi is a low cost, credit-card sized computer that plugs into a computer monitor or TV, and uses a standard keyboard and mouse."* [more...](https://www.raspberrypi.org/help/what-%20is-a-raspberry-pi/)
 
 
 
