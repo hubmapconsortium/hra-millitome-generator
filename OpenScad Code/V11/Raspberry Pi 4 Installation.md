@@ -4,7 +4,9 @@
 
 ![Raspberry Pi4!](images/raspi4-1.png "raspi4-1.png")
 
-While the tool set for millitome generation was developed and tested on MacOS, all its components are cross-platform. At the core of the creation process is the [Openscad](https://openscad.org) application, which, according to the developer's web site, works on MacOS as well as Windows and Linux operating systems. 
+While the tool set for millitome generation was developed and tested on MacOS, all its components are cross-platform. At the core of the creation process is the [Openscad](https://openscad.org) application, which is not only available for MacOS but also for Windows and Linux operating systems. The terminal script, used to control Openscad *should* run in any bash compatible terminal.
+
+
 
 
 ## Hardware
