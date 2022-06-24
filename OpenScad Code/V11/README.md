@@ -86,7 +86,7 @@ In the Openscad code editor navigate to the lines shown. Edit the parameters as 
 
 ## Millitome Generation using Terminal Commands
 
-[This webpage](https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Using_OpenSCAD_in_a_command_line_environment)  contains information about how to set up command line access to Openscad on Windows and MacOS.
+[This webpage](https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Using_OpenSCAD_in_a_command_line_environment) explains how to set up command line access to Openscad on Windows and MacOS.
 All following instructions assume Openscad can be accessed in the terminal by typing "openscad" followed by the *Return* key at the command prompt. 
   
 To test:
