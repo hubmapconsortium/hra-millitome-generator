@@ -119,7 +119,7 @@ Make sure the terminal is pointing to the correct working directory and that you
 *organs*
 
 ![working-directory!](images/terminal-1.png "working directory")
-<img src"images/terminal-1.png" width="50%">
+<img src="images/terminal-1.png" width="50%">
 
 At the prompt enter this command:\
 *bash mt_export.bash*
