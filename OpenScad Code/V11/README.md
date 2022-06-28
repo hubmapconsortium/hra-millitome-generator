@@ -40,7 +40,7 @@ There are three STL files for each organ:
 Edited, simplified geometry of left female kidney:\
 [*f_0_kidney_l.stl*](https://github.com/hubmapconsortium/hra-millitome-generator/blob/7fc45ea5e9f6eb0297473e38da1884ab637b68ce/OpenScad%20Code/V11/organs/f_0_kidney_l.stl)\
 ![f_0_kidney_l.png!](images/f_0_kidney_l.png "f_0_kidney_l.png")
-<img src="images/f_0_kidney_l.png" width="200">
+<img src="images/f_0_kidney_l.png" width="50%">
 
 Model with straight extended top; used to cut bottom molds:\
 [*_bf_0_kidney_l.stl*](https://github.com/hubmapconsortium/hra-millitome-generator/blob/646edafee4bd8995ceebeda2937633f550995781/OpenScad%20Code/V11/organs/_bf_0_kidney_l.stl)\
