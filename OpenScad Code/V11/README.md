@@ -118,7 +118,6 @@ Make sure the terminal is pointing to the correct working directory and that you
 *mt_export.bash*\
 *organs*
 
-![working-directory!](images/terminal-1.png "working directory")
 <img src="images/terminal-1.png" width="50%">
 
 At the prompt enter this command:\
@@ -128,11 +127,12 @@ The script will create an *exports* folder and a subfolder for the first millito
 
 While the script is running, text output in the terminal console will show the working directory and the name of the last created millitome.
 
-![directory-switching!](images/terminal-2.png "directory switching")
+<img src="images/terminal-2.png" width="50%">
 
 Every time the script has created all six STL files and matching CSV files for a specific millitome, the folder is compressed into a ZIP file and the source folder is deleted.
 
-![zip-compressing!](images/terminal-3.png "zip compressing")
+<img src="images/terminal-3.png" width="50%">
+
 
 In total 24 ZIP files will be created inside *exports*. Each ZIP file contains six STL files and six CSV files. Expect this to take several hours. The script can be stopped from the terminal by pressing *Control-z*.
 
