@@ -54,4 +54,4 @@ Millitome Generator is now ready to run.
 
 ## Running the Software
 
-Refer to (https://github.com/hubmapconsortium/hra-millitome-generator/blob/main/OpenScad%20Code/V11/README.md)
+Instructions are identical to [this](https://github.com/hubmapconsortium/hra-millitome-generator/blob/main/OpenScad%20Code/V11/README.md).
