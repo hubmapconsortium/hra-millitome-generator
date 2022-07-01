@@ -16,7 +16,10 @@ Raspberry Pi 4
 Case, fan, power supply
 Ethernet cable
 8GB micro SD card, use SD formatter
-USB keyboard, display, cables
+USB keyboard
+display
+USB mouse
+cables, adapters
 
 
 ## Software Installation
