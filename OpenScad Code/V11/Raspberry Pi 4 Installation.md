@@ -34,4 +34,14 @@ After the installation and [configuration](https://www.raspberrypi.com/documenta
 
 ## Software Installation
 
+At this point you can interact with the Pi 4 through an SSH connection from your main computer, screen sharing or directly with attached keyboard, mouse and display.
+
+Raspberry Pi OS is a flavor of Linux and will run the Linux version of Openscad. 
+To install open the command line terminal and run this command:
+*$ sudo apt-get install openscad*
+
+After successfull installation type *openscad* at the command line.
+
+
+
 ## Running the Software
