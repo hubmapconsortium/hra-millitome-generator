@@ -28,7 +28,7 @@ Computer with access to SD card reader
 This wep page contains all info needed to perform a successfull installation of [Raspberry Pi OS](https://www.raspberrypi.com/documentation/computers/os.html#introduction):<br>
 [Setting up your Raspberry Pi](https://www.raspberrypi.com/documentation/computers/getting-started.html)
 
-You will use an application called Raspberry Pi Imager to install the OS. In the main menu choose *Raspberry Pi OS (other)* and in the following menu select *Raspberry Pi OS (64-bit)*.
+You will use an application called [Raspberry Pi Imager](https://www.raspberrypi.com/software/) to install the OS. In the main menu choose *Raspberry Pi OS (other)* and in the following menu select *Raspberry Pi OS (64-bit)*.
 
 
 
