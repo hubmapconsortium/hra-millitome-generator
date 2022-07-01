@@ -30,8 +30,7 @@ This wep page contains all info needed to perform a successfull installation of 
 
 You will use an application called [Raspberry Pi Imager](https://www.raspberrypi.com/software/) to install the OS. In the main menu choose *Raspberry Pi OS (other)* and in the following menu select *Raspberry Pi OS (64-bit)*.
 
-
-
+After the installation and [configuration](https://www.raspberrypi.com/documentation/computers/getting-started.html#using-raspberry-pi-imager) is completed the Raspberry Pi 4 can be reached through the ethernet connection or WiFi.
 
 ## Software Installation
 
