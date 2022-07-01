@@ -34,14 +34,20 @@ After the installation and [configuration](https://www.raspberrypi.com/documenta
 
 ## Software Installation
 
+### Openscad Installation
+
 At this point you can interact with the Pi 4 through an SSH connection from your main computer, screen sharing or directly with attached keyboard, mouse and display.
 
-Raspberry Pi OS is a flavor of Linux and will run the Linux version of Openscad. 
+Raspberry Pi OS is a flavor of Linux and will run the Debian/Ubuntu/Kubuntu version of Openscad. 
 To install open the command line terminal and run this command:
 *$ sudo apt-get install openscad*
 
-After successfull installation type *openscad* at the command line.
+After successfull installation type *openscad* at the command line. Openscad should start with an empty code window.
 
+### Millitome Generator Installation
+
+Download [V11](https://github.com/hubmapconsortium/hra-millitome-generator/blob/c095c062690b41a7d22607d2dc9e0563b7a91147/OpenScad%20Code/V11/V11.zip).
+If you 
 
 
 ## Running the Software
