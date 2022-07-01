@@ -13,16 +13,18 @@ In comparison to the 32GB iMac that was used for development, the Raspberry Pi 4
 ## Hardware
 
 Raspberry Pi 4 
-Case, fan, power supply
+Cooling fan
+Power supply
 Ethernet cable
-8GB micro SD card, use SD formatter
+8GB micro SD card
 USB keyboard
-display
+Display
 USB mouse
-cables, adapters
+Cables, adapters
 
 ## Setup
 
+This wep page contains all info needed to set to perform a successfull installation of [Raspberry Pi OS](https://www.raspberrypi.com/documentation/computers/os.html#introduction):
 [Setting up your Raspberry Pi](https://www.raspberrypi.com/documentation/computers/getting-started.html)
 
 
