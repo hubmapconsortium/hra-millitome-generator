@@ -40,7 +40,7 @@ At this point you can interact with the Pi 4 through an SSH connection from your
 
 Raspberry Pi OS is a flavor of Linux and will run the Debian/Ubuntu/Kubuntu version of [Openscad](https://openscad.org/downloads.html). 
 To install open the command line terminal and run this command:
-*$ sudo apt-get install openscad*
+*$ sudo apt-get install openscad*.
 
 After successfull installation type *$ openscad* at the command line. Openscad should start with an empty code window.
 
