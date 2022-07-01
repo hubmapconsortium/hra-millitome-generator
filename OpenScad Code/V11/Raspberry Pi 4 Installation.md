@@ -21,6 +21,10 @@ display
 USB mouse
 cables, adapters
 
+## Setup
+
+[Setting up your Raspberry Pi](https://www.raspberrypi.com/documentation/computers/getting-started.html)
+
 
 ## Software Installation
 
