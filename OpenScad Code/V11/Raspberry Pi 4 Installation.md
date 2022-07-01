@@ -12,6 +12,11 @@ In comparison to the 32GB iMac that was used for development, the Raspberry Pi 4
 
 ## Hardware
 
+Raspberry Pi 4 
+Case, fan, power supply
+Ethernet cable
+8GB micro SD card, use SD formatter
+USB keyboard, display, cables
 
 
 ## Software Installation
