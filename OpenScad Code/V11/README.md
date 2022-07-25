@@ -107,7 +107,13 @@ Launch the terminal app. At the prompt type:\
 
 If everything is properly set up, the Openscad application will launch without loading a file.
 
-![openscad-from-bash!](images/bash-open-openscad.jpg "openscad from bash")
+<p align="center">
+  <img src="images/bash-open-openscad.jpg" width="500">
+</p>
+<p align = "center">
+  <sub>Fig.3 Openscad opened from bash shell.</sub>
+</p>
+
 
 In order to make Openscad export a millitome of a specific type the command line has to include information about the Openscad source code file, the name of the STL file to be created, and properties of the requested millitome:
 
