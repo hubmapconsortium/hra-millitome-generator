@@ -19,14 +19,14 @@ Version 11 is based on the same millitome creation engine as version 10. While i
 
 Running the complete current export procedure will create 144 files each of STL and CSV files. Depending on the hardware expect a duration of 3-4 hours.
 
-### images
+### [images](https://github.com/hubmapconsortium/hra-millitome-generator/tree/main/OpenScad%20Code/V11/images)
 This folder contains images used for documentation. Not required for proper operation of *MT-Generator*.
 
-### organs
+### [organs](https://github.com/hubmapconsortium/hra-millitome-generator/tree/main/OpenScad%20Code/V11/organs)
 Contents are identical to V10.
 
-### MT-Generator.scad
+### [MT-Generator.scad](https://github.com/hubmapconsortium/hra-millitome-generator/blob/9820918870a37a211c740449016119680d1cdf9e/OpenScad%20Code/V11/MT-Generator.scad)
 Program code to be run in Openscad.
 
-### mt_export.bash
+### [mt_export.bash](https://github.com/hubmapconsortium/hra-millitome-generator/blob/9820918870a37a211c740449016119680d1cdf9e/OpenScad%20Code/V11/mt_export.bash)
 This bash terminal script will create all STL and CSV files as configured by calling *MT-Generator.scad* with the properly formed command line.
