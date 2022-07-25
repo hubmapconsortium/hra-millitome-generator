@@ -7,7 +7,7 @@ Version 10 is the first fully working version of <a href="https://openscad.org">
 ### [images](https://github.com/hubmapconsortium/hra-millitome-generator/tree/main/OpenScad%20Code/V10/images)
 This folder contains images used for documentation. Not required for proper operation of <em>Millitome Generator V10</em>.
 
-### organs
+### [organs](https://github.com/hubmapconsortium/hra-millitome-generator/tree/main/OpenScad%20Code/V10/organs)
 Contains 24 files in STL format, used by *Millitome Generator V10* to cut the correct mold shapes. This folder must reside in the same directory from which *Millitome Generator V10.scad* is launched.
 
 ### Millitome Generator V10.scad
