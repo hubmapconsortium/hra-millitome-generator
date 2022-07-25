@@ -42,7 +42,6 @@ Contains 24 files in STL format, used by *MT-Generator* to cut the correct mold 
 
 There are three STL files for each organ:
 
-
 Edited, simplified geometry of left female kidney:\
 [*f_0_kidney_l.stl*](https://github.com/hubmapconsortium/hra-millitome-generator/blob/7fc45ea5e9f6eb0297473e38da1884ab637b68ce/OpenScad%20Code/V11/organs/f_0_kidney_l.stl)\
 <img src="images/f_0_kidney_l.png" width="40%">
