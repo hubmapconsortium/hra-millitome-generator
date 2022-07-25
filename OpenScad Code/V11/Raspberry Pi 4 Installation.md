@@ -24,8 +24,8 @@ Cables, adapters<br>
 Computer with access to SD card reader
 
 <span>
-  <img src="images/raspi-2.jpg" width="400">
-  <img src="images/raspi-1.jpg" width="400">
+  <img src="images/raspi-2.jpg" height="300">
+  <img src="images/raspi-1.jpg" height="300">
 </span>
 
 ## Setup
