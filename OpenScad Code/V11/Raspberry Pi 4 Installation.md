@@ -23,6 +23,11 @@ USB mouse<br>
 Cables, adapters<br>
 Computer with access to SD card reader
 
+<span>
+  <img src="images/raspi-2.jpg" width="400">
+  <img src="images/raspi-1.jpg" width="400">
+</span>
+
 ## Setup
 
 This wep page contains all info needed to perform a successfull installation of [Raspberry Pi OS](https://www.raspberrypi.com/documentation/computers/os.html#introduction):<br>
