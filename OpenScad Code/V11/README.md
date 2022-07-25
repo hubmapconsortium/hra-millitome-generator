@@ -87,7 +87,14 @@ Properties for specific millitomes are determined by a short list of parameters 
 
 In the Openscad code editor navigate to the lines shown. Edit the parameters as required. *Save* the modified code and see updated preview. *Render* to create exportable geometry. When satisfied *Export STL*. 
 
-![MT-Generator-Properties!](images/MT-Generator-properties.png "MT-Generator Properties")
+
+<p align="center">
+  <img src="images/images/MT-Generator-properties.png" width="600">
+</p>
+<p align = "center">
+  <sub>Fig.2 2D Millitome Generator configuration properties.</sub>
+</p>
+
 
 ## Millitome Generation using Terminal Commands
 
