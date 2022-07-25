@@ -67,8 +67,12 @@ In the command line terminal navigate to the Desktop. Run *$ unzip \<filename\>*
 
 Millitome Generator is now ready to run.
 
-<img src="images/raspi-3.jpg" width="400">
-
+<p align="center">
+  <img src="images/raspi-3.jpg" width="400">
+</p>
+<p align = "center">
+  <sub>Fig.3 Raspberry Pi Desktop seen in VNC Viewer shared screen.</sub>
+</p>
 
 ## Running the Software
 
