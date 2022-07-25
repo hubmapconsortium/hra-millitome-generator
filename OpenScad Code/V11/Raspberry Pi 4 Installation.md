@@ -51,7 +51,7 @@ After installation and [configuration](https://www.raspberrypi.com/documentation
 
 ### Openscad Installation
 
-At this point you can interact with the Pi 4 through an SSH connection from your main computer, through screen sharing to your computer using a freely available [client](https://www.realvnc.com/en/connect/download/viewer/), or directly with attached keyboard, mouse and display.
+At this point you can interact with the Pi 4 through an SSH connection or [screen sharing](https://www.realvnc.com/en/connect/download/viewer/) from your computer, or directly with attached keyboard, mouse and display.
 
 Raspberry Pi OS is a flavor of Linux and will run the Debian/Ubuntu/Kubuntu version of [Openscad](https://openscad.org/downloads.html). 
 To install open the command line terminal and run this command:
