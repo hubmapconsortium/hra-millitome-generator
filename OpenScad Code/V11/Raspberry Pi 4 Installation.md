@@ -57,6 +57,8 @@ In the command line terminal navigate to the Desktop. Run *$ unzip \<filename\>*
 
 Millitome Generator is now ready to run.
 
+<img src="images/raspi-3.jpg" width="400">
+
 
 ## Running the Software
 
