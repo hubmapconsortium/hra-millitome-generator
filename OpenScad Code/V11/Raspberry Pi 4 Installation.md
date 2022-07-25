@@ -8,7 +8,7 @@ While the tool set for millitome generation was developed and tested on MacOS, a
 
 No current computer installation of Windows or Linux was available, so a Raspberry Pi 4 mini computer was used for testing. One of the beauties of this credit-card sized computer is that it runs off of a SD card, which contains the operating system and any files needed. Many different operating systems are available to be installed in a straight forward process. That means that by simply swapping out an SD card the Raspberry Pi can be turned into a different computer. 
 
-In comparison to the 32GB iMac that was used for development, the Raspberry Pi 4 used for this test has 4GB of RAM and runs off of a 8GB SD card. Despite all expections it worked!
+In comparison to the 32GB iMac that was used for development, the Raspberry Pi 4 for this test has only 4GB of RAM and runs off of a 8GB SD card. Despite all expections it worked!
 
 ## Hardware
 
