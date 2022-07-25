@@ -2,7 +2,12 @@
 
 *"The Raspberry Pi is a low cost, credit-card sized computer that plugs into a computer monitor or TV, and uses a standard keyboard and mouse."* [more...](https://www.raspberrypi.org/help/what-%20is-a-raspberry-pi/)
 
-<img src="images/raspi4-1.png" width="400">
+<p align="center">
+  <img src="images/raspi4-1.png" width="400">
+</p>
+<p align = "center">
+  <sub>Fig.1 Raspberry Pi 4</sub>
+</p>
 
 While the tool set for millitome generation was developed and tested on MacOS, all its components are cross-platform. At the core of the creation process is the [Openscad](https://openscad.org) application, which is not only available for MacOS, but also for Windows and Linux operating systems. The terminal script, used to control Openscad, *should* run in any bash compatible terminal.
 
