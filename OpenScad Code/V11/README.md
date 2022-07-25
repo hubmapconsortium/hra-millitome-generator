@@ -3,6 +3,9 @@
 <p align="center">
   <img src="images/MT-Generator.png" width="600">
 </p>
+<p align = "center">
+  <sub>Fig.1 Millitome Generator V11 running in OpenScad software</sub>
+</p>
 
 ## Table of Contents
 
