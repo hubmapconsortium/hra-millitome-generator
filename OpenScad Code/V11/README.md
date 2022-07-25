@@ -1,6 +1,8 @@
 # Millitome Generator V11
 
-![MT-Generator!](images/MT-Generator.png "MT-Generator")
+<p align="center">
+  <img src="images/MT-Generator.png" width="600">
+</p>
 
 ## Table of Contents
 
