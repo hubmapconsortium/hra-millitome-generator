@@ -10,12 +10,12 @@ The [assets folder](https://github.com/hubmapconsortium/hra-millitome-generator/
 
 Each subfolder contains these files:
 
-### block_array.stl
-
-### Bottom.stl
-### Icebox.dxf
-### Icebox.stl
-### sample_blocks.stl
+### Banana_Half_20_sample_blocks.stl
+### Banana_Half_20_Medium_Icebox.stl
+### Banana_Half_20_Medium_Icebox.dxf
+### Banana_Half_20_Medium_Bottom.stl
+### Banana_Half_20_Medium_Bottom.csv
+### Banana_Half_20_block_array.stl
 
 
 
