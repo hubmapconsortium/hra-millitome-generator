@@ -8,7 +8,7 @@ The [assets folder](https://github.com/hubmapconsortium/hra-millitome-generator/
 
 **3d-printing the full size banana millitome - VH_M_Banana_20_Medium_Bottom.stl - requires a larger print platform (140mm x 240mm minimum)**
 
-All files are matched in size, scale and orientation to the banana 3d model. The 3d assets can be imported into a 3d editor where they will line up. For use in a UI group all items and transform/rotate them together.
+All files are matched in size, scale and orientation to the banana 3d model. The 3d assets can be imported into a 3d editor, where they will line up. For use in a UI, group all items and transform/rotate them together.
 
 Both subfolders contain the following files. 
 
