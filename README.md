@@ -28,7 +28,7 @@ This file goes to the 3d-printer. For the banana half it takes about 24 hours to
 
 Spreadsheet to record sample data.
 <p align="center">
-  <img src="images/icebox_cutsheet.png" width="200">
+  <img src="images/csv_file.png" width="200">
 </p>
 
 ### Banana_Half_20_Medium_Icebox.stl
