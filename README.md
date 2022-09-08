@@ -12,6 +12,10 @@ Each subfolder contains the following files. All files are matched in size, scal
 
 ### Banana_Half.stl
 
+<p align="center">
+  <img src="images/banana_half.png" width="600">
+</p>
+
 Banana model used to create all assets. Based on the scan of a real life banana. No inner structures, materials or textures.
 
 ### Banana_Half_20_Medium_Bottom.stl
