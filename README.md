@@ -1,4 +1,4 @@
-# Millitome V9
+# Millitome Banana
  OpenScad code for Millitome building
  
  "Millitome V9kidney" was programmed in OpenScad 2021.1 on MacOS
