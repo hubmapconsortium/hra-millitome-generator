@@ -60,7 +60,7 @@ The physical icebox is used to store physical organ samples in a compartmentaliz
 
 ### Millitome Icebox 3d model (.STL)
 
-
+A 3d model of the icebox. Could be 3d printed ot used as virtual asset.
 
 
 
