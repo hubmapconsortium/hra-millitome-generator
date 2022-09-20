@@ -20,23 +20,23 @@ gender [female,male]
 
 organ [kidney_l,kidney_r,spleen,pancreas,banana]
 
-laterality
+laterality [bottom,top,bottom no ID]
 
-organ scale
+organ scale [large,medium,small]
 
-blocktype
+blocktype [uniform,userXY,blockCount]
 
-block size
+block size [10,15,20]
 
-block xsize
+block xsize [10,15,20]
 
-block ysize
+block ysize [10,15,20]
 
-blocks x
+blocks x (int)
 
-blocks y
+blocks y (int)
 
-product
+product [MT-physical,MT-block array,MT-sample blocks,MT-organ,IB-physical,IB-virtual]
 
 ### Millitome for 3d print
 
