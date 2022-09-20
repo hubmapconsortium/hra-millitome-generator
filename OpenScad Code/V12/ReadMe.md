@@ -79,6 +79,12 @@ asset_typeID = 1
 
 ### MT-Customizer.scad
 
+<p align="center">
+  <img src="images/mt-customizer-1.png" width="600">
+</p>
+<p align = "center">
+  <sub>Fig.1 Openscad Customizer for MT production</sub>
+</p>
 
 
 ### MT-Generator.scad
