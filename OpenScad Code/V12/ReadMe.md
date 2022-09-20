@@ -86,17 +86,49 @@ asset_typeID = 1
   <sub>Fig.1 Openscad Customizer for MT production</sub>
 </p>
 
+This program allows configuration of all properties necessary to create Millitome related assets.
+The "product" selector determines if a Millitome or an Icebox is produced.
+
+gender [female,male]
+
+organ [kidney_l,kidney_r,spleen,pancreas,banana]
+
+laterality [bottom,top,bottom no ID]
+
+organ scale [large,medium,small]
+
+blocktype [uniform,userXY,blockCount]
+
+block size [10,15,20]
+
+block xsize [10,15,20]
+
+block ysize [10,15,20]
+
+blocks x (int)
+
+blocks y (int)
+
+product [MT-physical,MT-block array,MT-sample blocks,MT-organ,IB-physical,IB-virtual]
+
+To produce .STL/.DXF output the object must be rendered (F6) and saved to the appropriate file format.  
 
 ### MT-Generator.scad
 
+This program is run automatically from MT-Customizer if needed. It receives all needed properties from customizer. 
+MT-Generator can run as stand-alone program in Openscad but clearly marked property variables in the header must be uncommented to prevent an error.
 
 ### MT-Icebox.scad
 
+Same as for MT-Generator.
 
 ### mt-organs.config
 
+List of organs MT-Generator knows about. The dimensions and filenames for the organ models are required for proper operation. 3d organ models are kept in a folder named "organs".
 
 ### mt-export.bash
+
+Terminal script to produce bulk millitome assets. This has not yet been updated to work with MT-Generator V12.
 
 
 
