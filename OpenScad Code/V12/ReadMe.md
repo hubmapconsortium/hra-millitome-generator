@@ -42,25 +42,37 @@ product [MT-physical,MT-block array,MT-sample blocks,MT-organ,IB-physical,IB-vir
 
 Produces 3d-printable millitomes, based on properties, exported to .STL file. This file can be printed on 3d-printer directly or used as virtual asset.
 
+asset_typeID = 0
+
 ### Millitome block array (.STL)
 
 Sample block array used in MT generation process. Used for UI and other virtual things.
+
+asset_typeID = 1
 
 ### Millitome sample blocks (.STL)
 
 The actual sample blocks. Created by intersecting block array with the organ model geometry. Used for virtual.
 
+asset_typeID = 2
+
 ### Millitome organ (.STL)
 
 The organ model. Used for virtual.
+
+asset_typeID = 3
 
 ### Millitome Icebox laser cut sheet (.DXF)
 
 The physical icebox is used to store physical organ samples in a compartmentalized container. The container layout matches the MT layout and provides a column/row coordinate system. Openscad produces a ready-to-use laser cut file in .DXF format.
 
+asset_typeID = 0
+
 ### Millitome Icebox 3d model (.STL)
 
 A 3d model of the icebox. Could be 3d printed ot used as virtual asset.
+
+asset_typeID = 1
 
 
 
