@@ -38,7 +38,7 @@ blocks y (int)
 
 product [MT-physical,MT-block array,MT-sample blocks,MT-organ,IB-physical,IB-virtual]
 
-### Millitome for 3d print (.STL)
+### Millitome physical for 3d print (.STL)
 
 Produces 3d-printable millitomes, based on properties, exported to .STL file. This file can be printed on 3d-printer directly or used as virtual asset.
 
