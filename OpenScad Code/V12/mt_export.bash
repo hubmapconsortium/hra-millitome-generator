@@ -2,6 +2,8 @@
 
 # V3 - works with V12 of MT_generator
 # Peter Kienle, CNS
+#  2022-9-22   moved to active github
+#----needs overhaul to work with MT-Generator & MT-Icebox
 # 
 #2022-8-24
 # - export files to correctly named folders

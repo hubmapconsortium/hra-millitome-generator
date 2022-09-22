@@ -26,7 +26,7 @@ module __Customizer_Limit__ () {}  // show in customizer up to here
 // Peter Kienle, CNS
 // master controller to launch MT-Generator & MT-Icebox applications
 
-// V0.1 2022-9-20
+// V0.1 2022-9-22
 
 
 // defaults for MT building properties; [] items in comments are used by customizer; must match entries in property lists
