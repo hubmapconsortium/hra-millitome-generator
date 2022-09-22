@@ -1,0 +1,311 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2638
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww16340\viewh24160\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 directions for C4D R15\
+\
+\
+\
+tools needed:\
+C4D R15\
+Blender\
+\
+example organ is female spleen\
+\
+result:\
+cleaned-up organ model in correct left-top orientation (STL)\
+cleaned-up, top extruded model, for no-overhang molding of bottom MT (STL)\
+cleaned-up, bottom extruded model, for non-overhang molding of top MT (STL)\
+organ model dimensions for OpenScad\
+bounding box dimensions (x,ymin,ymax,yreal,z, for OpenScad y as to be switched with z)\
+
+\fs36 \
+==>file format conversion, scaling
+\fs24 \
+1	Blender: \
+Import VH_F_Spleen.fbx\
+\
+2	Blender: \
+Export as .OBJ VH_F_Spleen.obj\
+\
+3	C4D:\
+File-New\
+File-Merge VH_F_Spleen.obj\
+scale= 1 Meters\
+\
+
+\fs36 \
+==>delete unneeded geometry
+\fs24 \
+1	C4D:\
+organs come in segments (spleen = 4, kidneys = much more)\
+delete internal geometry (spleen is ok)\
+(i.e. on kidney everything except for \'93\'85.kidney_capsule\'85\'94 can be deleted\'94\
+select all segments\
+\'93connect & delete\'94 to create one polygon\
+\
+2	C4D:\
+most models I encountered are double-walled. To work correctly for the mold cutout, this needs to be reduced to a single, outer shell.\
+for a kidney model:\
+carefully select and delete single points (or loop) around the opening - until the inner shell is disconnected from outer shell\
+(verify by selecting a point on inner shell and Select-Select Connected. If any points in the outer shell become selected there is still a connection)\
+delete all selected points on the inner shell\
+\
+3	C4D:\
+use \'93Mesh-Create Tools-Close Polygon Hole\'94 to close this hole.\
+This will create a fully enclosed polygon.\
+\
+\
+4	C4D:\
+in Points mode perform \'93Optimize\'94 to remove duplicate/unused points\
+\
+
+\fs36 \
+==>reposition object
+\fs24 \
+1	C4D:\
+In Object mode, select organ model, axis is at origin, object at RUI position\
+Use \'93Axis Center\'94 to move object axis inside object\
+\
+2	C4D:\
+In Object mode, select organ, set coordinates to x,y,z=0, object now is at origin\
+\
+
+\fs36 \
+==>rotate object into usable position
+\fs24 \
+At this point object is not in a good rotational position. For millitome usage it needs to be relatively flat. The left top corner of bounding box needs to be at x,z = 0.\
+\
+1	C4D:\
+duplicate organ object to have fallback, move to hidden layer\
+\
+2	C4D:\
+add cube object, dimensions 10x10x10 to have a origin visual\
+switch to Top view\
+switch to Points mode, select organ object, select all points; rotations are made to points\
+\
+3	C4D:\
+rotate so that height is larger than width (i.e. align along Y axis).\
+\
+4	C4D:\
+switch to Right view. Rotate so that \'93fat\'94portion is on bottom.\
+\
+5	C4D:\
+switch to Front view.\
+Rotate so \'93fat\'94 portion is on bottom.\
+\
+6	C4D:\
+Keep cycling through Top, Right, Front views (or use \'93All Views)\
+Keep adjusting organ rotation, make sure to stay in Points mode.\
+Keep in mind that this model will be used to cut the mold for the physical organ and it should fit in a rectangular box.\
+\
+7	C4D:\
+While rotating the organ origin might shift around and it\'92s easy to loose track of where the scene origin is. You can select the Cube object to see the scene origin.\
+\
+8	C4D:\
+After finding a reasonable rotation position for the organ geometry use Move tool to adjust Y-position (height position). Ideally, the widest part should be around the scene origin plane (x,z plane). Aim for ~50% of the height of the organ to be below the x/z plane. Geometry below this plane will be used to cut the mold.\
+\
+9	C4D:\
+While in Points mode, adjusting rotation and positions of points will nudge around the polygon origin (which is the \'93combined\'94 center). In Object mode the object\'92s origin will stay at scene origin 0,0,0.\
+\
+10	C4D:\
+Rename the object to make sure you are working on the correct one.\
+\
+11	C4D:\
+It is recommended to duplicate this object before making further changes.\
+\
+\
+
+\fs36 ==>position bounding box top-left to scene origin
+\fs24 \
+\
+1	C4D:\
+In Viewport-Display set \'93Box\'94 instead of \'93Wireframe\'94 to see the bounding box of model.\
+Here the orange frame outlines the bounding box, seen from Top.\
+\
+2	C4D:\
+Switch to Object mode. Activate \'93Enable Axis Modification\'94 (Tools-Modes).\
+\
+3	C4D:\
+In Top view, use origin arrows to move origin to top/left corner of bounding box.\
+Use Zoom to get as close to the top-left corner as needed to align precisely. \
+\
+4	C4D:\
+Optional? In Right or Front view adjust origin so that is it on center (X/Z-plane)\
+See more in Xpresso step\
+\
+5	C4D:\
+De-activate \'93Enable Axis Modification\'94\
+Object coordinates (X & Z) are now offset from origin.\
+\
+6	C4D:\
+Enter 0 for X,Y,Z to line up top/left corner of organ bounding box with scene origin (0,0,0)\
+Switch to Viewport-Display->Wireframe to see organ polygon instead bounding box.\
+Organ polygon is now in the correct orientation for export.\
+\
+\
+
+\fs36 ==>use Xpresso workflow to determine organ dimensions
+\fs24 \
+To create millitome geometry accurately dimensions of the bounding are needed. These dimensions will have to be added to OpenScad listing. This information can be extracted using Organ Placing.c4d\
+\
+1	C4D:\
+Use File-Merge (shift-cmd-o) to add the file \'93Organ Placing.c4d\'94 to the current scene.\
+This will add (5) Null objects to the scene (== they are not visible in the Viewport). Except for the object called \'93expresso:, no user-interaction is required. The \'93Box\'85\'94 Null objects are needed for HUD displays in the top-left corner of the viewport.\
+\
+2	C4D:\
+Double-Click on the dotted, tilted \'93T\'94 shape to the right of the \'93xpresso\'94 object to open the Xpresso editor. This is a simple workflow to find and display the object\'92s bounding box dimensions in the HUD.\
+\
+3	C4D:\
+After this file is first imported the \'93object\'94 in the object input frame is not initialized - all affected frames are yellow. \
+\
+4	C4D:\
+Drag the organ object the \'93Object\'94 field in the input frame of the  xpresso node. After that all yellow frames return to correct (grey) color.\
+Close the xpresso editor.\
+\
+5	C4D:\
+For V10 millitome a top and bottom slice is needed. The thickness (or height, Y) of either slice should be about equal.\
+Use Move tool in Model mode to nudge model until Box-min and Box max Y are about the same (min will be negative, max will be positive).\
+\
+6	C4D:\
+The HUD readout now displays the following values.\
+Box Min = coordinates of minimum corner (X=0!)\
+Box Max = coordinates of maximum corner (Z=0!)\
+Actual dimensions of bounding box (use X & Z in OpenScad)\
+Box real y.real = the actual height of the organ (use this for Y in OpenScad)\
+\
+\
+
+\fs36 ==>create organ polygon for mold cutting
+\fs24 \
+\
+In many situations even extensive organ rotating and orientation will lead to a situation that creates \'93overhangs\'94 when performing the \'93difference\'94 Boolean operation in OpenScad, where the mold is cut. To prevent this the mold-cutting organ model cannot become narrower above the widest cut. The process here is to make the complete \'93top\'94 section of the organ polygon as wide as the widest \'93silhouette\'94 (seen from above).\
+\
+1	C4D:\
+Duplicate the edited & aligned organ model. Rename (same name beginning with \'93_b\'94). This will make the bottom mold.\
+Duplicate the edited & aligned organ model again. Rename (same name beginning with \'93_t\'94). This will make the top mold.\
+Hide original model and one of the duplicates.\
+ Activate (select) the model to be edited.\
+\
+2	C4D:\
+Switch to Points mode.\
+When working \'93_t\'85\'94, which is used to cut the top mold, the bottom needs to be simplified and extended.\
+For \'93_b\'85\'94, used to cut the bottom mold, the top needs to be simplified and extended.\
+\
+Switch to Top view for \'93_t\'85\'94, Bottom view for \'93_b\'85\'94\
+We only want to select visible points. Switch to Rectangle Selection. \'93Only Select Visible Elements\'94 should be checked.\
+\
+3	C4D:\
+Draw a rectangle around the organ in the viewport.\
+This will select all points within unobstructed top view. \
+\
+4	C4D:\
+The resulting point selection must be thoroughly examined and may have to be revised manually.\
+If you have a good selection of points, duplicate the object, reverse point selection and pull Y to opposite direction, This makes matching halves.\
+\
+\
+5	C4D:\
+The easiest to way to examine is this:\
+- Export the non-extended organ model into OpenScad, set insert_frame() & inserttop_frame() using organ() to check\
+- in Points mode and Perspective, with the points selected, use Move tool and pull \'93up\'94or \'93down\'94 the a Y-arrow\
+- this will stretch the middle section of the organ.\
+- look for any weird looking spots\
+- if everything looks ok, switch to right view\
+- activate the Knife tool Mesh-Create Tools-Knife\
+- make sure \'93Visible Only\'94 is NOT checked\
+- draw a straight cut line through the expanded drawn out section of the organ\
+- use the rectangle selection tool, Select Visible Only not checked, and select everything above the knife cut line\
+- press delete\
+- use Mesh-Create-Close Polygon Hole.\
+- for good measure select all points and use Mesh-Commands-Optimize to delete any stray points\
+\
+6	C4D:\
+reasons for un-acceptable geometry in OpenScad for BOOLEAN operations:\
+- un-aligned normals (use align normals in C4D)\
+- stray points\
+- unconnected openings\
+- \
+\
+\
+\
+
+\fs36 ==>export STL files
+\fs24 \
+\
+After performing above steps there are two valid organ objects.\
+To export to STL:\
+\
+1	C4D:\
+Select * copy first object (edited, not extruded, used for display in OpenScad)\
+\
+2	C4D:\
+File-New to create empty new file.\
+Paste.\
+There now is only the geometry to export in the scene,\
+\
+3	C4D:\
+File-Export-.stl\
+(name: 2_VHF_spleen.stl) \
+Scale: 1 Millimeters\
+After export, delete object and switch back to organ edit file\
+\
+4	C4D:\
+Select and copy edited/extruded object (_object)\
+Switch to empty new file.\
+Paste.\
+\
+5	C4D:\
+File-Export-.stl\
+(_2_VHF_spleen.stl\'94\
+Scale: 1 Millimeters\
+Close file.\
+\
+6	C4D:\
+Don\'92t forget to write down dimensions from HUD.\
+\
+x = 7.586\
+y = 6.498 (this is y.real y)\
+z = 11.679\
+\
+These are in cm but OpenScad expects mm:\
+75.86\
+64.98\
+116.79\
+\
+Round these up for margin-of-error\
+76\
+65\
+117\
+\
+For OpenScad usage (top-down view), exchange y and z:\
+76\
+117\
+65\
+\
+\
+
+\fs36 ==>asset export from OpenScad
+\fs24 \
+\
+STL export conventions to create 3d printable millitome and virtual assets\
+for 3d printing (3) fixed sizes are created (85%,100%,%115)\
+\
+1	OpenScad: export files for 3d-printing (package assets)\
+exposed variables: set gender, organ_id, organ_scale\
+object staging area: activate (un-comment) insert(); inner_frame_with_letters();\
+this will produce a full millitome with column/row indicators\
+\
+2	OpenScad:\
+to create exportable STL geometry, scene has to be rendered first\
+\
+\
+\
+\
+\
+\
+\
+\
+}
