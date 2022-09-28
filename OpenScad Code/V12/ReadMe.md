@@ -16,7 +16,7 @@
 
 ## Tasks
 
-These assets are created from Openscad pipeline. Asset properties are set/selected from MT-Customizer, which then runs the appropriate sub-module (MT-Generator, MT-Icebox). Sub-modules can also be launched directly, in which case properties have to modified in the property variables.
+These assets are created from the Openscad pipeline. Asset properties are set/selected in MT-Customizer or MT-Master, which then runs the appropriate sub-module (MT-Generator, MT-Icebox). Sub-modules can also be launched directly (for testing and debugging), in which case the open properties block has to be un-commented. While the open properties block is un-commented it will NOT run properly when called from MT-Customizer or MT-Master because the the properties in MT-Generator/MT-Icebox will override propertiesset in the calling app. 
 
 The following properties are accessible from MT-Customizer:
 
