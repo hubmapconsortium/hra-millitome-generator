@@ -43,7 +43,7 @@ A 3d model of the icebox. Could be 3d printed ot used as virtual asset.
 asset_typeID = 5
 
 
-## Files
+## Files (code)
 
 ### MT-Customizer.scad
 
@@ -84,6 +84,8 @@ blocks y (int)
 product [MT-physical,MT-block array,MT-sample blocks,MT-organ,IB-physical,IB-virtual]
 
 To produce .STL/.DXF output the object must be rendered (F6) and saved to the appropriate file format.  
+
+### MT-Customizer.scad
 
 ### MT-Generator.scad
 
