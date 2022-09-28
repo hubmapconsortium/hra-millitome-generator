@@ -7,15 +7,12 @@
 - Split generation of Millitome assets and Icebox assets into separate OpenScad files.
 - Use MT-Customizer to produce individual items as per user input in Customizer panel.
 - Use MT-Master to connect from mt_export.bash terminal script.
- 
-
 
 ## To Do
 
-can we do more scripting from external?
-
-
-all virtual and physical 3d assets can be created in Openscad, using MT-Customizer; this works well for single or very low count MT creation. How can we do CSV creation? Parameters of a MT to be created accessible from Openscad code? From exported .json?
+- When running from MT-Customizer no .CSV is created (that is done in bash script). Is there a way?
+- Can bash script be called from IU app of some sort?
+- Or, can OpenScad be called by something with a user interface?
 
 ## Tasks
 
