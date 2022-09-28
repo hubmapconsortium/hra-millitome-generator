@@ -16,31 +16,7 @@
 
 ## Tasks
 
-These assets are created from the Openscad pipeline. Asset properties are set/selected in MT-Customizer or MT-Master, which then runs the appropriate sub-module (MT-Generator, MT-Icebox). Sub-modules can also be launched directly (for testing and debugging), in which case the open properties block has to be un-commented. While the open properties block is un-commented it will NOT run properly when called from MT-Customizer or MT-Master because the the properties in MT-Generator/MT-Icebox will override propertiesset in the calling app. 
-
-The following properties are accessible from MT-Customizer:
-
-gender [female,male]
-
-organ [kidney_l,kidney_r,spleen,pancreas,banana]
-
-laterality [bottom,top,bottom no ID]
-
-organ scale [large,medium,small]
-
-blocktype [uniform,userXY,blockCount]
-
-block size [10,15,20]
-
-block xsize [10,15,20]
-
-block ysize [10,15,20]
-
-blocks x (int)
-
-blocks y (int)
-
-product [MT-physical,MT-block array,MT-sample blocks,MT-organ,IB-physical,IB-virtual]
+These assets can be created from the Openscad pipeline.
 
 ### Millitome physical for 3d print (.STL)
 
@@ -70,18 +46,22 @@ asset_typeID = 3
 
 The physical icebox is used to store physical organ samples in a compartmentalized container. The container layout matches the MT layout and provides a column/row coordinate system. Openscad produces a ready-to-use laser cut file in .DXF format.
 
-asset_typeID = 0
+asset_typeID = 4
 
 ### Millitome Icebox 3d model (.STL)
 
 A 3d model of the icebox. Could be 3d printed ot used as virtual asset.
 
-asset_typeID = 1
+asset_typeID = 5
 
 
 ## Files
 
 ### MT-Customizer.scad
+
+
+Asset properties are set/selected in MT-Customizer or MT-Master, which then runs the appropriate sub-module (MT-Generator, MT-Icebox). Sub-modules can also be launched directly (for testing and debugging), in which case the open properties block has to be un-commented. While the open properties block is un-commented it will NOT run properly when called from MT-Customizer or MT-Master because the the properties in MT-Generator/MT-Icebox will override propertiesset in the calling app. 
+
 
 <p align="center">
   <img src="images/mt-customizer-1.png" width="200">
