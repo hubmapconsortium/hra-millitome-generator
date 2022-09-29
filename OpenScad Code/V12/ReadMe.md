@@ -48,7 +48,7 @@ asset_typeID = 5
 ### MT-Customizer.scad
 
 
-Asset properties are set/selected in MT-Customizer or MT-Master, which then runs the appropriate sub-module (MT-Generator, MT-Icebox). Sub-modules can also be launched directly (for testing and debugging), in which case the open properties block has to be un-commented. While the open properties block is un-commented it will NOT run properly when called from MT-Customizer or MT-Master because the the properties in MT-Generator/MT-Icebox will override propertiesset in the calling app. 
+Asset properties are set/selected in MT-Customizer or MT-Master, which then runs the appropriate sub-module (MT-Generator, MT-Icebox). Sub-modules can also be launched directly (for testing and debugging), in which case the open properties block has to be un-commented. While the open properties block is un-commented it will NOT run properly when called from MT-Customizer or MT-Master because the the properties in MT-Generator/MT-Icebox will override properties set in the calling app. 
 
 
 <p align="center">
