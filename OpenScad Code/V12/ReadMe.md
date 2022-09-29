@@ -45,8 +45,7 @@ asset_typeID = 5
 
 ## Files (code)
 
-### MT-Customizer.scad
-
+### calling/master apps
 
 Asset properties are set/selected in MT-Customizer or MT-Master, which then runs the appropriate sub-module (MT-Generator, MT-Icebox). Sub-modules can also be launched directly (for testing and debugging), in which case the open properties block has to be un-commented. If the open properties block is un-commented, it will NOT run properly when called from MT-Customizer or MT-Master because the properties in MT-Generator/MT-Icebox will override properties set in the calling app. 
 
@@ -59,29 +58,29 @@ Asset properties are set/selected in MT-Customizer or MT-Master, which then runs
 </p>
 
 This program allows configuration of all properties necessary to create Millitome related assets.
-The "product" selector determines if a Millitome or an Icebox is produced.
+The "product" selector determines if a Millitome or an Icebox is produced. The following list shows properties available through the open properties block:
 
-gender _female, male_
+gender (female, male)
 
-organ [kidney_l, kidney_r, spleen, pancreas, banana]
+organ (kidney_l, kidney_r, spleen, pancreas, banana)
 
-laterality [bottom, top, bottom no ID]
+laterality (bottom, top, bottom no ID)
 
-organ scale [large,medium,small]
+organ scale (large, medium, small)
 
-blocktype [uniform,userXY,blockCount]
+blocktype (uniform, userXY, blockCount)
 
-block size [10,15,20]
+block size (10, 15, 20)
 
-block xsize [10,15,20]
+block xsize (10, 15, 20)
 
-block ysize [10,15,20]
+block ysize (10, 15, 20)
 
 blocks x (int)
 
 blocks y (int)
 
-product [MT-physical,MT-block array,MT-sample blocks,MT-organ,IB-physical,IB-virtual]
+product (MT-physical, MT-block array, MT-sample blocks, MT-organ, IB-physical, IB-virtual)
 
 To produce .STL/.DXF output the object must be rendered (F6) and saved to the appropriate file format.  
 
