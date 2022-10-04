@@ -6,7 +6,7 @@
 # added product IDs
 # support for STL/DXF suffix
 #   2022-10-4
-# now makes eports proper dxf/stl file extensions
+# now exports proper dxf/stl file extensions
 
 
 # run in terminal:
@@ -91,7 +91,6 @@ for genderID in ${genderIDs[@]}; do     # genders: 2
                             fileSuffix="dxf"
                         fi
 
-                        
                         # runs openscad program, properly configured
                         openscad ${mtGenerator} -o ${outputFolder}/${outputSubfolder}/VH_${gender}_${organ}_${blocksize}_${scale}_${laterality}_${product}.${fileSuffix} \
                         -D productID=${productID} \
