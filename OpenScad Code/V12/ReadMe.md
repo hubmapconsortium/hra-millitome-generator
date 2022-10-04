@@ -27,7 +27,7 @@ Sample block array used in MT generation process. Used for UI and other virtual 
 
 <p align="center">
   <span>
-  <img src="images/Block_array.png" height="300">
+  <img src="images/Block_array.png" height="400">
   </span>
 </p>
 <p align = "center">
