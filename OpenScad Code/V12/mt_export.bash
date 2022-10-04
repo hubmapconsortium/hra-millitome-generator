@@ -5,6 +5,8 @@
 #  2022-9-29
 # added product IDs
 # support for STL/DXF suffix
+#   2022-10-4
+# now makes eports proper dxf/stl file extensions
 
 
 # run in terminal:
@@ -82,12 +84,11 @@ for genderID in ${genderIDs[@]}; do     # genders: 2
                     for productID in ${productIDs[@]}; do   # product ID
                         product=${productList[productID]}
 
-                        fileSuffix="stl"      # STL is default fileSuffix
-                        echo "stl-file"
-                        if [[productID==4]]
-                        then
+                        fileSuffix="stl"        # STL is default fileSuffix
+                        dxfSuffixID=$((4))      # must make explicit string 
+                        productTestID=$((productID))    #explicit string
+                        if [ $productTestID -eq $productTestID ] ; then    
                             fileSuffix="dxf"
-                            echo "dxf-file"
                         fi
 
                         
