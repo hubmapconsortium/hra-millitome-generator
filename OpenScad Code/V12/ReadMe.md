@@ -36,7 +36,12 @@ Sample block array used in MT generation process. Used for UI and other virtual 
 
 The actual sample blocks. Created by intersecting block array with the organ model geometry. Used for virtual.
 
-asset_typeID = 2
+<p align="center">
+  <img src="images/Sample_blocks.png" height="300">
+</p>
+<p align = "center">
+  <sub>Fig.3 Millitome sample blocks for visual application; intersection of block array & sample organ</sub>
+</p>
 
 ### Millitome organ (.STL)
 
