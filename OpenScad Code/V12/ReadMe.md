@@ -25,7 +25,14 @@ Produces 3d-printable millitomes, based on properties, exported to .STL file. Th
 
 Sample block array used in MT generation process. Used for UI and other virtual things.
 
-asset_typeID = 1
+<p align="center">
+  <span>
+  <img src="images/Block_array.png" height="300">
+  </span>
+</p>
+<p align = "center">
+  <sub>Fig.2 Millitome block array; sample blocks for visual application</sub>
+</p>
 
 ### Millitome sample blocks (.STL)
 
