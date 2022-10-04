@@ -12,8 +12,8 @@ Produces 3d-printable millitomes, based on properties, exported to .STL file. Th
 
 <p align="center">
   <span>
-  <img src="images/MT-render.png" width="300">
-  <img src="images/MT-photo.jpg" width="300">
+  <img src="images/MT-render.png" height="300">
+  <img src="images/MT-photo.jpg" height="300">
   </span>
 </p>
 <p align = "center">
