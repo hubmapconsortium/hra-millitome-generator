@@ -58,7 +58,12 @@ The organ model. Used for virtual applications.
 
 The physical icebox is used to store physical organ samples in a compartmentalized container. The container layout matches the MT layout and provides a column/row coordinate system. Openscad produces a ready-to-use laser cut file in .DXF format.
 
-asset_typeID = 4
+<p align="center">
+  <img src="images/Icebox_dxf.png" height="300">
+</p>
+<p align = "center">
+  <sub>Fig.5 Cut sheet to produce the sample block storage box on a laser cutter</sub>
+</p>
 
 ### Millitome Icebox 3d model (.STL)
 
