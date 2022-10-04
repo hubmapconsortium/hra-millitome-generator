@@ -11,7 +11,7 @@ These assets can be created from the Openscad pipeline.
 Produces 3d-printable millitomes, based on properties, exported to .STL file. This file can be printed on 3d-printer directly or used as virtual asset.
 
 <p align="center">
-  <img src="images/millitome_stl.png" width="200">
+  <img src="images/MT-render.png" width="200">
 </p>
 <p align = "center">
   <sub>Fig.1 Millitome for banana half .STL file</sub>
