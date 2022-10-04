@@ -17,6 +17,13 @@ Produces 3d-printable millitomes, based on properties, exported to .STL file. Th
   <sub>Fig.1 Millitome for banana half .STL file</sub>
 </p>
 
+<p align="center">
+  <img src="images/MT-photo.jpg" width="200">
+</p>
+<p align = "center">
+  <sub>Fig.2 Millitome for banana half 3d print</sub>
+</p>
+
 ### Millitome block array (.STL)
 
 Sample block array used in MT generation process. Used for UI and other virtual things.
