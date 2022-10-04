@@ -1,83 +1,83 @@
 # Millitome Generator Suite V12
 
-2022-9-20
-
-## strategies
-
-can we do more scripting from external?
-
-what can be done with FreeCAD Openscad plugin?
-
-all virtual and physical 3d assets can be created in Openscad, using MT-Customizer; this works well for single or very low count MT creation. How can we do CSV creation? Parameters of a MT to be created accessible from Openscad code? From exported .json?
+2022-9-28
 
 ## Tasks
 
-These assets are created from Openscad pipeline. Asset properties are set/selected from MT-Customizer, which then runs the appropriate sub-module (MT-Generator, MT-Icebox). Sub-modules can also be launched directly, in which case properties have to modified in the property variables.
-
-The following properties are accessible from MT-Customizer:
-
-gender [female,male]
-
-organ [kidney_l,kidney_r,spleen,pancreas,banana]
-
-laterality [bottom,top,bottom no ID]
-
-organ scale [large,medium,small]
-
-blocktype [uniform,userXY,blockCount]
-
-block size [10,15,20]
-
-block xsize [10,15,20]
-
-block ysize [10,15,20]
-
-blocks x (int)
-
-blocks y (int)
-
-product [MT-physical,MT-block array,MT-sample blocks,MT-organ,IB-physical,IB-virtual]
+These assets can be created from the Openscad pipeline.
 
 ### Millitome physical for 3d print (.STL)
 
 Produces 3d-printable millitomes, based on properties, exported to .STL file. This file can be printed on 3d-printer directly or used as virtual asset.
 
-asset_typeID = 0
+<p align="center">
+  <span>
+  <img src="images/MT-render.png" height="300">
+  <img src="images/MT-photo.jpg" height="300">
+  </span>
+</p>
+<p align = "center">
+  <sub>Fig.1 Millitome for banana half .STL file and 3d print</sub>
+</p>
+
 
 ### Millitome block array (.STL)
 
 Sample block array used in MT generation process. Used for UI and other virtual things.
 
-asset_typeID = 1
+<p align="center">
+  <img src="images/Block_array.png" height="300">
+</p>
+<p align = "center">
+  <sub>Fig.2 Millitome block array; sample blocks for visual application</sub>
+</p>
 
 ### Millitome sample blocks (.STL)
 
 The actual sample blocks. Created by intersecting block array with the organ model geometry. Used for virtual.
 
-asset_typeID = 2
+<p align="center">
+  <img src="images/Sample_blocks.png" height="300">
+</p>
+<p align = "center">
+  <sub>Fig.3 Millitome sample blocks for visual application; intersection of block array & sample organ</sub>
+</p>
 
 ### Millitome organ (.STL)
 
-The organ model. Used for virtual.
+The organ model. Used for virtual applications.
 
-asset_typeID = 3
+<p align="center">
+  <img src="images/Banana_sample.png" height="300">
+</p>
+<p align = "center">
+  <sub>Fig.4 Model of the half banana used to form the modl in the millitome</sub>
+</p>
 
 ### Millitome Icebox laser cut sheet (.DXF)
 
 The physical icebox is used to store physical organ samples in a compartmentalized container. The container layout matches the MT layout and provides a column/row coordinate system. Openscad produces a ready-to-use laser cut file in .DXF format.
 
-asset_typeID = 0
+<p align="center">
+  <img src="images/Icebox_dxf.png" height="300">
+</p>
+<p align = "center">
+  <sub>Fig.5 Cut sheet to produce the sample block storage box on a laser cutter</sub>
+</p>
 
 ### Millitome Icebox 3d model (.STL)
 
 A 3d model of the icebox. Could be 3d printed ot used as virtual asset.
 
-asset_typeID = 1
+asset_typeID = 5
 
 
-## Files
+## Files (code)
 
-### MT-Customizer.scad
+### calling/master apps
+
+Asset properties are set/selected in MT-Customizer or MT-Master, which then runs the appropriate sub-module (MT-Generator, MT-Icebox). Sub-modules can also be launched directly (for testing and debugging), in which case the open properties block has to be un-commented. If the open properties block is un-commented, it will NOT run properly when called from MT-Customizer or MT-Master because the properties in MT-Generator/MT-Icebox will override properties set in the calling app. 
+
 
 <p align="center">
   <img src="images/mt-customizer-1.png" width="200">
@@ -87,31 +87,33 @@ asset_typeID = 1
 </p>
 
 This program allows configuration of all properties necessary to create Millitome related assets.
-The "product" selector determines if a Millitome or an Icebox is produced.
+The "product" selector determines if a Millitome or an Icebox is produced. The following list shows properties available through the open properties block:
 
-gender [female,male]
+gender (female, male)
 
-organ [kidney_l,kidney_r,spleen,pancreas,banana]
+organ (kidney_l, kidney_r, spleen, pancreas, banana)
 
-laterality [bottom,top,bottom no ID]
+laterality (bottom, top, bottom no ID)
 
-organ scale [large,medium,small]
+organ scale (large, medium, small)
 
-blocktype [uniform,userXY,blockCount]
+blocktype (uniform, userXY, blockCount)
 
-block size [10,15,20]
+block size (10, 15, 20)
 
-block xsize [10,15,20]
+block xsize (10, 15, 20)
 
-block ysize [10,15,20]
+block ysize (10, 15, 20)
 
 blocks x (int)
 
 blocks y (int)
 
-product [MT-physical,MT-block array,MT-sample blocks,MT-organ,IB-physical,IB-virtual]
+product (MT-physical, MT-block array, MT-sample blocks, MT-organ, IB-physical, IB-virtual)
 
 To produce .STL/.DXF output the object must be rendered (F6) and saved to the appropriate file format.  
+
+### MT-Customizer.scad
 
 ### MT-Generator.scad
 
