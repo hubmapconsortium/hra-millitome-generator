@@ -12,20 +12,14 @@ Produces 3d-printable millitomes, based on properties, exported to .STL file. Th
 
 <p align="center">
   <span>
-  <img src="images/MT-render.png" width="200">
-  <img src="images/MT-photo.jpg" width="200">
+  <img src="images/MT-render.png" width="300">
+  <img src="images/MT-photo.jpg" width="300">
   </span>
 </p>
 <p align = "center">
-  <sub>Fig.1 Millitome for banana half .STL file</sub>
+  <sub>Fig.1 Millitome for banana half .STL file and 3d print</sub>
 </p>
 
-<p align="center">
-  <img src="images/MT-photo.jpg" width="200">
-</p>
-<p align = "center">
-  <sub>Fig.2 Millitome for banana half 3d print</sub>
-</p>
 
 ### Millitome block array (.STL)
 
