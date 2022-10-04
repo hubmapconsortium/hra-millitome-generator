@@ -23,17 +23,26 @@ $fs = 0.4;
 //
 // change values here for single run from Openscad
 // or run from terminal using command line; variables can be overrides using -D <property>=n
-//  - genderID      0=female, 1=male
-//  - organID       0=kidney_l, 1=kidney_r, 2=spleen, 3=pancreas, 4=banana
-//  - block_size    10, 15, 20, blocksize in mm
-//  - scale         0=large (115%, 1.15), 1=medium (100%, 1), 2=small (85%, 0.85)
-//  - lateralityID  0=bottom, 1=top, 2=bottom(no layerID), 9=bypass
-//  - output_flag   0=ECHO everything, 1=ECHO insert line only, 2=ECHO col/row insert ONLY 
-//
-//  - blocking mode and properties
+//  - genderID      0 = female, 1 = male
+//  - organID       0 = kidney_l, 1 = kidney_r, 2 = spleen, 3 = pancreas, 4 = banana
+//  - lateralityID  0 = bottom, 1 = top
+//  - organ_scaleID 0 = large (115%, 1.15), 1 = medium (100%, 1), 2 = small (85%, 0.85)
+//  - typeID        0 = fixed block size, 1=user block size, 2=user block count
+
+//  - block_size    10, 15, 20 (blocksize in mm)
+
+//  - block_xsize   used for type 1, block x size
+//  - block_ysize   used for type 1, block y size
+
+//  - blocks_x      used for type 2, number of blocks along x, used for calculated block_size
+//  - blocks_y      number of blocks along y
+
+//  - asset_typeID  0=physical, 1=virtual
+
+//  - output_flag   0 = ECHO everything, 1 = ECHO insert line only, 2 = ECHO col/row insert ONLY
 //================================================================
-//------when running from MT-Customizer these variables must be disabled, otherwise they will override variables from master script!!
-/* 
+//------when running from MT-Customizer or MT-Master these variables must be disabled, otherwise they will override variables from master script!!
+/*
 genderID        = 0;    // 0=female, 1=male, needs to be integer selector
 organID         = 2;    // index for list lookup
 lateralityID    = 0;    // 0=bottom, 1=top, 2=bypass MT creation      
@@ -50,6 +59,8 @@ blocks_x        = 7;    // used for type 2, number of blocks along x, used for c
 blocks_y        = 14;   // number of blocks along y
 
 asset_typeID    = 0;    // 0=physical, 1=virtual
+
+output_flag     = 0;    // 0 = ECHO everything, 1 = ECHO insert line only, 2 = ECHO col/row insert ONLY
 */
 //================================================================
 // Object Generation Area
@@ -261,167 +272,6 @@ outer_box_zdim  = inner_box_zdim+wall_height+bottom_height;
 // functions
 //================================================================
 
-//=============icebox stuff section===============================
-// these variables depend on stuff from above lines!!!
-icebox_platform_extra_edge  = 5;
-icebox_material_thickness   = 2;
-icebox_nub_height           = icebox_material_thickness + 3;
-icebox_nub_length           = 10;
-icebox_nub_latch_length     = 5;
-icebox_nub_latch_thickness  = 3;
-
-icebox_xdim                 = insert_box_xdim + icebox_platform_extra_edge*2;
-icebox_ydim                 = insert_box_ydim + icebox_platform_extra_edge*2;
-icebox_zdim                 = organ_zreal/3;
-
-icebox_complete();
-
-
-module icebox_complete() {
-    //icebox_platform();
-    
-    //icebox_column_array();
-    //icebox_row_array();
-    
-    //icebox_column_box();
-
-    
-    //icebox_column_half_array();
-    //icebox_row_half_array();
-    
-    //icebox_row_half();
-    //icebox_nub_slot_cutter();
-}
-
-
-module icebox_platform_box() {
-    color("tan")
-    translate([-icebox_platform_extra_edge,-insert_box_ydim - icebox_platform_extra_edge,-(icebox_material_thickness)]) 
-        cube([icebox_xdim,icebox_ydim,icebox_material_thickness]);
-}
-
-module icebox_platform() {
-    difference() {
-        icebox_platform_box();
-        //icebox_column_array();
-        icebox_nub_slot_cutter();
-    }
-    
-}
-
-
-
-// column dividers============================================
-
-// column divider 
-//  adds two connector nubs on each column piece
-module icebox_column_box() {  
-    color("tan")
-    union() {
-        // actual column
-        translate([0,-insert_box_ydim - icebox_platform_extra_edge,0])
-            cube([icebox_material_thickness,icebox_ydim,icebox_zdim]);
-        
-        // connector nubs
-        translate([0,-icebox_nub_length*2,-icebox_nub_height])      // nub 1
-            cube([icebox_material_thickness,icebox_nub_length,icebox_zdim+icebox_nub_height]);
-        translate([0,-icebox_nub_length*2 -icebox_nub_latch_length,-icebox_nub_latch_thickness-2.5])
-            cube([icebox_material_thickness,icebox_nub_length+icebox_nub_latch_length,icebox_nub_latch_thickness]);
-
-        translate([0,-insert_box_ydim + icebox_nub_length,-icebox_nub_height])  // nub 2
-            cube([icebox_material_thickness,icebox_nub_length,icebox_zdim+icebox_nub_height]);
-        translate([0,-insert_box_ydim + icebox_nub_length-5,-icebox_nub_latch_thickness-2.5])
-            cube([icebox_material_thickness,icebox_nub_length+icebox_nub_latch_length,icebox_nub_latch_thickness]);
-    }
-    //color ("red")
-
-    
-}
-
-module icebox_nub_slot_cutter() {  
-    for (dx = [0:block_xdim:insert_box_xdim]) {
-        translate([dx,0,0])
-            // connector nubs
-            union() {
-            translate([0,-icebox_nub_length*2 -icebox_nub_latch_length+5,-icebox_nub_latch_thickness-2.5])
-                cube([icebox_material_thickness,icebox_nub_length+icebox_nub_latch_length,icebox_nub_latch_thickness+4]);
-        
-            translate([0,-insert_box_ydim + icebox_nub_length,-icebox_nub_height])
-                cube([icebox_material_thickness,icebox_nub_length+icebox_nub_latch_length,icebox_nub_latch_thickness+4]);
-            }
-    }
-}
-
-module icebox_column() {
-    difference() {
-        icebox_column_box();
-        icebox_row_half_array();
-    }
-}
- 
-// column divider array
-module icebox_column_array() {
-    for (dx = [0:block_xdim:insert_box_xdim]) {
-        translate([dx,0,0])
-            icebox_column();
-    }
-}
-
-// column divider half height
-module icebox_column_half() {  
-    color("gold")
-    translate([0,-insert_box_ydim - icebox_platform_extra_edge,-icebox_material_thickness])
-        cube([icebox_material_thickness,icebox_ydim,icebox_zdim/2+icebox_material_thickness]);
-}
-
-// column divider half height array
-module icebox_column_half_array() {
-    for (dx = [0:block_xdim:insert_box_xdim]) {
-        translate([dx,0,0])
-            icebox_column_half();
-    }
-}
-
-
-// row dividers===============
-module icebox_row_box() {
-    color("tan")
-    translate([0-icebox_platform_extra_edge,0,0])
-        cube([icebox_xdim,icebox_material_thickness,icebox_zdim]);
-}
-
-module icebox_row() {
-    difference() {
-        icebox_row_box();
-        icebox_column_half_array();
-    }
-}
-
-// row divider array
-module icebox_row_array() {
-    for (dy = [0:-block_ydim:-insert_box_ydim]) {
-        translate([0,dy,0])
-            icebox_row();
-    }
-}
-
-// row divider half height
-module icebox_row_half() {
-    color("gold")
-    translate([0-icebox_platform_extra_edge,0,icebox_zdim/2])
-        cube([icebox_xdim,icebox_material_thickness,(icebox_zdim/2)+icebox_material_thickness]);
-}
-
-// row divider half height array
-module icebox_row_half_array() {
-    for (dy = [0:-block_ydim:-insert_box_ydim]) {
-        translate([0,dy,0])
-            icebox_row_half();
-    }
-}
-//==========end icebox stuff=====================================
-
-
 // make complete millitomes
 module complete_top() {
     inserttop(); 
@@ -455,8 +305,6 @@ module inserttop_box() {
     translate([0,-insert_box_ydim,0]) 
         cube([insert_box_xdim,insert_box_ydim,insert_box_zdim]);
 }
-
-
 
 // cut insert_box opening into inner_box to make inner_frame
 module insert_box_cut() {

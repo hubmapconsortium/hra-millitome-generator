@@ -22,18 +22,28 @@ $fs = 0.4;
 //
 // change values here for single run from Openscad
 // or run from terminal using command line; variables can be overrides using -D <property>=n
-//  - gender        0 = female, 1 = male
-//  - organ_id      0 = kidney_l, 1 = kidney_r, 2 = spleen, 3 = pancreas, 4 = banana
-//  - block_size    10, 15, 20, blocksize in mm
-//  - scale         0 = large (115%, 1.15), 1 = medium (100%, 1), 2 = small (85%, 0.85)
-//  - laterality    0 = bottom, 1 = top
-//  - output_flag   0 = ECHO everything, 1 = ECHO insert line only, 2 = ECHO col/row insert ONLY 
+//  - genderID      0 = female, 1 = male
+//  - organID       0 = kidney_l, 1 = kidney_r, 2 = spleen, 3 = pancreas, 4 = banana
+//  - lateralityID  0 = bottom, 1 = top
+//  - organ_scaleID 0 = large (115%, 1.15), 1 = medium (100%, 1), 2 = small (85%, 0.85)
+//  - typeID        0 = fixed block size, 1=user block size, 2=user block count
+
+//  - block_size    10, 15, 20 (blocksize in mm)
+
+//  - block_xsize   used for type 1, block x size
+//  - block_ysize   used for type 1, block y size
+
+//  - blocks_x      used for type 2, number of blocks along x, used for calculated block_size
+//  - blocks_y      number of blocks along y
+
+//  - asset_typeID  0=physical, 1=virtual
+
+//  - output_flag   0 = ECHO everything, 1 = ECHO insert line only, 2 = ECHO col/row insert ONLY
 //
-//  - blocking mode and properties
 //===============================================================
 
-//------when running from MT-Customizer these variables must be disabled, otherwise they will override variables from master script!!
-/* 
+//------when running from MT-Customizer or MT-Master these variables must be disabled, otherwise they will override variables from master script!!
+/*
 genderID        = 0;    // 0=female, 1=male, needs to be integer selector
 organID         = 2;    // index for list lookup
 lateralityID    = 0;    // 0=bottom, 1=top, 2=bypass MT creation      
@@ -50,10 +60,9 @@ blocks_x        = 7;    // used for type 2, number of blocks along x, used for c
 blocks_y        = 14;   // number of blocks along y
 
 asset_typeID    = 0;    // 0=physical, 1=virtual
+
+output_flag     = 0;    // 0 = ECHO everything, 1 = ECHO insert line only, 2 = ECHO col/row insert ONLY
 */
-
-//output_flag     = 0;    // 0 = ECHO everything, 1 = ECHO insert line only, 2 = ECHO col/row insert ONLY
-
 //================================================================
 // Object Generation Area
 //  uncomment function(s) to be executed when running program
@@ -250,7 +259,6 @@ module icebox_column_array_2d() {
                     rotate ([0,90,0])
                         icebox_column();
             }
-     
 }
 
 
@@ -287,10 +295,8 @@ module icebox_column_box() {
         translate([0,-insert_box_ydim + icebox_nub_length-5,-icebox_nub_latch_thickness-icebox_material_thickness-icebox_slot_gap])
             cube([icebox_material_thickness,icebox_nub_length+icebox_nub_latch_length,icebox_nub_latch_thickness]);
     }
-    //color ("red")
-
-    
 }
+
 
 module icebox_nub_slot_cutter() {  
     for (dx = [0:block_xdim:insert_box_xdim]) {
@@ -305,6 +311,7 @@ module icebox_nub_slot_cutter() {
             }
     }
 }
+
 
 module icebox_column() {
     difference() {

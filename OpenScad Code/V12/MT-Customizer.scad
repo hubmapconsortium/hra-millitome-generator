@@ -19,7 +19,7 @@ product         = "MT-physical";   // [MT-physical,MT-block array,MT-sample bloc
 
 module __Customizer_Limit__ () {}  // show in customizer up to here
     shown_by_customizer = false;
-//
+//=======any commented ('//') lines above this will be shown in the Customizer window!!=========================
 
 // MT-Customizer
 
@@ -36,7 +36,7 @@ output_flag     = 0;    // 0 = ECHO everything, 1 = ECHO insert line only, 2 = E
 // property lists------------------------------------------------
 // extract property IDs from string lists in Customizer
 genders = ["female","male"];
-genderID = [ for (i = [0:1:len(genders)]) if (gender==genders[i]) i][0];    //returns a list!! Need [0] to get item 1
+genderID = [ for (i = [0:1:len(genders)]) if (gender==genders[i]) i][0];    //returns a list!! Need [0] at the end to get first item
 
 organs = ["kidney_l","kidney_r","spleen","pancreas","banana"];
 organID = [ for (i = [0:1:len(organs)]) if (organ==organs[i]) i][0];
@@ -52,8 +52,9 @@ typeID = [ for (i = [0:1:len(type_list)]) if (blocktype==type_list[i]) i][0];
     
 product_list = ["MT-physical","MT-block array","MT-sample blocks","MT-organ","IB-physical","IB-virtual"];
 productID = [ for (i = [0:1:len(product_list)]) if (product==product_list[i]) i][0];
+    
 
-
+// call needed includes with appropriate asset type ID as per user request
 if (productID == 0) millitome_physical();
 if (productID == 1) millitome_blockarray();
 if (productID == 2) millitome_sampleblocks();

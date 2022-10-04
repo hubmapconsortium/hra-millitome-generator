@@ -2,13 +2,10 @@
 
 # V3 - works with V12 of MT_generator
 # Peter Kienle, CNS
-#  2022-9-22   moved to active github
-#----needs overhaul to work with MT-Generator & MT-Icebox
-# 
-#2022-8-24
-# - export files to correctly named folders
-# - zip/compress folder (and delete folder afterwards)
-# - updated variable names (gender=>genderID)
+#  2022-9-29
+# added product IDs
+# support for STL/DXF suffix
+
 
 # run in terminal:
 # - navigate terminal to folder tjis script resides in (V11) using 'cd'
@@ -17,7 +14,7 @@
 
 consoleOutput="_logfile.txt"        # console gets logged to this temp file to be extracted for .csv files
 outputFolder="exports"              # main output folder
-mtGenerator="MT-Generator.scad"     # openscad program code
+mtGenerator="MT-Master.scad"        # openscad program code; V12 uses MT-Generator/MT-Icebox controlled from MT-Master
 outputFlag=2                        # 2=column/row inserts only (use this), openscad console output: 0=everything, 1=full inserts
 
 # check if main export folder exists; if not, create it
@@ -27,12 +24,13 @@ then
 fi
 
 # IDs used to configure Openscad output. Must match 'exposed properties' in MT_Generator
-# this is essentially the task list!
-genderIDs=(0 1)
+# this is the task list! These items are created.
+genderIDs=(1)
 organIDs=(4)
 blocksizeIDs=(2)
 lateralityIDs=(2)
 scaleIDs=(1)
+productIDs=(0 1 2 3 4 5)
 
 # Used to assemble filenames for .STL & .CSV files. Lists must match MT_Generator & ID lists (above)
 genderList=(F M)
@@ -42,6 +40,7 @@ organList2=("Kidney left" "Kidney right" Spleen Pancreas Banana)
 blocksizeList=(10 15 20)
 lateralityList=(Bottom Top BottomOnly)
 scaleList=(Large Medium Small)
+productList=("" Block_array Sample_blocks Organ IceboxDXF IceboxSTL)
 
 asciiList=(A B C D E F G H I J K L M N O P Q R S T U V W X Y Z) # lookup table for column IDs
 
@@ -80,8 +79,28 @@ for genderID in ${genderIDs[@]}; do     # genders: 2
                     exec 3<&1               # save original stdout to 3
                     exec &> $consoleOutput  # direct all out and err to the log file
                     
-                    # runs openscad program, properly configured
-                    openscad ${mtGenerator} -o ${outputFolder}/${outputSubfolder}/VH_${gender}_${organ}_${blocksize}_${scale}_${laterality}.stl -D lateralityID=${lateralityID} -D genderID=${genderID} -D organID=${organID} -D organ_scaleID=${scaleID} -D block_size=${blocksize} -D output_flag=${outputFlag}
+                    for productID in ${productIDs[@]}; do   # product ID
+                        product=${productList[productID]}
+
+                        fileSuffix="stl"      # STL is default fileSuffix
+                        echo "stl-file"
+                        if [[productID==4]]
+                        then
+                            fileSuffix="dxf"
+                            echo "dxf-file"
+                        fi
+
+                        
+                        # runs openscad program, properly configured
+                        openscad ${mtGenerator} -o ${outputFolder}/${outputSubfolder}/VH_${gender}_${organ}_${blocksize}_${scale}_${laterality}_${product}.${fileSuffix} \
+                        -D productID=${productID} \
+                        -D lateralityID=${lateralityID} \
+                        -D genderID=${genderID} \
+                        -D organID=${organID} \
+                        -D organ_scaleID=${scaleID} \
+                        -D block_size=${blocksize} \
+                        -D output_flag=${outputFlag}
+                     done
                            
                     exec 1>&3 # restore original stdout
 
