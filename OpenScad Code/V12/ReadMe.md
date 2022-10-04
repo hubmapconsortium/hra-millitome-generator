@@ -45,9 +45,14 @@ The actual sample blocks. Created by intersecting block array with the organ mod
 
 ### Millitome organ (.STL)
 
-The organ model. Used for virtual.
+The organ model. Used for virtual applications.
 
-asset_typeID = 3
+<p align="center">
+  <img src="images/Banana_sample.png" height="300">
+</p>
+<p align = "center">
+  <sub>Fig.4 Model of the half banana used to form the modl in the millitome</sub>
+</p>
 
 ### Millitome Icebox laser cut sheet (.DXF)
 
