@@ -1,10 +1,10 @@
 # Millitome Generator Suite V12
 
-2022-9-28
+2022-10-11
 
 ## Tasks
 
-These assets can be created from the Openscad pipeline.
+These assets can be created from the Openscad pipeline when operated from [MT-Customizer](#customizer).
 
 ### Millitome physical for 3d print (.STL)
 
@@ -113,7 +113,7 @@ product (MT-physical, MT-block array, MT-sample blocks, MT-organ, IB-physical, I
 
 To produce .STL/.DXF output the object must be rendered (F6) and saved to the appropriate file format.  
 
-### MT-Customizer.scad
+### <a id="customizer"></a> MT-Customizer.scad
 
 ### MT-Generator.scad
 
