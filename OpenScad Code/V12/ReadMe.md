@@ -4,7 +4,7 @@
 
 ## Tasks
 
-These assets can be created from the Openscad pipeline when operated from both [MT-Customizer.scad](#customizer-scad) and [MT-Master.scad](#master-scad].
+These assets can be created from the Openscad pipeline when operated from both [MT-Customizer.scad](#customizer-scad) and [MT-Master.scad](#master-scad).
 
 ### Millitome physical for 3d print (.STL)
 
