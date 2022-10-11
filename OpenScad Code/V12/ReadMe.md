@@ -4,7 +4,7 @@
 
 ## Tasks
 
-These assets can be created from the Openscad pipeline when operated from [MT-Customizer](#customizer).
+These assets can be created from the Openscad pipeline when operated from both [MT-Customizer.scad](#customizer-scad) and [MT-Master.scad](#master-scad].
 
 ### Millitome physical for 3d print (.STL)
 
@@ -113,7 +113,9 @@ product (MT-physical, MT-block array, MT-sample blocks, MT-organ, IB-physical, I
 
 To produce .STL/.DXF output the object must be rendered (F6) and saved to the appropriate file format.  
 
-### <a id="customizer"></a> MT-Customizer.scad
+### <a id="customizer-scad"></a> MT-Customizer.scad
+
+### <a id="master-scad"></a> MT-Master.scad
 
 ### MT-Generator.scad
 
