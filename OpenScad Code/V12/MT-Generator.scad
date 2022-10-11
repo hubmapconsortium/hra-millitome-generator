@@ -1,8 +1,7 @@
 // Millitome Generator V12
 //  developer: Peter Kienle, CNS
 
-// V12  2022-9-20
-//  2022-9-12   lateralityID, mode 9 for bypass, mode 3 for bottom-only
+// V12  2022-10-11
 //  2022-9-22   moved to active github
 
 // dimensions are in mm

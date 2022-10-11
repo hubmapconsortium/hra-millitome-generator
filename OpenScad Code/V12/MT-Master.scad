@@ -1,6 +1,8 @@
-// MT-Master, Peter Kienle, CNS 2022-9-28
+// MT-Master, Peter Kienle, CNS 2022-10-11  
 //
-// 
+// TODO
+//  can we run full production cycle from MT-Master instead of console?
+//  bash console script creates .CSV file - can this be done from OpenScad somehow?
 
 // Open Properties Block=========
 //  these variables must be defined here and are carried into MT-Generator & MT-Icebox
