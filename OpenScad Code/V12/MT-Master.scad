@@ -1,4 +1,4 @@
-// MT-Master, Peter Kienle, CNS 2022-10-11  
+// MT-Master, Peter Kienle, CNS 2022-10-18  
 //
 // TODO
 //  can we run full production cycle from MT-Master instead of console?
@@ -10,19 +10,19 @@
 productID       = 0;    // 0=millitome_physical, 1=millitome_blockarray, 2=millitome_sampleblocks, 3=millitome_organ, 4=icebox_physical, 5=icebox_virtual
 
 genderID        = 0;    // 0=female, 1=male, needs to be integer selector
-organID         = 2;    // index for list lookup
-lateralityID    = 0;    // 0=bottom, 1=top, 2=bypass MT creation      
+organID         = 3;    // index for list lookup
+lateralityID    = 1;    // 0=bottom, 1=top, 2=bypass MT creation      
 organ_scaleID   = 1;    // 0=large,1=medium,2=small                    
 
-typeID          = 0;    // 0=fixed block size, 1=user block size, 2=user block count
+typeID          = 2;    // 0=fixed block size, 1=user block size, 2=user block count
 
 block_size      = 20 ;  // used for type 0, uniform x/y block size for cubes
 
 block_xsize     = 10;   // used for type 1, different x/y block size
 block_ysize     = 20;
 
-blocks_x        = 7;    // used for type 2, number of blocks along x, used for calculated block_size
-blocks_y        = 14;   // number of blocks along y
+blocks_x        = 1;    // used for type 2, number of blocks along x, used for calculated block_size
+blocks_y        = 1;   // number of blocks along y
 
 //asset_typeID    = 1;    // 0=physical, 1=virtual
 
