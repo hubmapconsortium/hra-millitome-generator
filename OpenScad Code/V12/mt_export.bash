@@ -1,13 +1,8 @@
 #!/bin/bash
 
-# V3 - works with V12 of MT_generator
+# V4 - works with V12 of MT_generator
 # Peter Kienle, CNS
-#  2022-9-29
-# added product IDs
-# support for STL/DXF suffix
-#   2022-10-4
-# now exports proper dxf/stl file extensions
-
+#  2022-10-18
 
 # run in terminal:
 # - navigate terminal to folder tjis script resides in (V11) using 'cd'
@@ -27,24 +22,35 @@ fi
 
 # IDs used to configure Openscad output. Must match 'exposed properties' in MT_Generator
 # this is the task list! These items are created.
-genderIDs=(1)
-organIDs=(4)
-blocksizeIDs=(2)
-lateralityIDs=(2)
+genderIDs=(0)
+organIDs=(5)
+blocksizeIDs=(2)    #====if blocktypeID=0
+blockxsizeIDs=(1)   #====if blocktypeID=1
+blockysizeIDs=(1)   #====if blocktypeID=1
+lateralityIDs=(0 1)
 scaleIDs=(1)
-productIDs=(0 1 2 3 4 5)
+productIDs=(0 1 2 3)
+
+blocktypeID=2       # 0=uniform, 1=userXY, 2=blockcount
+blocksx=2           #=====if blocktypeID=2
+blocksy=25          #=====if blocktypeID=2
 
 # Used to assemble filenames for .STL & .CSV files. Lists must match MT_Generator & ID lists (above)
 genderList=(F M)
 genderNamesList=(Female Male)
-organList=(Kidney_L Kidney_R Spleen Pancreas Banana)
-organList2=("Kidney left" "Kidney right" Spleen Pancreas Banana)
+organList=(Kidney_L Kidney_R Spleen Pancreas Banana VB_Pancreas)
+organList2=("Kidney left" "Kidney right" Spleen Pancreas Banana VB_Pancreas)
+blockTypeList=("uniform" "userXY" "blockcount")
 blocksizeList=(10 15 20)
+blockxsizeList=(10 15 20)
+blockysizeList=(10 15 20)
 lateralityList=(Bottom Top BottomOnly)
 scaleList=(Large Medium Small)
-productList=("" Block_array Sample_blocks Organ IceboxDXF IceboxSTL)
+productList=(Millitome Block_array Sample_blocks Organ IceboxDXF IceboxSTL)
 
 asciiList=(A B C D E F G H I J K L M N O P Q R S T U V W X Y Z) # lookup table for column IDs
+
+blocktype=${blocktypeList[blocktypeID]}
 
 # loop to iterate through complete ID lists
 # - runs openscad with correct config properties for each organ
@@ -87,19 +93,38 @@ for genderID in ${genderIDs[@]}; do     # genders: 2
                         fileSuffix="stl"        # STL is default fileSuffix
                         dxfSuffixID=$((4))      # must make explicit string 
                         productTestID=$((productID))    #explicit string
-                        if [ $productTestID -eq $productTestID ] ; then    
+                        if [ $productTestID -eq $dxfSuffixID ] ; then    
                             fileSuffix="dxf"
                         fi
 
-                        # runs openscad program, properly configured
-                        openscad ${mtGenerator} -o ${outputFolder}/${outputSubfolder}/VH_${gender}_${organ}_${blocksize}_${scale}_${laterality}_${product}.${fileSuffix} \
-                        -D productID=${productID} \
-                        -D lateralityID=${lateralityID} \
-                        -D genderID=${genderID} \
-                        -D organID=${organID} \
-                        -D organ_scaleID=${scaleID} \
-                        -D block_size=${blocksize} \
-                        -D output_flag=${outputFlag}
+                        if [ $blocktypeID -eq 0 ] ; then
+                            runs openscad program, properly configured
+                            openscad ${mtGenerator} -o ${outputFolder}/${outputSubfolder}/VH_${gender}_${organ}_${blocksize}_${scale}_${laterality}_${product}.${fileSuffix} \
+                            -D productID=${productID} \
+                            -D lateralityID=${lateralityID} \
+                            -D genderID=${genderID} \
+                            -D organID=${organID} \
+                            -D organ_scaleID=${scaleID} \
+                            -D block_size=${blocksize} \
+                            -D output_flag=${outputFlag}
+                            #echo "blocktype 0"
+                        fi
+
+                        if [ $blocktypeID -eq 2 ] ; then
+                            runs openscad program, properly configured blockcount version
+                            openscad ${mtGenerator} -o ${outputFolder}/${outputSubfolder}/VH_${gender}_${organ}_${blocktype}_${scale}_${laterality}_${product}.${fileSuffix} \
+                            -D productID=${productID} \
+                            -D lateralityID=${lateralityID} \
+                            -D genderID=${genderID} \
+                            -D organID=${organID} \
+                            -D organ_scaleID=${scaleID} \
+                            -D typeID=${blocktypeID} \
+                            -D blocks_x=${blocksx} \
+                            -D blocks_y=${blocksy} \
+                            -D output_flag=${outputFlag}
+                            #echo "blocktype 2"
+                        fi
+
                      done
                            
                     exec 1>&3 # restore original stdout
@@ -140,7 +165,7 @@ for genderID in ${genderIDs[@]}; do     # genders: 2
                     rowCounter=1                        # rows start at 1
                     until [ $rowCounter -gt $rowsStr ]  # need to use 'strings' here
                         do
-                            colCounter=0                # columns start at 0 because of retrieval from $asciiList
+                            colCounter=1                # columns start at 0 because of retrieval from $asciiList
                             until [ $colCounter -eq $columnsStr ]
                                 do
                                     rowString=${asciiList[$colCounter]}$rowCounter, # assemble row string

@@ -1,7 +1,8 @@
 // Millitome Generator V12
 //  developer: Peter Kienle, CNS
 
-// V12  2022-10-11
+// V12  2022-9-20
+//  2022-9-12   lateralityID, mode 9 for bypass, mode 3 for bottom-only
 //  2022-9-22   moved to active github
 
 // dimensions are in mm
@@ -43,7 +44,7 @@ $fs = 0.4;
 //------when running from MT-Customizer or MT-Master these variables must be disabled, otherwise they will override variables from master script!!
 /*
 genderID        = 0;    // 0=female, 1=male, needs to be integer selector
-organID         = 2;    // index for list lookup
+organID         = 4;    // index for list lookup
 lateralityID    = 0;    // 0=bottom, 1=top, 2=bypass MT creation      
 organ_scaleID   = 1;    // 0=large,1=medium,2=small                    
 
@@ -61,6 +62,7 @@ asset_typeID    = 0;    // 0=physical, 1=virtual
 
 output_flag     = 0;    // 0 = ECHO everything, 1 = ECHO insert line only, 2 = ECHO col/row insert ONLY
 */
+
 //================================================================
 // Object Generation Area
 //  uncomment function(s) to be executed when running program

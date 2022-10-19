@@ -1,6 +1,6 @@
 
 gender          = "female";    // [female,male]
-organ           = "kidney_l";   // [kidney_l,kidney_r,spleen,pancreas,banana,vb_pancreas]
+organ           = "kidney_l";   // [kidney_l,kidney_r,spleen,pancreas,banana]
  
 laterality      = "bottom";    // [bottom,top,bottom no ID]
 organ_scale     = "large";    // [large,medium,small]                   
@@ -26,7 +26,7 @@ module __Customizer_Limit__ () {}  // show in customizer up to here
 // Peter Kienle, CNS
 // master controller to launch MT-Generator & MT-Icebox applications
 
-// V0.1 2022-10-18
+// V0.1 2022-9-22
 
 
 // defaults for MT building properties; [] items in comments are used by customizer; must match entries in property lists
@@ -38,7 +38,7 @@ output_flag     = 0;    // 0 = ECHO everything, 1 = ECHO insert line only, 2 = E
 genders = ["female","male"];
 genderID = [ for (i = [0:1:len(genders)]) if (gender==genders[i]) i][0];    //returns a list!! Need [0] at the end to get first item
 
-organs = ["kidney_l","kidney_r","spleen","pancreas","banana","vb_pancreas"];
+organs = ["kidney_l","kidney_r","spleen","pancreas","banana"];
 organID = [ for (i = [0:1:len(organs)]) if (organ==organs[i]) i][0];
 
 lateralities = ["bottom","top","bottom no ID"];

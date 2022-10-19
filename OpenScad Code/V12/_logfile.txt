@@ -1,87 +1,60 @@
-ECHO: "inner_box: 90,190,33"
+mt_export.bash: line 114: runs: command not found
 ECHO: ">col:3<col"
-ECHO: ">row:8<row"
-Geometries in cache: 73
-Geometry cache size in bytes: 1737352
+ECHO: ">row:25<row"
+Geometries in cache: 190
+Geometry cache size in bytes: 4320984
 CGAL Polyhedrons in cache: 10
-CGAL cache size in bytes: 27139944
-Total rendering time: 0:01:23.453
+CGAL cache size in bytes: 45428672
+Total rendering time: 0:03:27.684
    Top level object is a 3D object:
    Simple:        yes
-   Vertices:     6785
-   Halfedges:   21376
-   Edges:       10688
-   Halffacets:   7894
-   Facets:       3947
+   Vertices:    11542
+   Halfedges:   35956
+   Edges:       17978
+   Halffacets:  13148
+   Facets:       6574
    Volumes:         2
-Current top level object is not a 2D object.
+mt_export.bash: line 114: runs: command not found
 ECHO: ">col:3<col"
-ECHO: ">row:8<row"
-Geometries in cache: 20
-Geometry cache size in bytes: 14560
+ECHO: ">row:25<row"
+Geometries in cache: 37
+Geometry cache size in bytes: 26936
 CGAL Polyhedrons in cache: 3
-CGAL cache size in bytes: 416464
-Total rendering time: 0:00:00.974
+CGAL cache size in bytes: 1181328
+Total rendering time: 0:00:03.033
    Top level object is a 3D object:
    Simple:        yes
-   Vertices:      192
-   Halfedges:     576
-   Edges:         288
-   Halffacets:    288
-   Facets:        144
-   Volumes:        25
-Current top level object is not a 2D object.
+   Vertices:      600
+   Halfedges:    1800
+   Edges:         900
+   Halffacets:    900
+   Facets:        450
+   Volumes:        76
+mt_export.bash: line 114: runs: command not found
 ECHO: ">col:3<col"
-ECHO: ">row:8<row"
-Geometries in cache: 24
-Geometry cache size in bytes: 435648
+ECHO: ">row:25<row"
+Geometries in cache: 41
+Geometry cache size in bytes: 753304
 CGAL Polyhedrons in cache: 4
-CGAL cache size in bytes: 3101984
-Total rendering time: 0:00:02.883
+CGAL cache size in bytes: 5369600
+Total rendering time: 0:00:09.176
    Top level object is a 3D object:
    Simple:        yes
-   Vertices:     1670
-   Halfedges:    6064
-   Edges:        3032
-   Halffacets:   2812
-   Facets:       1406
-   Volumes:        23
-Current top level object is not a 2D object.
+   Vertices:     2694
+   Halfedges:    9412
+   Edges:        4706
+   Halffacets:   4224
+   Facets:       2112
+   Volumes:        51
+mt_export.bash: line 114: runs: command not found
 ECHO: ">col:3<col"
-ECHO: ">row:8<row"
+ECHO: ">row:25<row"
 Geometries in cache: 4
-Geometry cache size in bytes: 421088
+Geometry cache size in bytes: 726368
 CGAL Polyhedrons in cache: 0
 CGAL cache size in bytes: 0
-Total rendering time: 0:00:00.001
+Total rendering time: 0:00:00.002
    Top level object is a 3D object:
-   Facets:       1460
-Current top level object is not a 2D object.
-ECHO: ">col:3<col"
-ECHO: ">row:8<row"
-Geometries in cache: 86
-Geometry cache size in bytes: 1607056
-CGAL Polyhedrons in cache: 32
-CGAL cache size in bytes: 16094432
-Total rendering time: 0:01:37.820
-   Top level object is a 2D object:
-   Contours:       40
-ECHO: ">col:3<col"
-ECHO: ">row:8<row"
-Geometries in cache: 80
-Geometry cache size in bytes: 1506288
-CGAL Polyhedrons in cache: 31
-CGAL cache size in bytes: 23401376
-Total rendering time: 0:00:52.698
-   Top level object is a 3D object:
-   Simple:         no
-   Vertices:     5538
-   Halfedges:   16830
-   Edges:        8415
-   Halffacets:   5586
-   Facets:       2793
-   Volumes:         9
-WARNING: Object may not be a valid 2-manifold and may need repair!
-Current top level object is not a 2D object.
-mt_export.bash: line 168: syntax error near unexpected token `done'
-mt_export.bash: line 168: `done'
+   Facets:       2520
+mt_export.bash: line 191: syntax error near unexpected token `done'
+mt_export.bash: line 191: `done'
