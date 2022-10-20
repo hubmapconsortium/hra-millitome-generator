@@ -1,8 +1,9 @@
 #!/bin/bash
 
-# V4 - works with V12 of MT_generator
+# V4.1 - works with V12 of MT_generator
 # Peter Kienle, CNS
 #  2022-10-20
+#   properly handles organID 5 and user block counts
 
 # run in terminal:
 # - navigate terminal to folder tjis script resides in (V11) using 'cd'
@@ -50,7 +51,7 @@ productList=(Millitome Block_array Sample_blocks Organ IceboxDXF IceboxSTL)
 
 asciiList=(X A B C D E F G H I J K L M N O P Q R S T U V W X Y Z) # lookup table for column IDs
 
-blocktype=${blocktypeList[blocktypeID]}
+blocktype=${blockTypeList[$blocktypeID]}
 
 # loop to iterate through complete ID lists
 # - runs openscad with correct config properties for each organ
@@ -69,7 +70,15 @@ for genderID in ${genderIDs[@]}; do     # genders: 2
             blocksize=${blocksizeList[$blocksizeID]}
 
             # create output subfolder if it doesn't exist------------
-            outputSubfolder=VH_${gender}_${organ}_${blocksize}_Millitomes
+            if [ $blocktypeID -eq 0 ] ; then
+                outputSubfolder=VH_${gender}_${organ}_${blocksize}_Millitomes
+            fi
+
+            if [ $blocktypeID -eq 2 ] ; then
+                outputSubfolder=VH_${gender}_${organ}_${blocksx}x${blocksy}blocks_Millitomes
+            fi
+
+
             cd $outputFolder    # create it in outputFolder
             if [ ! -d ${outputSubfolder} ]
             then
@@ -112,7 +121,7 @@ for genderID in ${genderIDs[@]}; do     # genders: 2
 
                         if [ $blocktypeID -eq 2 ] ; then
                             #runs openscad program, properly configured blockcount version
-                            openscad ${mtGenerator} -o ${outputFolder}/${outputSubfolder}/VH_${gender}_${organ}_${blocktype}_${scale}_${laterality}_${product}.${fileSuffix} \
+                            openscad ${mtGenerator} -o ${outputFolder}/${outputSubfolder}/VH_${gender}_${organ}_${blocksx}x${blocksy}blocks_${scale}_${laterality}_${product}.${fileSuffix} \
                             -D productID=${productID} \
                             -D lateralityID=${lateralityID} \
                             -D genderID=${genderID} \
@@ -148,19 +157,22 @@ for genderID in ${genderIDs[@]}; do     # genders: 2
                     rowCount=$((rowsStr))               # explicit int number of rows
                     
                     # make name, filename & content of CSV
-                    csvName=VH_${gender}_${organ}_${blocksize}_${scale}_${laterality}       # assemble technical name w/ underscores
-                    csvFileName=${outputSubfolder}/${csvName}.csv                           # assemble filename by appending file type
-                    csvLine1=${csvName},                                                    # content of line1...
+                         # assemble technical name w/ underscores
+                                                                      # content of line1...
 
                     # different lines for blocktypes
                     if [ $blocktypeID -eq 0 ] ; then
                         csvLine2="${genderName} ${organ2} ${blocksize}x${blocksize}mm ${scale} ${laterality},"
+                        csvName=VH_${gender}_${organ}_${blocksize}_${scale}_${laterality} 
                     fi
 
                     if [ $blocktypeID -eq 2 ] ; then
-                        csvLine2="${genderName} ${organ2} ${columnsStr}x${rowsStr}blocks ${scale} ${laterality},"
+                        csvLine2="${genderName} ${organ2} ${blocksx}x${blocksy}blocks ${scale} ${laterality},"
+                        csvName=VH_${gender}_${organ}_${blocksx}x${blocksy}blocks_${scale}_${laterality} 
                     fi
 
+                    csvFileName=${outputSubfolder}/${csvName}.csv                           # assemble filename by appending file type
+                    csvLine1=${csvName},  
                     csvLine3="Millitome ID,Sample ID,"
                     
                     cd $outputFolder                # change directory to output folder (for some reason subfolder didn't work echo redirect)

@@ -5,7 +5,7 @@ Geometries in cache: 161
 Geometry cache size in bytes: 3248744
 CGAL Polyhedrons in cache: 10
 CGAL cache size in bytes: 46727072
-Total rendering time: 0:03:06.653
+Total rendering time: 0:03:34.981
    Top level object is a 3D object:
    Simple:        yes
    Vertices:    12093
@@ -20,7 +20,7 @@ Geometries in cache: 37
 Geometry cache size in bytes: 26936
 CGAL Polyhedrons in cache: 3
 CGAL cache size in bytes: 1181328
-Total rendering time: 0:00:02.835
+Total rendering time: 0:00:03.064
    Top level object is a 3D object:
    Simple:        yes
    Vertices:      600
@@ -29,5 +29,5 @@ Total rendering time: 0:00:02.835
    Halffacets:    900
    Facets:        450
    Volumes:        76
-mt_export.bash: line 202: syntax error near unexpected token `done'
-mt_export.bash: line 202: `done'
+mt_export.bash: line 211: syntax error near unexpected token `done'
+mt_export.bash: line 211: `done'
