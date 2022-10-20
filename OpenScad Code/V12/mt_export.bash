@@ -2,7 +2,7 @@
 
 # V4 - works with V12 of MT_generator
 # Peter Kienle, CNS
-#  2022-10-18
+#  2022-10-20
 
 # run in terminal:
 # - navigate terminal to folder tjis script resides in (V11) using 'cd'
@@ -27,9 +27,9 @@ organIDs=(5)
 blocksizeIDs=(2)    #====if blocktypeID=0
 blockxsizeIDs=(1)   #====if blocktypeID=1
 blockysizeIDs=(1)   #====if blocktypeID=1
-lateralityIDs=(0 1)
+lateralityIDs=(0)
 scaleIDs=(1)
-productIDs=(0 1 2 3)
+productIDs=(0 1)  # can't use ID 3 alone, no col/row info to console, CSV creation will fail
 
 blocktypeID=2       # 0=uniform, 1=userXY, 2=blockcount
 blocksx=2           #=====if blocktypeID=2
@@ -48,7 +48,7 @@ lateralityList=(Bottom Top BottomOnly)
 scaleList=(Large Medium Small)
 productList=(Millitome Block_array Sample_blocks Organ IceboxDXF IceboxSTL)
 
-asciiList=(A B C D E F G H I J K L M N O P Q R S T U V W X Y Z) # lookup table for column IDs
+asciiList=(X A B C D E F G H I J K L M N O P Q R S T U V W X Y Z) # lookup table for column IDs
 
 blocktype=${blocktypeList[blocktypeID]}
 
@@ -98,7 +98,7 @@ for genderID in ${genderIDs[@]}; do     # genders: 2
                         fi
 
                         if [ $blocktypeID -eq 0 ] ; then
-                            runs openscad program, properly configured
+                            #runs openscad program, properly configured
                             openscad ${mtGenerator} -o ${outputFolder}/${outputSubfolder}/VH_${gender}_${organ}_${blocksize}_${scale}_${laterality}_${product}.${fileSuffix} \
                             -D productID=${productID} \
                             -D lateralityID=${lateralityID} \
@@ -111,7 +111,7 @@ for genderID in ${genderIDs[@]}; do     # genders: 2
                         fi
 
                         if [ $blocktypeID -eq 2 ] ; then
-                            runs openscad program, properly configured blockcount version
+                            #runs openscad program, properly configured blockcount version
                             openscad ${mtGenerator} -o ${outputFolder}/${outputSubfolder}/VH_${gender}_${organ}_${blocktype}_${scale}_${laterality}_${product}.${fileSuffix} \
                             -D productID=${productID} \
                             -D lateralityID=${lateralityID} \
@@ -151,7 +151,16 @@ for genderID in ${genderIDs[@]}; do     # genders: 2
                     csvName=VH_${gender}_${organ}_${blocksize}_${scale}_${laterality}       # assemble technical name w/ underscores
                     csvFileName=${outputSubfolder}/${csvName}.csv                           # assemble filename by appending file type
                     csvLine1=${csvName},                                                    # content of line1...
-                    csvLine2="${genderName} ${organ2} ${blocksize}x${blocksize}mm ${scale} ${laterality},"
+
+                    # different lines for blocktypes
+                    if [ $blocktypeID -eq 0 ] ; then
+                        csvLine2="${genderName} ${organ2} ${blocksize}x${blocksize}mm ${scale} ${laterality},"
+                    fi
+
+                    if [ $blocktypeID -eq 2 ] ; then
+                        csvLine2="${genderName} ${organ2} ${columnsStr}x${rowsStr}blocks ${scale} ${laterality},"
+                    fi
+
                     csvLine3="Millitome ID,Sample ID,"
                     
                     cd $outputFolder                # change directory to output folder (for some reason subfolder didn't work echo redirect)
@@ -165,7 +174,7 @@ for genderID in ${genderIDs[@]}; do     # genders: 2
                     rowCounter=1                        # rows start at 1
                     until [ $rowCounter -gt $rowsStr ]  # need to use 'strings' here
                         do
-                            colCounter=1                # columns start at 0 because of retrieval from $asciiList
+                            colCounter=1                # columns start at 1; pulls chars from pos 1 @ $asciiList
                             until [ $colCounter -eq $columnsStr ]
                                 do
                                     rowString=${asciiList[$colCounter]}$rowCounter, # assemble row string

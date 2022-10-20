@@ -1,4 +1,4 @@
-// MT-Master, Peter Kienle, CNS 2022-9-28
+// MT-Master, Peter Kienle, CNS 2022-10-20
 //
 // 
 
@@ -8,7 +8,7 @@
 productID       = 0;    // 0=millitome_physical, 1=millitome_blockarray, 2=millitome_sampleblocks, 3=millitome_organ, 4=icebox_physical, 5=icebox_virtual
 
 genderID        = 0;    // 0=female, 1=male, needs to be integer selector
-organID         = 2;    // index for list lookup
+organID         = 5;    // index for list lookup
 lateralityID    = 0;    // 0=bottom, 1=top, 2=bypass MT creation      
 organ_scaleID   = 1;    // 0=large,1=medium,2=small                    
 

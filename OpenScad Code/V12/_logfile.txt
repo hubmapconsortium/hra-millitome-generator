@@ -1,27 +1,26 @@
-mt_export.bash: line 114: runs: command not found
+ECHO: "inner_box: 105,209,35"
 ECHO: ">col:3<col"
 ECHO: ">row:25<row"
-Geometries in cache: 190
-Geometry cache size in bytes: 4320984
+Geometries in cache: 161
+Geometry cache size in bytes: 3248744
 CGAL Polyhedrons in cache: 10
-CGAL cache size in bytes: 45428672
-Total rendering time: 0:03:27.684
+CGAL cache size in bytes: 46727072
+Total rendering time: 0:03:06.653
    Top level object is a 3D object:
    Simple:        yes
-   Vertices:    11542
-   Halfedges:   35956
-   Edges:       17978
-   Halffacets:  13148
-   Facets:       6574
+   Vertices:    12093
+   Halfedges:   37526
+   Edges:       18763
+   Halffacets:  13616
+   Facets:       6808
    Volumes:         2
-mt_export.bash: line 114: runs: command not found
 ECHO: ">col:3<col"
 ECHO: ">row:25<row"
 Geometries in cache: 37
 Geometry cache size in bytes: 26936
 CGAL Polyhedrons in cache: 3
 CGAL cache size in bytes: 1181328
-Total rendering time: 0:00:03.033
+Total rendering time: 0:00:02.835
    Top level object is a 3D object:
    Simple:        yes
    Vertices:      600
@@ -30,31 +29,5 @@ Total rendering time: 0:00:03.033
    Halffacets:    900
    Facets:        450
    Volumes:        76
-mt_export.bash: line 114: runs: command not found
-ECHO: ">col:3<col"
-ECHO: ">row:25<row"
-Geometries in cache: 41
-Geometry cache size in bytes: 753304
-CGAL Polyhedrons in cache: 4
-CGAL cache size in bytes: 5369600
-Total rendering time: 0:00:09.176
-   Top level object is a 3D object:
-   Simple:        yes
-   Vertices:     2694
-   Halfedges:    9412
-   Edges:        4706
-   Halffacets:   4224
-   Facets:       2112
-   Volumes:        51
-mt_export.bash: line 114: runs: command not found
-ECHO: ">col:3<col"
-ECHO: ">row:25<row"
-Geometries in cache: 4
-Geometry cache size in bytes: 726368
-CGAL Polyhedrons in cache: 0
-CGAL cache size in bytes: 0
-Total rendering time: 0:00:00.002
-   Top level object is a 3D object:
-   Facets:       2520
-mt_export.bash: line 191: syntax error near unexpected token `done'
-mt_export.bash: line 191: `done'
+mt_export.bash: line 202: syntax error near unexpected token `done'
+mt_export.bash: line 202: `done'
