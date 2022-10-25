@@ -1,9 +1,10 @@
 // Millitome Generator V12
 //  developer: Peter Kienle, CNS
 
-// V12  2022-9-20
+// V12  2022-10-25
 //  2022-9-12   lateralityID, mode 9 for bypass, mode 3 for bottom-only
 //  2022-9-22   moved to active github
+//  2022-10-25  added organ bisection
 
 // dimensions are in mm
 //
@@ -37,7 +38,7 @@ $fs = 0.4;
 //  - blocks_x      used for type 2, number of blocks along x, used for calculated block_size
 //  - blocks_y      number of blocks along y
 
-//  - asset_typeID  0=physical, 1=virtual
+//  - asset_typeID  // 0=physical MT, 1=virtual block array, 2=virtual block/organ cut, 3=virtual organ model
 
 //  - output_flag   0 = ECHO everything, 1 = ECHO insert line only, 2 = ECHO col/row insert ONLY
 //================================================================
@@ -58,7 +59,7 @@ block_ysize     = 20;
 blocks_x        = 7;    // used for type 2, number of blocks along x, used for calculated block_size
 blocks_y        = 14;   // number of blocks along y
 
-asset_typeID    = 0;    // 0=physical, 1=virtual
+asset_typeID    = 0;    // 0=physical MT, 1=virtual block array, 2=virtual block/organ cut, 3=virtual organ model, 4=organ bisection
 
 output_flag     = 0;    // 0 = ECHO everything, 1 = ECHO insert line only, 2 = ECHO col/row insert ONLY
 */
@@ -68,31 +69,33 @@ output_flag     = 0;    // 0 = ECHO everything, 1 = ECHO insert line only, 2 = E
 //  uncomment function(s) to be executed when running program
 //================================================================
 
-//=== full millitome with the requested parameters, for 3d printing, use lateralityID parameter to control
-
-
-// asset_typeID = 0
+// asset_typeID = 0 - physical millitome
 if (asset_typeID == 0) {
     if (lateralityID == 0) complete_bottom();       // complete bottom half
     if (lateralityID == 1) complete_top();          // complete top half
     if (lateralityID == 2) complete_bottom_noID();  // complete bottom half without layer ID
 }
 
-// asset_typeID = 1
+// asset_typeID = 1 - virtual block array
 if (asset_typeID == 1) {
-    if (lateralityID == 0 || lateralityID == 2) blockbottom_array();          // blocks, intersecting the actual organ, no ID labels are produced, bottom
+    if (lateralityID == 0 || lateralityID == 2) blockbottom_array();          // blocks, no ID labels are produced, bottom
     if (lateralityID == 1) blocktop_array();             // same for top  
 }
 
-// asset_typeID = 2
+// asset_typeID = 2 - virtual block/organ cut
 if (asset_typeID == 2) {
     if (lateralityID == 0 || lateralityID == 2) blockbottom_cutout();         // blocks overlapping with the organ, bottom
     if (lateralityID == 1) blocktop_cutout();            // same for top
 }
 
-// asset_typeID = 3
+// asset_typeID = 3 - virtual unaltered organ model
 if (asset_typeID == 3) {
     organ();
+}
+
+// asset_typeID = 4 - virtual organ bisection, in addition to X/Y cutting
+if (asset_typeID == 4) {
+    bisection_organ();
 }
 
 //===display of organ percentage user setting, organ name & size, millitome dimensions in console (look for ECHO:)
@@ -120,7 +123,6 @@ dimensions();
 
 //===shows the 3d model of the used organ for reference
 //organ();
-
 
 //========these functions produce individual components; for documentation, etc, makes it easier to texture
 //inner_frame();                  // inner frame (enclosure) around insert, no col/row IDs are produced
@@ -487,9 +489,9 @@ module blockbottom_array() {
 }
 
 module blockbottom_cutout() {   
-  intersection() {
-    blockbottom_array();
-    organ();  
+    intersection() {
+        blockbottom_array();
+        organ();  
   }    
 }
 
@@ -519,6 +521,25 @@ module blocktop_cutout() {
         organ();
     }
 }
+
+// cut organ intro upper and lower sectors
+module bisection_box() {
+    color("lightgreen")
+        translate([-(block_xdim*2+wall_width),-outer_box_ydim+block_ydim,-(cut_width/2)])
+        cube([outer_box_xdim+wall_width*2,outer_box_ydim+wall_width*2,cut_width]);
+}
+
+module bisection_organ() {
+    difference() {
+        organ();
+        column_slot_array();
+        row_slot_array();
+        bisection_box();
+    }
+
+}
+
+
 
 
 //organ==========================================================
@@ -588,7 +609,6 @@ module row_slot_array() {
             row_slot();
     }
 }
-
 
 // block numbering & lettering=============================== 
 

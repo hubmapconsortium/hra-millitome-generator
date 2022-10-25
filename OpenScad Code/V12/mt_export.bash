@@ -2,11 +2,11 @@
 
 # V4.1 - works with V12 of MT_generator
 # Peter Kienle, CNS
-#  2022-10-20
+#  2022-10-25
 #   properly handles organID 5 and user block counts
 
 # run in terminal:
-# - navigate terminal to folder tjis script resides in (V11) using 'cd'
+# - navigate terminal to folder, this script resides in (V12) using 'cd'
 # - at prompt$ 'bash mt_export.bash'
 # - creates output folders if not already present; will replace content
 
@@ -22,19 +22,19 @@ then
 fi
 
 # IDs used to configure Openscad output. Must match 'exposed properties' in MT_Generator
-# this is the task list! These items are created.
+# this is the task list! Assets in these lists are created are created.
 genderIDs=(0)
 organIDs=(5)
-blocksizeIDs=(2)    #====if blocktypeID=0
-blockxsizeIDs=(1)   #====if blocktypeID=1
-blockysizeIDs=(1)   #====if blocktypeID=1
+blocksizeIDs=(2)    #====only if blocktypeID=0
+blockxsizeIDs=(1)   #====only if blocktypeID=1
+blockysizeIDs=(1)   #====only if blocktypeID=1
 lateralityIDs=(0)
 scaleIDs=(1)
 productIDs=(0 1)  # can't use ID 3 alone, no col/row info to console, CSV creation will fail
 
-blocktypeID=2       # 0=uniform, 1=userXY, 2=blockcount
-blocksx=2           #=====if blocktypeID=2
-blocksy=25          #=====if blocktypeID=2
+blocktypeID=2       # 0=uniform, 1=userXY, 2=blockcount !! ID=1 is not covered yet!!
+blocksx=2           #=====only if blocktypeID=2
+blocksy=25          #=====only if blocktypeID=2
 
 # Used to assemble filenames for .STL & .CSV files. Lists must match MT_Generator & ID lists (above)
 genderList=(F M)
@@ -107,7 +107,7 @@ for genderID in ${genderIDs[@]}; do     # genders: 2
                         fi
 
                         if [ $blocktypeID -eq 0 ] ; then
-                            #runs openscad program, properly configured
+                            #runs openscad program, properly configured for uniform blocksize, blocktypeID=0
                             openscad ${mtGenerator} -o ${outputFolder}/${outputSubfolder}/VH_${gender}_${organ}_${blocksize}_${scale}_${laterality}_${product}.${fileSuffix} \
                             -D productID=${productID} \
                             -D lateralityID=${lateralityID} \
@@ -120,7 +120,7 @@ for genderID in ${genderIDs[@]}; do     # genders: 2
                         fi
 
                         if [ $blocktypeID -eq 2 ] ; then
-                            #runs openscad program, properly configured blockcount version
+                            #runs openscad program, properly configured for blockcount version, blocktypeID=2
                             openscad ${mtGenerator} -o ${outputFolder}/${outputSubfolder}/VH_${gender}_${organ}_${blocksx}x${blocksy}blocks_${scale}_${laterality}_${product}.${fileSuffix} \
                             -D productID=${productID} \
                             -D lateralityID=${lateralityID} \
@@ -157,10 +157,10 @@ for genderID in ${genderIDs[@]}; do     # genders: 2
                     rowCount=$((rowsStr))               # explicit int number of rows
                     
                     # make name, filename & content of CSV
-                         # assemble technical name w/ underscores
-                                                                      # content of line1...
+                    # assemble technical name w/ underscores
+                    # content of line1...
 
-                    # different lines for blocktypes
+                    # different lines per blocktypeID
                     if [ $blocktypeID -eq 0 ] ; then
                         csvLine2="${genderName} ${organ2} ${blocksize}x${blocksize}mm ${scale} ${laterality},"
                         csvName=VH_${gender}_${organ}_${blocksize}_${scale}_${laterality} 
@@ -171,7 +171,7 @@ for genderID in ${genderIDs[@]}; do     # genders: 2
                         csvName=VH_${gender}_${organ}_${blocksx}x${blocksy}blocks_${scale}_${laterality} 
                     fi
 
-                    csvFileName=${outputSubfolder}/${csvName}.csv                           # assemble filename by appending file type
+                    csvFileName=${outputSubfolder}/${csvName}.csv       # assemble filename by appending file type
                     csvLine1=${csvName},  
                     csvLine3="Millitome ID,Sample ID,"
                     

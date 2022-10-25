@@ -15,7 +15,7 @@ block_ysize     = 20;   // [10,15,20]
 blocks_x        = 7;    // used for type 3, number of blocks along x, used for calculated block_size
 blocks_y        = 14;   // number of blocks along y
 
-product         = "MT-physical";   // [MT-physical,MT-block array,MT-sample blocks,MT-organ,IB-physical,IB-virtual]
+product         = "MT-physical";   // [MT-physical,MT-block array,MT-sample blocks,MT-organ,IB-physical,IB-virtual,MT_Organ_Bisect]
 
 module __Customizer_Limit__ () {}  // show in customizer up to here
     shown_by_customizer = false;
@@ -26,7 +26,8 @@ module __Customizer_Limit__ () {}  // show in customizer up to here
 // Peter Kienle, CNS
 // master controller to launch MT-Generator & MT-Icebox applications
 
-// V0.1 2022-10-20
+// V0.1 2022-10-25
+//  2022-10-25  added organ bisection
 
 
 // defaults for MT building properties; [] items in comments are used by customizer; must match entries in property lists
@@ -50,7 +51,7 @@ organ_scaleID = [ for (i = [0:1:len(organ_scales)]) if (organ_scale==organ_scale
 type_list = ["uniform","userXY","blockCount"];
 typeID = [ for (i = [0:1:len(type_list)]) if (blocktype==type_list[i]) i][0];
     
-product_list = ["MT-physical","MT-block array","MT-sample blocks","MT-organ","IB-physical","IB-virtual"];
+product_list = ["MT-physical","MT-block array","MT-sample blocks","MT-organ","IB-physical","IB-virtual","MT_Organ_Bisect"];
 productID = [ for (i = [0:1:len(product_list)]) if (product==product_list[i]) i][0];
     
 
@@ -61,6 +62,7 @@ if (productID == 2) millitome_sampleblocks();
 if (productID == 3) millitome_organ();
 if (productID == 4) icebox_physical();
 if (productID == 5) icebox_virtual();
+if (productID == 6) organ_bisection();
 
 
 module millitome_physical() {
@@ -93,3 +95,7 @@ module icebox_virtual() {
     include<MT-Icebox.scad>;
 }
 
+module organ_bisection() {
+    asset_typeID = 4;
+    include<MT-Generator.scad>;  
+}
