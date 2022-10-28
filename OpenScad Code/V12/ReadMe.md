@@ -8,7 +8,8 @@
   - [Millitome block array](#toc_mt_blockarray)
   - [Millitome sample blocks](#toc_mt_sampleblocks)
   - [Millitome organ](#toc_mt_organ)
-  - [Millitome organ bisection](#toc_mt_bisection)
+  - [Millitome organ bisection](#toc_mt_organ_bisection)
+  - [Millitome block array bisection](#toc_mt_fullblock_bisection)
   - [Millitome Icebox laser cut sheet](#toc_icebox_cutsheet)
   - [Millitome Icebox 3d model](#toc_icebox_model)
 - [Files Overview](#toc_files)
@@ -68,7 +69,7 @@ Created by intersecting block array with the organ model geometry. Exported to .
 
 
   
-## <a id="mt_organ"></a> Millitome organ
+## <a id="toc_mt_organ"></a> Millitome organ
 
 The organ model is used to form the mold in all of the assets. Exported to .STL file. Virtual asset.
 
@@ -81,7 +82,7 @@ The organ model is used to form the mold in all of the assets. Exported to .STL 
 
 
 
-## <a id="mt_bisection"></a> Millitome organ bisection
+## <a id="toc_mt_organ_bisection"></a> Millitome organ bisection
 
 The full organ model with all blocks, bisected into top and bottom section. Exported to .STL file. Virtual asset.
 
@@ -93,6 +94,14 @@ The full organ model with all blocks, bisected into top and bottom section. Expo
 </p>
 
 
+## <a id="toc_mt_fullblock_bisection"></a> Millitome block array bisection
+
+<p align="center">
+  <img src="images/vb_pancreas_fullblock_bisection.png" height="300">
+</p>
+<p align = "center">
+  <sub>Fig.6 Full block array, bisected into two layers</sub>
+</p>
 
 
 ## <a id="toc_icebox_cutsheet"></a> Millitome Icebox laser cut sheet
@@ -104,7 +113,7 @@ The physical icebox is used to store organ samples in a compartmentalized contai
   <img src="images/Icebox_acrylic.jpg" height="300">
 </p>
 <p align = "center">
-  <sub>Fig.6 Left: icebox laser cut sheet; right: physial icebox</sub>
+  <sub>Fig.7 Left: icebox laser cut sheet; right: physial icebox</sub>
 </p>
 
 
@@ -117,7 +126,7 @@ A 3d model of the icebox. Could be 3d printed or used as virtual asset. Exported
   <img src="images/Banana_Icebox.png" height="300">
 </p>
 <p align = "center">
-  <sub>Fig.7 3D model of icebox</sub>
+  <sub>Fig.8 3D model of icebox</sub>
 </p>
 
 ---
