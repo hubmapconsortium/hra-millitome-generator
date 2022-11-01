@@ -241,7 +241,7 @@ The following list shows properties available through the [Open Properties Code 
 
 To produce .STL/.DXF output from OpenScad, the object must be rendered (F6) and saved to the appropriate file format.  
 
-[MT-Customizer.scad](https://MT-Customizer.scad)
+[MT-Customizer.scad](https://github.com/hubmapconsortium/hra-millitome-generator/blob/43b1897e6ac99ccb0851eb02e3b59370aa0d568d/OpenScad%20Code/V12/MT-Customizer.scad)
 
 
 ## <a id="toc_master_scad"></a> MT-Master
