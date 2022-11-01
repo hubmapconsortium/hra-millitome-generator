@@ -15,7 +15,7 @@ block_ysize     = 20;   // [10,15,20]
 blocks_x        = 7;    // used for type 3, number of blocks along x, used for calculated block_size
 blocks_y        = 14;   // number of blocks along y
 
-product         = "MT-physical";   // [MT-physical,MT-block array,MT-sample blocks,MT-organ,IB-physical,IB-virtual,MT_Organ_Bisect,MT_Full_Array]
+product         = "MT-physical";   // [MT-physical,MT-block array,MT-sample blocks,MT-organ,MT-full array,MT-full organ bisection,IB-physical,IB-virtual]
 
 module __Customizer_Limit__ () {}  // show in customizer up to here
     shown_by_customizer = false;
@@ -26,7 +26,7 @@ module __Customizer_Limit__ () {}  // show in customizer up to here
 // Peter Kienle, CNS
 // master controller to launch MT-Generator & MT-Icebox applications
 
-// V0.1 2022-10-26
+// V0.1 2022-11-1
 //  2022-10-25  added organ bisection
 //  2022-10-26  added block full array
 
@@ -52,7 +52,7 @@ organ_scaleID = [ for (i = [0:1:len(organ_scales)]) if (organ_scale==organ_scale
 type_list = ["uniform","userXY","blockCount"];
 typeID = [ for (i = [0:1:len(type_list)]) if (blocktype==type_list[i]) i][0];
     
-product_list = ["MT-physical","MT-block array","MT-sample blocks","MT-organ","IB-physical","IB-virtual","MT_Organ_Bisect","MT_Full_Array"];
+product_list = ["MT-physical","MT-block array","MT-sample blocks","MT-organ","MT-full array","MT-full organ bisection","IB-physical","IB-virtual"];
 productID = [ for (i = [0:1:len(product_list)]) if (product==product_list[i]) i][0];
     
 
@@ -61,10 +61,10 @@ if (productID == 0) millitome_physical();
 if (productID == 1) millitome_blockarray();
 if (productID == 2) millitome_sampleblocks();
 if (productID == 3) millitome_organ();
-if (productID == 4) icebox_physical();
-if (productID == 5) icebox_virtual();
-if (productID == 6) organ_bisection();
-if (productID == 7) blockfull_bisection();
+if (productID == 4) blockfull_bisection();
+if (productID == 5) organ_bisection();
+if (productID == 6) icebox_physical();
+if (productID == 7) icebox_virtual();
 
 
 module millitome_physical() {
@@ -87,6 +87,16 @@ module millitome_organ() {
     include<MT-Generator.scad>;  
 }
 
+module blockfull_bisection() {
+    asset_typeID = 4;
+    include<MT-Generator.scad>;
+}
+
+module organ_bisection() {
+    asset_typeID = 5;
+    include<MT-Generator.scad>;  
+}
+
 module icebox_physical() {
     asset_typeID = 0;
     include<MT-Icebox.scad>;
@@ -96,13 +106,4 @@ module icebox_virtual() {
     asset_typeID = 1;
     include<MT-Icebox.scad>;
 }
-
-module organ_bisection() {
-    asset_typeID = 4;
-    include<MT-Generator.scad>;  
-}
     
-module blockfull_bisection() {
-    asset_typeID = 5;
-    include<MT-Generator.scad>;
-}
