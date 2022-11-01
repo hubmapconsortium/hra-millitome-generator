@@ -1,6 +1,7 @@
-// MT-Master, Peter Kienle, CNS 2022-10-25
+// MT-Master, Peter Kienle, CNS 2022-10-26
 //
 //  2022-10-25  added organ bisection
+//  2022-10-26  added block full array
 
 // Open Properties Block=========
 //  these variables must be defined here and are carried into MT-Generator & MT-Icebox
@@ -22,7 +23,7 @@ block_ysize     = 20;
 blocks_x        = 7;    // used for type 2, number of blocks along x, used for calculated block_size
 blocks_y        = 14;   // number of blocks along y
 
-asset_typeID    = 1;    // 0=physical MT, 1=virtual block array, 2=virtual block/organ cut, 3=virtual organ model, 4=organ_bisection
+asset_typeID    = 1;    // 0=physical MT, 1=virtual block array, 2=virtual block/organ cut, 3=virtual organ model, 4=organ_bisection, 5=blockfull_bisection
 
 output_flag     = 0;    // 0 = ECHO everything, 1 = ECHO insert line only, 2 = ECHO col/row insert ONLY
 
@@ -37,6 +38,7 @@ if (productID == 3) millitome_organ();
 if (productID == 4) icebox_physical();
 if (productID == 5) icebox_virtual();
 if (productID == 6) organ_bisection();
+if (productID == 7) blockfull_bisection();
 
 
 module millitome_physical() {
@@ -72,5 +74,10 @@ module icebox_virtual() {
 module organ_bisection() {
     asset_typeID = 4;
     include<MT-Generator.scad>;  
+}
+
+module blockfull_bisection() {
+    asset_typeID = 5;
+    include<MT-Generator.scad>;
 }
 

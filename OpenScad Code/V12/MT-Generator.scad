@@ -1,10 +1,11 @@
 // Millitome Generator V12
 //  developer: Peter Kienle, CNS
 
-// V12  2022-10-25
+// V12  2022-10-26
 //  2022-9-12   lateralityID, mode 9 for bypass, mode 3 for bottom-only
 //  2022-9-22   moved to active github
 //  2022-10-25  added organ bisection
+//  2022-10-26  added block full bisection
 
 // dimensions are in mm
 //
@@ -59,7 +60,7 @@ block_ysize     = 20;
 blocks_x        = 7;    // used for type 2, number of blocks along x, used for calculated block_size
 blocks_y        = 14;   // number of blocks along y
 
-asset_typeID    = 0;    // 0=physical MT, 1=virtual block array, 2=virtual block/organ cut, 3=virtual organ model, 4=organ bisection
+asset_typeID    = 0;    // 0=physical MT, 1=virtual block array, 2=virtual block/organ cut, 3=virtual organ model, 4=organ bisection, 5=blockfull_bisection
 
 output_flag     = 0;    // 0 = ECHO everything, 1 = ECHO insert line only, 2 = ECHO col/row insert ONLY
 */
@@ -98,6 +99,13 @@ if (asset_typeID == 4) {
     bisection_organ();
 }
 
+// asset_typeID = 5 - virtual fullblock bisection, in addition to X/Y cutting
+if (asset_typeID == 5){
+    blockfull_array();
+}
+    
+
+
 //===display of organ percentage user setting, organ name & size, millitome dimensions in console (look for ECHO:)
 // IMPORTANT: this must be activated when running from Terminal for automatic geometry/sheet creation
 // output_flag parameter controls what information is shown in console
@@ -109,6 +117,9 @@ dimensions();
 
 //blockbottom_array();          // blocks, intersecting the actual organ, no ID labels are produced, bottom
 //blocktop_array();             // same for top  
+
+//blockfull_box();              // both block 
+
 
 //block_ids(start_character,start_number); // produces block array ID labels only
 //block_array_with_letters();     // blocks, dissectiong the actual organ, each block has a ID label
@@ -234,8 +245,10 @@ organ_zreal     = organ_properties[dimz_real] * scaling_factor;
 2block_ydim      = block_ysize;  
 
 // Type 3, number of blocks, user requested, dimensions => organ_size/no.of blocks
-3block_xdim      = organ_xdim/blocks_x;
-3block_ydim      = organ_ydim/blocks_y;
+3block_xdim      = (organ_xdim+cut_width)/blocks_x;
+3block_ydim      = (organ_ydim+cut_width)/blocks_y;
+
+echo ("3block_xdim=",3block_xdim," 3block_ydim=",3block_ydim);
 
 // put block sizes in x and y lists, then retrieve what we need based on type parameter as index
 xlist = [1block_xdim,2block_xdim,3block_xdim];
@@ -475,9 +488,9 @@ module outer_frame() {
 // block array=====================================================
 // based on insert dimensions
 module blockbottom_box() {
- color("lightgreen")
-    translate([0,-insert_box_ydim,-organ_zreal/2]) 
-    cube([insert_box_xdim,insert_box_ydim,organ_zreal/2]);
+    color("lightgreen")
+        translate([0,-insert_box_ydim,-organ_zreal/2]) 
+        cube([insert_box_xdim,insert_box_ydim,organ_zreal/2]);
 }
 
 module blockbottom_array() {
@@ -522,12 +535,33 @@ module blocktop_cutout() {
     }
 }
 
+
+module blockfull_box()
+{
+    color("lightgreen")
+    translate([0,-insert_box_ydim,-organ_zreal/2]) 
+    cube([insert_box_xdim,insert_box_ydim,organ_zreal]);   
+}
+
+module blockfull_array()
+{
+    difference() {
+        blockfull_box();
+        column_slot_array();
+        row_slot_array();
+        bisection_box();
+    }
+}
+
 // cut organ intro upper and lower sectors
 module bisection_box() {
     color("lightgreen")
         translate([-(block_xdim*2+wall_width),-outer_box_ydim+block_ydim,-(cut_width/2)])
         cube([outer_box_xdim+wall_width*2,outer_box_ydim+wall_width*2,cut_width]);
 }
+
+
+
 
 module bisection_organ() {
     difference() {
