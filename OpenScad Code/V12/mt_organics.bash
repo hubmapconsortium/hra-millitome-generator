@@ -2,7 +2,7 @@
 
 # V1 - works with V12 of MT_organics
 # Peter Kienle, CNS
-#  2022-11-2
+#  2022-11-3
 
 # produces individual segments using MT_Organics.scad
 
@@ -40,7 +40,7 @@ fi
 
 # block segmentation
 count_x=2
-count_y=5
+count_y=25
 count_z=2
 
 # location_x=1
@@ -79,7 +79,10 @@ for (( location_x=0; location_x < count_x; location_x++ )); do
             openscad ${mtGenerator} -o ${outputFolder}/${outputSubfolder}/Block_${location_x}x${location_y}x${location_z}.stl \
             -D location_x=${location_x} \
             -D location_y=${location_y} \
-            -D location_z=${location_z}
+            -D location_z=${location_z} \
+            -D count_x=${count_x} \
+            -D count_y=${count_y} \
+            -D count_z=${count_z}
 
             echo ${outputFolder}/${outputSubfolder}/Block_${location_x}x${location_y}x${location_z}.stl
 

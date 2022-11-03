@@ -1,7 +1,7 @@
 // Millitome Organics V12
 //  developer: Peter Kienle, CNS
 
-// V12  2022-11-2
+// V12  2022-11-3
 
 // everything new is in organBlock section
 
@@ -43,13 +43,13 @@ output_flag     = 0;    // 0 = ECHO everything, 1 = ECHO insert line only, 2 = E
 // Object Generation Area
 //  uncomment function(s) to be executed when running program
 //================================================================
-location_x      = 1;
-location_y      = 5;
+location_x      = 0;
+location_y      = 24;
 location_z      = 0;
 
-countX          = 2;
-countY          = 25;
-countZ          = 2;  
+count_x          = 2;
+count_y          = 25;
+count_z          = 2;  
 
 //bounding_box();                 // box enclosing the organ exactly
 //organ();
@@ -59,6 +59,7 @@ countZ          = 2;
 
 //organBlock(1,3,1);
 organBlock(location_x,location_y,location_z);
+
 
 /*
 module model()
@@ -239,9 +240,9 @@ organ_zreal     = organ_properties[dimz_real] * scaling_factor;
 
  // organ block section==========================================
 
-blockSizeX      = organ_xdim/countX;
-blockSizeY      = organ_ydim/countY;
-blockSizeZ      = organ_zreal/countZ;
+blockSizeX      = organ_xdim/count_x;
+blockSizeY      = organ_ydim/count_y;
+blockSizeZ      = organ_zreal/count_z;
 
 module selective(dX,dY,dZ)
 {
@@ -269,11 +270,9 @@ module organBlock(dX,dY,dZ) {
 
 module stamper() {
      translate([0,-organ_ydim,-organ_zmax])
-     for (dX = [0:1:countX-1]) {
-
-        for (dY = [0:1:countY-1]) {
-
-            for (dZ = [0:1:countZ-1]) {
+     for (dX = [0:1:count_x-1]) {
+        for (dY = [0:1:count_y-1]) {
+            for (dZ = [0:1:count_z-1]) {
                 echo((str("X=",dX*blockSizeX," Y=",dY*blockSizeY," Z=",dZ*blockSizeZ)));
                  translate([dX*blockSizeX,dY*blockSizeY,dZ*blockSizeZ]) 
                     cube([blockSizeX,blockSizeY,blockSizeZ]); 
