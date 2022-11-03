@@ -1,0 +1,9 @@
+main(doc,op)
+{
+  // Lets the user select a file
+  var filename = GeGetStartupPath();
+  filename->FileSelect("Please select a file.", FALSE);
+	var f = new(BaseFile);
+	f->Load(filename);
+
+}
