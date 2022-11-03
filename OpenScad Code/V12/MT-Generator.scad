@@ -1,7 +1,7 @@
 // Millitome Generator V12
 //  developer: Peter Kienle, CNS
 
-// V12  2022-10-26
+// V12  2022-11-1
 //  2022-9-12   lateralityID, mode 9 for bypass, mode 3 for bottom-only
 //  2022-9-22   moved to active github
 //  2022-10-25  added organ bisection
@@ -60,7 +60,7 @@ block_ysize     = 20;
 blocks_x        = 7;    // used for type 2, number of blocks along x, used for calculated block_size
 blocks_y        = 14;   // number of blocks along y
 
-asset_typeID    = 0;    // 0=physical MT, 1=virtual block array, 2=virtual block/organ cut, 3=virtual organ model, 4=organ bisection, 5=blockfull_bisection
+asset_typeID    = 0;    // 0=physical MT, 1=virtual block array, 2=virtual block/organ cut, 3=virtual organ model, 4=blockfull_bisection, 5=organ bisection
 
 output_flag     = 0;    // 0 = ECHO everything, 1 = ECHO insert line only, 2 = ECHO col/row insert ONLY
 */
@@ -94,18 +94,17 @@ if (asset_typeID == 3) {
     organ();
 }
 
-// asset_typeID = 4 - virtual organ bisection, in addition to X/Y cutting
-if (asset_typeID == 4) {
-    bisection_organ();
-}
 
-// asset_typeID = 5 - virtual fullblock bisection, in addition to X/Y cutting
-if (asset_typeID == 5){
+// asset_typeID = 4 - virtual fullblock bisection, in addition to X/Y cutting
+if (asset_typeID == 4){
     blockfull_array();
 }
+
+// asset_typeID = 5 - virtual organ bisection, in addition to X/Y cutting
+if (asset_typeID == 5) {
+    bisection_organ();
+}
     
-
-
 //===display of organ percentage user setting, organ name & size, millitome dimensions in console (look for ECHO:)
 // IMPORTANT: this must be activated when running from Terminal for automatic geometry/sheet creation
 // output_flag parameter controls what information is shown in console
