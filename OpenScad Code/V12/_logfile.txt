@@ -1,33 +1,4 @@
-ECHO: "inner_box: 105,209,35"
-ECHO: ">col:3<col"
+ECHO: "inner_box: 82,211,35"
+ECHO: ">col:2<col"
 ECHO: ">row:25<row"
-Geometries in cache: 161
-Geometry cache size in bytes: 3248744
-CGAL Polyhedrons in cache: 10
-CGAL cache size in bytes: 46727072
-Total rendering time: 0:03:34.981
-   Top level object is a 3D object:
-   Simple:        yes
-   Vertices:    12093
-   Halfedges:   37526
-   Edges:       18763
-   Halffacets:  13616
-   Facets:       6808
-   Volumes:         2
-ECHO: ">col:3<col"
-ECHO: ">row:25<row"
-Geometries in cache: 37
-Geometry cache size in bytes: 26936
-CGAL Polyhedrons in cache: 3
-CGAL cache size in bytes: 1181328
-Total rendering time: 0:00:03.064
-   Top level object is a 3D object:
-   Simple:        yes
-   Vertices:      600
-   Halfedges:    1800
-   Edges:         900
-   Halffacets:    900
-   Facets:        450
-   Volumes:        76
-mt_export.bash: line 211: syntax error near unexpected token `done'
-mt_export.bash: line 211: `done'
+ECHO: "3block_xdim=", 26, " 3block_ydim=", 7.24

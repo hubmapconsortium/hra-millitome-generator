@@ -1,9 +1,12 @@
 // Millitome Organics V12
 //  developer: Peter Kienle, CNS
 
-// V12  2022-11-3
+// V12  2022-11-15
 
 // everything new is in organBlock section
+// this runs stand-alone for individual segments as declared in Object Generation Area
+// or is called from mt_organics.bash
+// 
 
 // dimensions are in mm
 //
@@ -33,7 +36,7 @@ block_ysize     = 20;
 blocks_x        = 2;    // used for type 2, number of blocks along x, used for calculated block_size
 blocks_y        = 5;   // number of blocks along y
 
-//asset_typeID    = 5;    // 0=physical MT, 1=virtual block array, 2=virtual block/organ cut, 3=virtual organ model, 4=organ bisection, 5=blockfull_bisection
+asset_typeID    = 6;    // 6 = organblocks, 7 = boxblocks
 
 output_flag     = 0;    // 0 = ECHO everything, 1 = ECHO insert line only, 2 = ECHO col/row insert ONLY
 
@@ -43,22 +46,35 @@ output_flag     = 0;    // 0 = ECHO everything, 1 = ECHO insert line only, 2 = E
 // Object Generation Area
 //  uncomment function(s) to be executed when running program
 //================================================================
-location_x      = 0;
-location_y      = 24;
-location_z      = 0;
 
-count_x          = 2;
+// specific segment
+location_x      = 0;    // wide (A-Z)
+location_y      = 5;    // long (1-n)
+location_z      = 2;    // high (I-r, roman numerals)
+
+// segment counts
+count_x          = 3;
 count_y          = 25;
-count_z          = 2;  
+count_z          = 3;  
+
+if (asset_typeID == 6) organblocks();
+if (asset_typeID == 7) boxblocks();
+    
+module organblocks() {
+    organBlock(location_x,location_y,location_z);
+}
+
+module boxblocks() {
+    boxBlock(location_x,location_y,location_z);
+}
 
 //bounding_box();                 // box enclosing the organ exactly
 //organ();
 
 //stamper();
 //selective(1,3,1);
-
 //organBlock(1,3,1);
-organBlock(location_x,location_y,location_z);
+
 
 
 /*
@@ -265,6 +281,14 @@ module organBlock(dX,dY,dZ) {
         organ();   
         cutBlock(dX,dY,dZ);
    }
+}
+
+module boxBlock(dX,dY,dZ) {
+    difference() {
+        bounding_box();
+        cutBlock(dX,dY,dZ);
+    }
+    
 }
 
 
