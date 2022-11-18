@@ -1,7 +1,7 @@
 // Millitome Organics V12
 //  developer: Peter Kienle, CNS
 
-// V12  2022-11-15
+// V12  2022-11-18
 
 // everything new is in organBlock section
 // this runs stand-alone for individual segments as declared in Object Generation Area
@@ -21,11 +21,28 @@
 $fa = 1;
 $fs = 0.4;
 
+
+//======properties configuraqtion list. When called from bash script these are overridden
 genderID        = 0;    // 0=female, 1=male, needs to be integer selector
 organID         = 5;    // index for list lookup
-//lateralityID    = 0;    // 0=bottom, 1=top, 2=bypass MT creation      
-organ_scaleID   = 1;    // 0=large,1=medium,2=small                    
 
+organ_scaleID   = 1;    // 0=large,1=medium,2=small                    
+asset_typeID    = 6;    // 6 = organblocks, 7 = boxblocks
+
+output_flag     = 0;    // 0 = ECHO everything, 1 = ECHO insert line only, 2 = ECHO col/row insert ONLY
+
+// segment counts along three available axis
+count_x          = 3;
+count_y          = 25;
+count_z          = 3;  
+
+// specific segment to cut (values must not be greater than total segments counts, above)
+location_x      = 0;    // wide (A-Z)
+location_y      = 5;    // long (1-n)
+location_z      = 2;    // high (I-r, roman numerals)
+//=======END configuration============
+
+//lateralityID    = 0;    // 0=bottom, 1=top, 2=bypass MT creation
 typeID          = 2;    // 0=fixed block size, 1=user block size, 2=user block count
 
 block_size      = 20 ;  // used for type 0, uniform x/y block size for cubes
@@ -36,27 +53,11 @@ block_ysize     = 20;
 blocks_x        = 2;    // used for type 2, number of blocks along x, used for calculated block_size
 blocks_y        = 5;   // number of blocks along y
 
-asset_typeID    = 6;    // 6 = organblocks, 7 = boxblocks
-
-output_flag     = 0;    // 0 = ECHO everything, 1 = ECHO insert line only, 2 = ECHO col/row insert ONLY
-
-
 
 //================================================================
 // Object Generation Area
 //  uncomment function(s) to be executed when running program
 //================================================================
-
-// specific segment
-location_x      = 0;    // wide (A-Z)
-location_y      = 5;    // long (1-n)
-location_z      = 2;    // high (I-r, roman numerals)
-
-// segment counts
-count_x          = 3;
-count_y          = 25;
-count_z          = 3;  
-
 if (asset_typeID == 6) organblocks();
 if (asset_typeID == 7) boxblocks();
     
@@ -254,7 +255,7 @@ organ_zmin      = organ_properties[dimz_min] * scaling_factor;
 organ_zmax      = organ_properties[dimz_max] * scaling_factor;
 organ_zreal     = organ_properties[dimz_real] * scaling_factor;
 
- // organ block section==========================================
+// organ block section==========================================
 
 blockSizeX      = organ_xdim/count_x;
 blockSizeY      = organ_ydim/count_y;

@@ -1,4 +1,4 @@
-# Millitome Generator Suite V12
+# **Millitome Generator Suite V12**
 
 2022-11-1
 
@@ -12,6 +12,7 @@
   - [Millitome block array bisection](#toc_mt_fullblock_bisection)
   - [Millitome Icebox laser cut sheet](#toc_icebox_cutsheet)
   - [Millitome Icebox 3d model](#toc_icebox_model)
+  - [Millitome Individual Block 3d models](#toc_organics_models)
 - [Files Overview](#toc_files)
   - [Master Apps](#toc_master_apps)
     - [MT-Customizer](#toc_customizer_scad)
@@ -19,14 +20,16 @@
   - [Generator Apps](#toc_generator_apps)
     - [MT-Generator](#toc_generator_scad)
     - [MT-Icebox](#toc_icebox_scad)
+    - [MT-Organics](#toc_organics_scad)
   - [Helper Files](#toc_helper_file) 
     - [mt-organs.config](#toc_organs_config) 
-    - [mt-export.bash](#toc_bash_script) 
+    - [mt-export.bash](#toc_export_bash) 
+    - [mt-organics.bash](#toc_organics_bash)
   - [Open properties code block](#toc_open_properties)
 
 ---
 
-# <a id="toc_overview"></a> Overview
+# <a id="toc_overview"></a> **Overview**
 
 [Constucting A Millitome SOP](https://docs.google.com/document/d/1x7tr9LrJfKZmED83aAj_K9FMvmjbxZ883Km93CsrgUM/edit#heading=h.cd53uti4az4)
 
@@ -105,7 +108,7 @@ This array contains a complete set of blocks for the complete organ. Exported to
 
 ## <a id="toc_mt_organ_bisection"></a> Millitome organ bisection
 
-The full organ model with all blocks, bisected into top and bottom section. Exported to .STL file. Virtual asset.
+The full organ model with all blocks, bisected into top and bottom section. Exported to .STL file. Virtual asset. Since the bisection is done in [MT-Generator.scad](#toc_generator_scad) this asset is exported as a single entity 3d object.
 
 <p align="center">
   <img src="images/Banana_bisection.png" height="300">
@@ -140,17 +143,25 @@ A 3d model of the icebox. Used as virtual asset but could be 3d printed (althoug
   <sub>Fig.8 3D model of icebox</sub>
 </p>
 
+
+## <a id="toc_organics_models"></a> Millitome Individual Block 3d models
+
+A 3d model of a specific sample block in a three dimensional, user-defined cutting matrix. Available as organ sample block or bounding box of appropriate size. Exported to .STL file.
+
+
 ---
 
-# <a id="toc_files"></a> Files Overview
+# <a id="toc_files"></a> **Files Overview**
 
 MT_Generator V12 requires the following files/folders in the same folder:
 - [MT-Customizer.scad](#toc_customizer_scad)
 - [MT-Master.scad](#toc_master_scad)
 - [MT-Generator.scad](#toc_generator_scad)
 - [MT-Icebox.scad](#toc_icebox_scad)
+- [MT-Organics](#toc_organics_scad)
 - [mt-organs.config](#toc_organs_config)
 - [mt_export.bash](#toc_export_bash)
+- [mt-organics.bash](#toc_organics_bash)
 - [organs (folder)](#toc_organs)
 
 In addition the following files/folders are created at runtime:
@@ -159,7 +170,7 @@ In addition the following files/folders are created at runtime:
 
 
 
-## <a id="toc_master_apps"></a> Master Apps
+## <a id="toc_master_apps"></a> **Master Apps**
 
 Asset properties are set/selected in [MT-Customizer](#customizer-scad) or [MT-Master](#master-scad), which then runs the appropriate sub-module ([MT-Generator](#generator-scad), [MT-Icebox](#icebox-scad)). For testing and debugging sub-modules can also be launched directly, in which case the [Open Properties Code Block](#toc_open_properties) has to be un-commented. However, while the [Open Properties Code Block](#toc_open_properties) is un-commented, it will NOT run properly when called from [MT-Customizer](#customizer-scad) or [MT-Master](#master-scad), because the properties in [MT-Generator](#generator-scad)/[MT-Icebox](#icebox-scad) will override properties set in the calling app. 
 
@@ -241,7 +252,7 @@ The following list shows properties available through the [Open Properties Code 
 
 To produce .STL/.DXF output from OpenScad, the object must be rendered (F6) and saved to the appropriate file format.  
 
-[MT-Customizer.scad](https://github.com/hubmapconsortium/hra-millitome-generator/blob/43b1897e6ac99ccb0851eb02e3b59370aa0d568d/OpenScad%20Code/V12/MT-Customizer.scad)
+Source code: [MT-Customizer.scad](https://github.com/hubmapconsortium/hra-millitome-generator/blob/43b1897e6ac99ccb0851eb02e3b59370aa0d568d/OpenScad%20Code/V12/MT-Customizer.scad)
 
 
 ## <a id="toc_master_scad"></a> MT-Master
@@ -252,7 +263,9 @@ However, it is designed to serve as a property passthrough between [mt-export](#
 
 [mt-export](#bash-script) will call [MT-Master](#master-scad) repeatedly, as required, to produce millitome assets automatically. To do this, it needs to pass commandline parameters into the OpenScad environment. The names of these parameters must match pre-defined variables in OpenScad; passed-in parameters will override the pre-defined values in the [Open Properties Code Block](#toc_open_properties) of [MT-Master](#master-scad).  
 
-## <a id="toc_generator_apps"></a> Generator Apps
+Source code: [MT-Master.scad](https://github.com/hubmapconsortium/hra-millitome-generator/blob/b0c8e3b68240fbd42764fef540e56fcb9db5249e/OpenScad%20Code/V12/MT-Master.scad)
+
+## <a id="toc_generator_apps"></a> **Generator Apps**
 
 The generation of graphics assets takes place in one of the two generator apps. Both, [MT-Generator](#generator-scad) and [MT-Icebox](#icebox-scad), are OpenScad code files which get called from one of the master apps. In the regular MT production chain no code needs to be accessed here. For debugging either one can be ran as stand-alone app, after un-commenting their [Open Properties Code Block](#toc_open_properties).
 
@@ -262,26 +275,62 @@ This program is called automatically from [MT-Customizer](#customizer-scad) or [
 
 [MT-Generator](#generator-scad) produces all 3d assets which are created through interaction with the organ model (i.e. Millitome, block arrays, etc.)
 
-[MT-Generator](#generator-scad) can run as stand-alone program in Openscad but the [Open Properties Code Block](#toc_open_properties) must be uncommented to prevent an error.
+[MT-Generator](#generator-scad) can run as stand-alone program in Openscad but the [Open Properties Code Block](#toc_open_properties) must be uncommented to prevent runtime errors.
+
+Source code: [MT-Generator.scad](https://github.com/hubmapconsortium/hra-millitome-generator/blob/b0c8e3b68240fbd42764fef540e56fcb9db5249e/OpenScad%20Code/V12/MT-Generator.scad)
 
 ## <a id="toc_icebox_scad"></a> MT-Icebox
 
 This program is called automatically from [MT-Customizer](#customizer-scad) or [MT-Master](#master-scad) if needed. It receives all required properties from the calling master app. 
 
-[MT-Icebox](#icebox-scad) produces 3d assets related to the icebox, a optional sample storage container. It can create to types of outout: A cut file for laser cutting the physical parts for the box from acrylic sheet material in .DXF format, and an .STL file of the complete assembled box.
+[MT-Icebox](#icebox-scad) produces 3d assets related to the icebox, a optional sample storage container. It can create two types of outout: A cut file for laser cutting of physical parts for the box from acrylic sheet material in .DXF format, and an .STL file of the complete assembled box.
 
-[MT-Icebox](#icebox-scad) can run as stand-alone program in Openscad but the [Open Properties Code Block](#toc_open_properties) must be uncommented to prevent an error.
+[MT-Icebox](#icebox-scad) can run as stand-alone program in Openscad but the [Open Properties Code Block](#toc_open_properties) must be uncommented to prevent runtime errors.
+
+Source code: [MT-Icebox.scad](https://github.com/hubmapconsortium/hra-millitome-generator/blob/b0c8e3b68240fbd42764fef540e56fcb9db5249e/OpenScad%20Code/V12/MT-Icebox.scad)
 
 
-## <a id="toc_helper_files"></a> Helper Files
+## <a id="toc_organics_scad"></a> MT-Organics
+
+This program runs as a stand-alone or is called from [mt-organics.bash](#toc_organics_bash).
+
+[MT-Organics](#toc_organics_scad) produces a single sample block per run. The organ specifics are set in a properties configuration list. Depending on the asset type set in the properties, either a block from the organ model is produced, or a bounding box, and exported as .STL file.
+
+The current version does not allow the definition of blocksizes, as do [MT-Generator](#generator-scad) and [MT-Icebox](#icebox-scad). Instead, the user sets the number of required blocks for each x, y and z. [MT-Organics](#toc_organics_scad) will then calculate the size of each block based on the dimensions of the organ model. The location_x,y,z properties then determine which block from the array is produced. This can potentially produce very small blocks or even no geometry at all, depending on the shape of the organ and the requested block size.
+
+Source code: [MT-Organics.scad](https://github.com/hubmapconsortium/hra-millitome-generator/blob/b0c8e3b68240fbd42764fef540e56fcb9db5249e/OpenScad%20Code/V12/MT-Organics.scad)
+
+
+## <a id="toc_helper_files"></a> **Helper Files**
 
 ## <a id="toc_organs_config"></a> mt-organs.config
 
-List of organs MT-Generator knows about. The dimensions and filenames for the organ models are required for proper operation. 3d organ models are kept in a folder named "organs".
+A list of organs needed by [MT-Generator](#generator-scad), [MT-Icebox](#icebox-scad) and [MT-Organics](#toc_organics_scad). The dimensions and filenames for the organ models are required for proper operation. 3d organ models are kept in a folder named "organs".
 
-## <a id="toc_bash_script"></a> mt-export.bash
+Source code: [mt-organs.config](https://github.com/hubmapconsortium/hra-millitome-generator/blob/b0c8e3b68240fbd42764fef540e56fcb9db5249e/OpenScad%20Code/V12/mt-organs.config)
+
+
+
+## <a id="toc_export_bash"></a> mt-export.bash
 
 Terminal script to produce bulk millitome assets. This has not yet been updated to work with MT-Generator V12.
+
+Source code: [mt-export.bash](https://github.com/hubmapconsortium/hra-millitome-generator/blob/b0c8e3b68240fbd42764fef540e56fcb9db5249e/OpenScad%20Code/V12/mt_export.bash)
+
+
+## <a id="toc_organics_bash"></a> mt-organics.bash
+
+
+Source code: [mt-organics.bash](https://github.com/hubmapconsortium/hra-millitome-generator/blob/b0c8e3b68240fbd42764fef540e56fcb9db5249e/OpenScad%20Code/V12/mt_organics.bash)
+
+
+## <a id="toc_organs"></a> organs (folder)
+
+
+Folder: [organs (folder)](https://github.com/hubmapconsortium/hra-millitome-generator/tree/main/OpenScad%20Code/V12/organs)
+
+
+## <a id=toc_code_details></a> **Code Details**
 
 ## <a id="toc_open_properties"></a> Open properties code block
 
