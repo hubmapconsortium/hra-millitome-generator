@@ -1,7 +1,7 @@
 // Millitome Organics V12
 //  developer: Peter Kienle, CNS
 
-// V12  2022-11-18
+// V12  2022-11-21
 
 // everything new is in organBlock section
 // this runs stand-alone for individual segments as declared in Object Generation Area
@@ -21,25 +21,46 @@
 $fa = 1;
 $fs = 0.4;
 
+//================================================================
+// exposed variables-------use to select
+//
+// change values here for single run from Openscad
+// or run from terminal using command line; variables can be overrides using -D <property>=n
+//  - genderID      0=female, 1=male
+//  - organID       0=kidney_l, 1=kidney_r, 2=spleen, 3=pancreas, 4=banana, 5=vb_pancreas
+//  - organ_scaleID 0=large (115%, 1.15), 1=medium (100%, 1), 2=small (85%, 0.85)
+//  - asset_typeID  6=organblocks, 7=boxblocks
+
+//  - output_flag   0=ECHO everything, 1=ECHO insert line only, 2=ECHO col/row insert ONLY
+
+//  - count_x       number of matrix segments along x
+//  - count_y       number of matrix segments along y
+//  - count_z       number of matrix segments along z
+
+//  - location_x    specific block to cut along x (width,columns, A-Z)
+//  - location_y    specific block to cut along y (length, rows, 1-n)
+//  - location_z    specific block to cut along z (height, layers, I-r; roman numerals)
+
+//================================================================
 
 //======properties configuraqtion list. When called from bash script these are overridden
-genderID        = 0;    // 0=female, 1=male, needs to be integer selector
-organID         = 5;    // index for list lookup
+genderID        = 1;    // 0=female, 1=male, needs to be integer selector
+organID         = 4;    // index for list lookup
 
 organ_scaleID   = 1;    // 0=large,1=medium,2=small                    
-asset_typeID    = 6;    // 6 = organblocks, 7 = boxblocks
+asset_typeID    = 7;    // 6=organblocks, 7=boxblocks
 
-output_flag     = 0;    // 0 = ECHO everything, 1 = ECHO insert line only, 2 = ECHO col/row insert ONLY
+output_flag     = 0;    // 0=ECHO everything, 1=ECHO insert line only, 2=ECHO col/row insert ONLY
 
 // segment counts along three available axis
 count_x          = 3;
-count_y          = 25;
+count_y          = 8;
 count_z          = 3;  
 
 // specific segment to cut (values must not be greater than total segments counts, above)
-location_x      = 0;    // wide (A-Z)
-location_y      = 5;    // long (1-n)
-location_z      = 2;    // high (I-r, roman numerals)
+location_x      = 2;    // wide (A-Z)
+location_y      = 2;    // long (1-n)
+location_z      = 1;    // high (I-r, roman numerals)
 //=======END configuration============
 
 //lateralityID    = 0;    // 0=bottom, 1=top, 2=bypass MT creation

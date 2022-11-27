@@ -1,7 +1,7 @@
 // Millitome Generator V12
 //  developer: Peter Kienle, CNS
 
-// V12  2022-11-1
+// V12  2022-11-21
 //  2022-9-12   lateralityID, mode 9 for bypass, mode 3 for bottom-only
 //  2022-9-22   moved to active github
 //  2022-10-25  added organ bisection
@@ -25,11 +25,11 @@ $fs = 0.4;
 //
 // change values here for single run from Openscad
 // or run from terminal using command line; variables can be overrides using -D <property>=n
-//  - genderID      0 = female, 1 = male
-//  - organID       0 = kidney_l, 1 = kidney_r, 2 = spleen, 3 = pancreas, 4 = banana
-//  - lateralityID  0 = bottom, 1 = top
-//  - organ_scaleID 0 = large (115%, 1.15), 1 = medium (100%, 1), 2 = small (85%, 0.85)
-//  - typeID        0 = fixed block size, 1=user block size, 2=user block count
+//  - genderID      0=female, 1=male
+//  - organID       0=kidney_l, 1=kidney_r, 2=spleen, 3=pancreas, 4=banana, 5=vb_pancreas
+//  - lateralityID  0=bottom, 1=top
+//  - organ_scaleID 0=large (115%, 1.15), 1=medium (100%, 1), 2=small (85%, 0.85)
+//  - typeID        0=fixed block size, 1=user block size, 2=user block count
 
 //  - block_size    10, 15, 20 (blocksize in mm)
 
@@ -41,7 +41,7 @@ $fs = 0.4;
 
 //  - asset_typeID  // 0=physical MT, 1=virtual block array, 2=virtual block/organ cut, 3=virtual organ model
 
-//  - output_flag   0 = ECHO everything, 1 = ECHO insert line only, 2 = ECHO col/row insert ONLY
+//  - output_flag   0=ECHO everything, 1=ECHO insert line only, 2=ECHO col/row insert ONLY
 //================================================================
 //------when running from MT-Customizer or MT-Master these variables must be disabled, otherwise they will override variables from master script!!
 /*

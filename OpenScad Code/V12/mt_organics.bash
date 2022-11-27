@@ -2,7 +2,7 @@
 
 # V2 - works with V12 of MT_organics
 # Peter Kienle, CNS
-#  2022-11-17
+#  2022-11-21
 #   - added organblocks/box blocks
 #   - added x,y,z => number,letter, roman numeral naming scheme
 
@@ -22,11 +22,12 @@ mtGenerator="MT-Organics.scad"  # openscad program code; V12 uses MT-Generator/M
 outputFlag=2                    # 2=column/row inserts only (use this), openscad console output: 0=everything, 1=full inserts
 
 # configuration is here=========================
+# this script offers only the following options; organ selection etc. is determined in MT_-Organics.scad
 asset_typeID=6  # 6 = organblocks, 7 = boxblocks
 
 # block segmentation
 count_x=3
-count_y=3
+count_y=8
 count_z=3
 
 # location_x=1

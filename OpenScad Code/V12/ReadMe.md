@@ -1,18 +1,20 @@
 # **Millitome Generator Suite V12**
 
-2022-11-1
+2022-11-21
 
 ## Table of Contents
 - [Overview](#toc_overview)
   - [Millitome for 3d print](#toc_mt_print)
   - [Millitome block array](#toc_mt_blockarray)
-  - [Millitome sample blocks](#toc_mt_sampleblocks)
+  - [Millitome organ sample block array](#toc_mt_sampleblocks)
   - [Millitome organ](#toc_mt_organ)
-  - [Millitome organ bisection](#toc_mt_organ_bisection)
   - [Millitome block array bisection](#toc_mt_fullblock_bisection)
+  - [Millitome organ block array bisection](#toc_mt_organ_bisection)
   - [Millitome Icebox laser cut sheet](#toc_icebox_cutsheet)
   - [Millitome Icebox 3d model](#toc_icebox_model)
-  - [Millitome Individual Block 3d models](#toc_organics_models)
+  - [Millitome Individual block organ 3d models](#toc_organics_organs_models)
+  - [Millitome Individual block bounding box 3d models](#toc_organics_boundingboxes_models)
+  - [Millitome Individual scaled block bounding box 3d models](#toc_organics_scaled_bbs_models)
 - [Files Overview](#toc_files)
   - [Master Apps](#toc_master_apps)
     - [MT-Customizer](#toc_customizer_scad)
@@ -31,11 +33,11 @@
 
 # <a id="toc_overview"></a> **Overview**
 
-[Constucting A Millitome SOP](https://docs.google.com/document/d/1x7tr9LrJfKZmED83aAj_K9FMvmjbxZ883Km93CsrgUM/edit#heading=h.cd53uti4az4)
+[Constructing A Millitome SOP](https://docs.google.com/document/d/1x7tr9LrJfKZmED83aAj_K9FMvmjbxZ883Km93CsrgUM/edit#heading=h.cd53uti4az4)
 
 [Using Millitomes SOP](https://docs.google.com/document/d/1Gdpph-Rx3EkNxe2y1rvhUSNMkFkt6be7DdIL_IeGe-g/edit#heading=h.cd53uti4az4)
 
-The following millitome-related assets can be created from the Openscad pipeline, directly from [MT-Customizer](#customizer-scad) or from [MT-Master](#master-scad) through a terminal script. 
+The following millitome-related assets can be created from the Openscad pipeline, directly from [MT-Customizer](#customizer-scad) or from [MT-Master](#master-scad) and [MT-Organics](#toc_organics_scad) through a terminal script. 
 
 Note: In this document the word milltiome is sometimes abbreviated to MT.
 
@@ -69,7 +71,7 @@ Sample block array used in the MT generation process. This block array correspon
 
 
 
-## <a id="toc_mt_sampleblocks"></a> Millitome sample blocks
+## <a id="toc_mt_sampleblocks"></a> Millitome organ sample block array
 
 This is created by intersecting the block array with the organ model geometry. Exported to .STL file. Virtual asset.
 
@@ -96,7 +98,7 @@ The organ model is used to form the mold in all of the assets. Exported to .STL 
 
 ## <a id="toc_mt_fullblock_bisection"></a> Millitome block array bisection
 
-This array contains a complete set of blocks for the complete organ. Exported to .STL file. Virtual asset.
+This array contains a complete set of blocks for the complete organ. All blocks are combined into a single 3d object. Exported to .STL file. Virtual asset.
 
 <p align="center">
   <img src="images/Full_Block_array.png" height="300">
@@ -106,9 +108,9 @@ This array contains a complete set of blocks for the complete organ. Exported to
 </p>
 
 
-## <a id="toc_mt_organ_bisection"></a> Millitome organ bisection
+## <a id="toc_mt_organ_bisection"></a> Millitome organ block array bisection
 
-The full organ model with all blocks, bisected into top and bottom section. Exported to .STL file. Virtual asset. Since the bisection is done in [MT-Generator.scad](#toc_generator_scad) this asset is exported as a single entity 3d object.
+The full organ model with all blocks, bisected into top and bottom section. All blocks are combined into a single 3d object. Exported to .STL file. Virtual asset.
 
 <p align="center">
   <img src="images/Banana_bisection.png" height="300">
@@ -134,7 +136,7 @@ The physical icebox is used to store organ samples in a compartmentalized contai
 
 ## <a id="toc_icebox_model"></a> Millitome Icebox 3d model
 
-A 3d model of the icebox. Used as virtual asset but could be 3d printed (although it is not very practical, as it takes a lot of filament and time). Exported to .STL file.
+A 3d model of the icebox. Used as virtual asset but could be 3d printed (although it is not very practical, as it would take a lot of filament and time). Exported to .STL file.
 
 <p align="center">
   <img src="images/Banana_Icebox.png" height="300">
@@ -144,12 +146,30 @@ A 3d model of the icebox. Used as virtual asset but could be 3d printed (althoug
 </p>
 
 
-## <a id="toc_organics_models"></a> Millitome Individual Block 3d models
+## <a id="toc_organics_organs_models"></a> Millitome Individual block organ 3d models
 
-A 3d model of a specific sample block in a three dimensional, user-defined cutting matrix. Available as organ sample block or bounding box of appropriate size. Exported to .STL file.
+A 3d model of a specific sample block in a three dimensional, user-defined cutting matrix. Produces one organ sample block of a specified x,y,z coordinate of the cutting matrix. Exported to .STL file.
+
+
+## <a id="toc_organics_boundingboxes_models"></a> Millitome Individual block bounding box 3d models
+
+A 3d model of a specific sample block in a three dimensional, user-defined cutting matrix. Produces one bounding box block of a specified x,y,z coordinate of the cutting matrix. These bounding boxes are all of uniform size due to limitations in OpenScad itself. Exported to .STL file.
+
+
+## <a id="toc_organics_scaled_bbs_models"></a> Millitome Individual scaled block bounding box 3d models
+
+
+
+
+Bounding boxes:
+Blender to import and combine STLs into single file
+Blender to scale collection (for real size scale to 0.001 as STLs come in at 1000x) 
+- select all objects in collection, use Properties and enter x/y/z 0.001 !! confirm each scale with OPTION/ALT-RETURN to apply to all objects
+Blender 3+ - Python script to go through list
 
 
 ---
+
 
 # <a id="toc_files"></a> **Files Overview**
 

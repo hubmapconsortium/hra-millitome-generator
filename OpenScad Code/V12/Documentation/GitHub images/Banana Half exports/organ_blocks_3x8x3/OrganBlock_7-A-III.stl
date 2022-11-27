@@ -1,0 +1,58 @@
+solid OpenSCAD_Model
+  facet normal 1 0 0
+    outer loop
+      vertex 18.6667 -32.958 9.12197
+      vertex 18.6667 -36.75 7.66667
+      vertex 18.6667 -31.5574 7.66667
+    endloop
+  endfacet
+  facet normal 1 0 0
+    outer loop
+      vertex 18.6667 -36.75 7.66667
+      vertex 18.6667 -32.958 9.12197
+      vertex 18.6667 -36.75 13.2185
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 18.6667 -36.75 7.66667
+      vertex 16.4963 -36.1637 7.66667
+      vertex 18.6667 -31.5574 7.66667
+    endloop
+  endfacet
+  facet normal 0 -0 -1
+    outer loop
+      vertex 16.4963 -36.1637 7.66667
+      vertex 18.6667 -36.75 7.66667
+      vertex 16.2168 -36.75 7.66667
+    endloop
+  endfacet
+  facet normal 0 -1 -0
+    outer loop
+      vertex 18.6667 -36.75 13.2185
+      vertex 16.2168 -36.75 7.66667
+      vertex 18.6667 -36.75 7.66667
+    endloop
+  endfacet
+  facet normal -0.836931 0.394346 0.379524
+    outer loop
+      vertex 18.6667 -31.5574 7.66667
+      vertex 16.4963 -36.1637 7.66667
+      vertex 18.6667 -32.958 9.12197
+    endloop
+  endfacet
+  facet normal -0.838595 0.399774 0.370053
+    outer loop
+      vertex 18.6667 -36.75 13.2185
+      vertex 16.4963 -36.1637 7.66667
+      vertex 16.2168 -36.75 7.66667
+    endloop
+  endfacet
+  facet normal -0.838596 0.399772 0.370054
+    outer loop
+      vertex 16.4963 -36.1637 7.66667
+      vertex 18.6667 -36.75 13.2185
+      vertex 18.6667 -32.958 9.12197
+    endloop
+  endfacet
+endsolid OpenSCAD_Model
