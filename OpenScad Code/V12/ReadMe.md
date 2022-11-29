@@ -1,6 +1,6 @@
 # **Millitome Generator Suite V12**
 
-2022-11-21
+2022-11-29
 
 ## Table of Contents
 - [Overview](#toc_overview)
@@ -13,7 +13,7 @@
   - [Millitome Icebox laser cut sheet](#toc_icebox_cutsheet)
   - [Millitome Icebox 3d model](#toc_icebox_model)
   - [Millitome Individual block organ 3d models](#toc_organics_organs_models)
-  - [Millitome Individual block bounding box 3d models](#toc_organics_boundingboxes_models)
+  - [Millitome Individual block box 3d models](#toc_organics_boxes_models)
   - [Millitome Individual scaled block bounding box 3d models](#toc_organics_scaled_bbs_models)
 - [Files Overview](#toc_files)
   - [Master Apps](#toc_master_apps)
@@ -151,7 +151,7 @@ A 3d model of the icebox. Used as virtual asset but could be 3d printed (althoug
 A 3d model of a specific sample block in a three dimensional, user-defined cutting matrix. Produces one organ sample block of a specified x,y,z coordinate of the cutting matrix. Exported to .STL file.
 
 
-## <a id="toc_organics_boundingboxes_models"></a> Millitome Individual block bounding box 3d models
+## <a id="toc_organics_boxes_models"></a> Millitome Individual block box 3d models
 
 A 3d model of a specific sample block in a three dimensional, user-defined cutting matrix. Produces one bounding box block of a specified x,y,z coordinate of the cutting matrix. These bounding boxes are all of uniform size due to limitations in OpenScad itself. Exported to .STL file.
 
