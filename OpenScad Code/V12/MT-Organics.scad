@@ -1,7 +1,7 @@
 // Millitome Organics V12
 //  developer: Peter Kienle, CNS
 
-// V12  2022-11-21
+// V12  2022-12-1
 
 // everything new is in organBlock section
 // this runs stand-alone for individual segments as declared in Object Generation Area
@@ -43,14 +43,12 @@ $fs = 0.4;
 
 //================================================================
 
-//======properties configuraqtion list. When called from bash script these are overridden
+//======properties configuration list. When called from bash script these are overridden
 genderID        = 1;    // 0=female, 1=male, needs to be integer selector
 organID         = 4;    // index for list lookup
 
 organ_scaleID   = 1;    // 0=large,1=medium,2=small                    
 asset_typeID    = 7;    // 6=organblocks, 7=boxblocks
-
-output_flag     = 0;    // 0=ECHO everything, 1=ECHO insert line only, 2=ECHO col/row insert ONLY
 
 // segment counts along three available axis
 count_x          = 3;
@@ -62,6 +60,8 @@ location_x      = 2;    // wide (A-Z)
 location_y      = 2;    // long (1-n)
 location_z      = 1;    // high (I-r, roman numerals)
 //=======END configuration============
+output_flag     = 0;    // 0=ECHO everything, 1=ECHO insert line only, 2=ECHO col/row insert ONLY
+
 
 //lateralityID    = 0;    // 0=bottom, 1=top, 2=bypass MT creation
 typeID          = 2;    // 0=fixed block size, 1=user block size, 2=user block count
