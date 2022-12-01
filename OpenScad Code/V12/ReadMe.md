@@ -368,7 +368,7 @@ To export combined 3d file:
 
 To apply materials:
 - Import .STL blocks as before.
-- Switch to Scripting Workspace and open or paste [this](https://github.com/hubmapconsortium/hra-millitome-generator/blob/f848dbf1a0e3d483ce7d67c51e9cddf3e9a2cc7e/OpenScad%20Code/V12/Pancreas%20Vanderbilt/Experimenting/Apply%20Modifier.py) Python script:
+- Switch to Scripting Workspace and open or paste [this](https://github.com/hubmapconsortium/hra-millitome-generator/blob/41e272760435baabcaf571832ff99f6901dce323/OpenScad%20Code/V12/Pancreas%20Vanderbilt/Experimenting/Apply%20Materials) Python script:
 ```
 import bpy
 
@@ -394,7 +394,7 @@ for ob in bpy.context.selected_objects:
 
 Apply a 'Fake User' to the script (otherwise it will get removed after you quit Blender).
 
-- Add materials to be used. Each material should also have a Fake User to stay persistent. As the Python script goes down the list of blocks it will loop through the list of materials. 
+- Add the materials to be used. Each material should also have a Fake User to stay persistent. As the Python script goes down the list of blocks it will loop through the list of materials. 
 
 <p align="center">
   <img src="images/Blender_Materials_List.png" width="400">
@@ -403,6 +403,47 @@ Apply a 'Fake User' to the script (otherwise it will get removed after you quit 
   <sub>Fig.14 Blender materials list as used for example</sub>
 </p>
 
+- Select all blocks materials should be applied to and click the RUN button (arrow triangle) in the Scripting window.
+
+To apply scaled bounding boxes and materials:
+- Import .STL blocks as before.
+- Switch to Scripting Workspace and open or paste [this](https://github.com/hubmapconsortium/hra-millitome-generator/blob/41e272760435baabcaf571832ff99f6901dce323/OpenScad%20Code/V12/Pancreas%20Vanderbilt/Experimenting/Apply%20Bounding%20Boxes%20&%20Materials.py) Python script:
+
+```
+import bpy
+
+# 2022-12-1
+# apply bounding boxes and materials
+# we need PeterBB GeometryNode to do the bounding boxes
+# select all organblocks to be treated
+
+numOfMaterials = len(bpy.data.materials)
+thisMaterial = 0
+
+for ob in bpy.context.selected_objects:
+    bpy.context.view_layer.objects.active = ob
+     
+    # first add a node
+    bpy.ops.object.modifier_add(type='NODES')
+    # then pick specific GeometryNode by name (modify the modifier)
+    bpy.data.objects[ob.name].modifiers["GeometryNodes"].node_group =  bpy.data.node_groups["PeterBB"]
+    # then apply; now we can add material
+    bpy.ops.object.modifier_apply(modifier="GeometryNodes")
+        
+    # add material
+    mat = bpy.data.materials[thisMaterial]
+    ob.data.materials.append(mat)
+    
+    # make sure materials stay within available range
+    thisMaterial += 1
+    if (thisMaterial == numOfMaterials):
+        thisMaterial = 0
+```
+
+Apply a 'Fake User' to the script (otherwise it will get removed after you quit Blender).
+
+- Add the materials to be used. Each material should also have a Fake User to stay persistent. As the Python script goes down the list of blocks it will loop through the list of materials.
+- This script also requires a Geometry Node to make the bounding boxes.
 
 
 
