@@ -148,7 +148,7 @@ A 3d model of the icebox. Used as virtual asset but could be 3d printed (althoug
 
 ## <a id="toc_organics_organs_models"></a> Millitome Individual block organ 3d models
 
-A 3d model of a specific sample block in a three dimensional, user-defined cutting matrix. Produces one organ sample block of a specified x,y,z coordinate of the cutting matrix. Exported to .STL file. Individual .STL files are imported into Blender for coloring. 3d geometry produced with [MT-Organics](#toc_organics_scad).
+A 3d model of a specific sample block from a three dimensional, user-defined cutting matrix. Produces one organ sample block of a specified x,y,z coordinate of the cutting matrix. Exported to .STL file. Individual .STL files are imported into Blender for coloring. 3d geometry produced with [MT-Organics](#toc_organics_scad).
 
 <p align="center">
   <img src="images/banana half 3x8x3 organ blocks.png" height="300">
@@ -160,7 +160,7 @@ A 3d model of a specific sample block in a three dimensional, user-defined cutti
 
 ## <a id="toc_organics_boxes_models"></a> Millitome Individual block box 3d models
 
-A 3d model of a specific sample block (or block array) in a three dimensional, user-defined cutting matrix. Produces one box block of a specified x,y,z coordinate of the cutting matrix. These boxes are all of uniform size due to limitations in OpenScad itself. Exported to .STL file. Individual .STL files are imported into Blender for coloring. 3d geometry produced with [MT-Organics](#toc_organics_scad).
+A 3d model of a specific sample block from a three dimensional, user-defined cutting matrix. Produces one box block of a specified x,y,z coordinate of the cutting matrix. These boxes are all of uniform size. Exported to .STL file. Individual .STL files are imported into a single Blender document for coloring. 3d geometry produced with [MT-Organics](#toc_organics_scad).
 
 <p align="center">
   <img src="images/banana half 3x8x3 blocks.png" height="300">
@@ -172,7 +172,7 @@ A 3d model of a specific sample block (or block array) in a three dimensional, u
 
 ## <a id="toc_organics_scaled_bbs_models"></a> Millitome Individual scaled block bounding box 3d models
 
-A 3d model of a specific sample block (or block array) in a three dimensional, user-defined cutting matrix. Openscad cannot export bounding boxes; a custom Python script in Blender is used to create the bounding boxes from individual organ block .STL files. 3d geometry produced with [MT-Organics](#toc_organics_scad), coloring in Blender.
+A 3d model of a specific sample block from a three dimensional, user-defined cutting matrix. Openscad cannot export bounding boxes; a custom Python script in Blender is used to create the bounding boxes from individual organ block .STL files. 3d geometry produced with [MT-Organics](#toc_organics_scad), coloring in Blender.
 
 <p align="center">
   <img src="images/banana half 3x8x3 scaled blocks.png" height="300">
@@ -201,9 +201,9 @@ MT_Generator V12 requires the following files/folders in the same folder:
 - [MT-Generator.scad](#toc_generator_scad)
 - [MT-Icebox.scad](#toc_icebox_scad)
 - [MT-Organics.scad](#toc_organics_scad)
-- [mt-organs.config](#toc_organs_config)
 - [mt_export.bash](#toc_export_bash)
 - [mt-organics.bash](#toc_organics_bash)
+- [mt-organs.config](#toc_organs_config)
 - [organs (folder)](#toc_organs)
 
 In addition the following files/folders are created at runtime:
@@ -214,7 +214,7 @@ In addition the following files/folders are created at runtime:
 
 ## <a id="toc_master_apps"></a> **Master Apps**
 
-Asset properties are set/selected in [MT-Customizer](#customizer-scad) or [MT-Master](#master-scad), which then runs the appropriate sub-module ([MT-Generator](#generator-scad), [MT-Icebox](#icebox-scad)). For testing and debugging sub-modules can also be launched directly, in which case the [Open Properties Code Block](#toc_open_properties) has to be un-commented. However, while the [Open Properties Code Block](#toc_open_properties) is un-commented, it will NOT run properly when called from [MT-Customizer](#customizer-scad) or [MT-Master](#master-scad), because the properties in [MT-Generator](#generator-scad)/[MT-Icebox](#icebox-scad) will override properties set in the calling app.
+Asset export properties are set/selected in [MT-Customizer](#customizer-scad) or [MT-Master](#master-scad), which then runs the appropriate sub-module ([MT-Generator](#generator-scad), [MT-Icebox](#icebox-scad)). For testing and debugging, sub-modules can also be launched directly, in which case the [Open Properties Code Block](#toc_open_properties) has to be un-commented. However, while the [Open Properties Code Block](#toc_open_properties) is un-commented, it will NOT run properly when called from [MT-Customizer](#customizer-scad) or [MT-Master](#master-scad), because the properties in [MT-Generator](#generator-scad)/[MT-Icebox](#icebox-scad) will override properties set in the master app.
 
 Master apps will read organ properties from [mt-organs.config](#toc_organs_config) and require STL files of individual organs in the [organs folder](#toc_organs)
 
@@ -231,9 +231,9 @@ Master apps will read organ properties from [mt-organs.config](#toc_organs_confi
 
 This program allows the configuration of all properties necessary to create one Millitome-related asset at a time. The "product" selector at the bottom determines if a Millitome, an Icebox or a Organ-Bisection is produced. 
 
-With some combinations of properties not all settings are relevant. For example if "blocktype" is set to "uniform" "blocksize" is used to determine the X and Y dimensions of a sample block; in that case "block xsize", "block ysize" and "blocks x" and "blocks y" are ignored.
+With some combinations of properties not all settings are relevant. For example if "blocktype" is set to "uniform", "blocksize" is used to determine the X and Y dimensions of a sample block; in that case "block xsize", "block ysize" and "blocks x" and "blocks y" are ignored.
 
-The following list shows properties available through the [Open Properties Code Block](#toc_open_properties) and exposed for user interaction in the customier interface:
+The following list shows properties available through the [Open Properties Code Block](#toc_open_properties) and exposed for user interaction in the customizer interface:
 
 #### **gender**
 1. female
@@ -303,7 +303,7 @@ Source code: [MT-Customizer.scad](https://github.com/hubmapconsortium/hra-millit
 
 Where [MT-Customizer](#customizer-scad) gives the user access to the [Open Properties Code Block](#toc_open_properties) through a simple interface, [MT-Master](#master-scad) serves as a remote control interface for [MT-Generator](#generator-scad) and [MT-Icebox](#icebox-scad). When [MT-Master](#master-scad) is executed by itself, it will call [MT-Generator](#generator-scad) or [MT-Icebox](#icebox-scad) with the properties defined in the [Open Properties Code Block](#toc_open_properties) and produce the requested output.
 
-However, it is designed to serve as a property passthrough between [mt-export](#bash-script) and [MT-Generator](#generator-scad) or [MT-Icebox](#icebox-scad). 
+However, it is designed to serve as a property passthrough interface between [mt-export](#bash-script) and [MT-Generator](#generator-scad) or [MT-Icebox](#icebox-scad). 
 
 [mt-export](#bash-script) will call [MT-Master](#master-scad) repeatedly, as required, to produce millitome assets automatically. To do this, it needs to pass commandline parameters into the OpenScad environment. The names of these parameters must match pre-defined variables in OpenScad; passed-in parameters will override the pre-defined values in the [Open Properties Code Block](#toc_open_properties) of [MT-Master](#master-scad).  
 
@@ -319,7 +319,7 @@ This program is called automatically from [MT-Customizer](#customizer-scad) or [
 
 [MT-Generator](#generator-scad) produces all 3d assets which are created through interaction with the organ model (i.e. Millitome, block arrays, etc.)
 
-[MT-Generator](#generator-scad) can run as stand-alone program in Openscad but the [Open Properties Code Block](#toc_open_properties) must be uncommented to prevent runtime errors.
+[MT-Generator](#generator-scad) can run as stand-alone program in Openscad, for this the [Open Properties Code Block](#toc_open_properties) must be uncommented to prevent runtime errors.
 
 Source code: [MT-Generator.scad](https://github.com/hubmapconsortium/hra-millitome-generator/blob/b0c8e3b68240fbd42764fef540e56fcb9db5249e/OpenScad%20Code/V12/MT-Generator.scad)
 
