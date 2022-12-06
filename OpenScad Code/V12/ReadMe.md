@@ -301,7 +301,7 @@ Source code: [MT-Customizer.scad](https://github.com/hubmapconsortium/hra-millit
 
 ## <a id="toc_master_scad"></a> MT-Master
 
-Where [MT-Customizer](#customizer-scad) gives the user access to the [Open Properties Code Block](#toc_open_properties) through a simple interface, [MT-Master](#master-scad) serves as a remote control interface for [MT-Generator](#generator-scad) and [MT-Icebox](#icebox-scad). When [MT-Master](#master-scad) is executed by itself, it will call [MT-Generator](#generator-scad) or [MT-Icebox](#icebox-scad) with the properties defined in the [Open Properties Code Block](#toc_open_properties) and produce the requested output.
+[MT-Master](#master-scad) serves as a remote control interface for [MT-Generator](#generator-scad) and [MT-Icebox](#icebox-scad). When [MT-Master](#master-scad) is executed by itself, it will call [MT-Generator](#generator-scad) or [MT-Icebox](#icebox-scad) with the properties defined in the [Open Properties Code Block](#toc_open_properties) and produce the requested output.
 
 However, it is designed to serve as a property passthrough interface between [mt-export](#bash-script) and [MT-Generator](#generator-scad) or [MT-Icebox](#icebox-scad). 
 
@@ -311,7 +311,7 @@ Source code: [MT-Master.scad](https://github.com/hubmapconsortium/hra-millitome-
 
 ## <a id="toc_generator_apps"></a> **Generator Apps**
 
-The generation of graphics assets takes place in one of the three generator apps. Both, [MT-Generator](#generator-scad) and [MT-Icebox](#icebox-scad), are OpenScad code files which get called from one of the master apps. [MT-Organics](#toc_organics_scad) is called repeatedly from [mt-organics.bash](#toc_organics_bash). In the regular MT production chain no code needs to be accessed here. For debugging either one can be ran as stand-alone app, after un-commenting their [Open Properties Code Block](#toc_open_properties).
+The generation of graphics assets takes place in one of the three generator apps. Both, [MT-Generator](#generator-scad) and [MT-Icebox](#icebox-scad), are OpenScad code files which get called from one of the master apps. [MT-Organics](#toc_organics_scad) is called repeatedly from [mt-organics.bash](#toc_organics_bash). In the regular MT production chain no code needs to be accessed here. For debugging, either one can be run as stand-alone app, after un-commenting their respective [Open Properties Code Block](#toc_open_properties).
 
 ## <a id="toc_generator_scad"></a> MT-Generator
 
@@ -327,7 +327,7 @@ Source code: [MT-Generator.scad](https://github.com/hubmapconsortium/hra-millito
 
 This program is called automatically from [MT-Customizer](#customizer-scad) or [MT-Master](#master-scad) if needed. It receives all required properties from the calling master app. 
 
-[MT-Icebox](#icebox-scad) produces 3d assets related to the icebox, an optional sample storage container. It can create two types of output: A cut file for laser cutting of physical parts for the box from acrylic sheet material in .DXF format, and an .STL file of the complete assembled box.
+[MT-Icebox](#icebox-scad) produces 3d assets related to an optional sample storage container called icebox. It can create two types of output: A cut file for laser cutting of physical parts for the box from acrylic sheet material in .DXF format, and an .STL file of the complete assembled box.
 
 [MT-Icebox](#icebox-scad) can run as stand-alone program in Openscad but the [Open Properties Code Block](#toc_open_properties) must be uncommented to prevent runtime errors.
 
@@ -338,14 +338,14 @@ Source code: [MT-Icebox.scad](https://github.com/hubmapconsortium/hra-millitome-
 
 [MT-Organics](#toc_organics_scad) produces a single specific sample block per run. The organ specifics are set in a properties configuration list. Depending on the asset type set in the properties, either a block from the organ model is produced, or a uniform bounding box, and then exported as .STL file.
 
-The current version does not allow the definition of blocksizes, as do [MT-Generator](#generator-scad) and [MT-Icebox](#icebox-scad). Instead, the user sets the number of requested blocks for each x, y and z. [MT-Organics](#toc_organics_scad) will then calculate the size of each block based on the dimensions of the organ model. The location_x,y,z properties then determine which block from the array is produced. This can potentially produce very small blocks or even no geometry at all, depending on the shape of the organ and the requested block size.
+Unlike [MT-Generator](#generator-scad) and [MT-Icebox](#icebox-scad), the current version of [MT-Organics](#toc_organics_scad) does not allow the definition of blocksizes. Instead, the user sets the number of requested blocks for each x, y and z. [MT-Organics](#toc_organics_scad) will then calculate the size of each block based on the dimensions of the organ model. The location_x,y,z properties then determine which block from the array is produced. This can potentially produce very small blocks or even no geometry at all, depending on the shape of the organ and the requested block size.
 
 This program runs as a stand-alone or is called from [mt-organics.bash](#toc_organics_bash).
 
-When controlled from [mt-organics.bash](#toc_organics_bash) [MT-Organics](#toc_organics_scad) exports one .STL file per requested block. All blocks of a run are exported to the same, clearly named folder. In the 3x8x3 matrix used in the examples here, 72 individual .STL files are created. Most uses require all blocks of a exported set to be in the same 3d file for post-processing.
+When controlled from [mt-organics.bash](#toc_organics_bash), [MT-Organics](#toc_organics_scad) exports one .STL file per requested block. All blocks of a run are exported to the same, explicitly named folder. With the 3x8x3 matrix used in the examples here, 72 individual .STL files are created. Most uses, though, require all blocks of an exported set to be in the same 3d file for post-processing.
 
 Requirements for post-processing apps:
-1. Ability to import .STL files (no need to translate file format)
+1. Ability to import .STL files (we don't want to translate file format)
 2. Can import multiple files at once (we don't want to import 72 individual files one-by-one)
 3. Scripting ability to create scaled bounding boxes
 4. Scripting ability to apply color/material patterns
@@ -354,9 +354,9 @@ The free [Blender](https://www.blender.org) 3d app fullfills these requirements.
 
 ### [Blender](https://www.blender.org) Post Processing
 
-To export combined 3d file:
-- Import all .STL block files into a Collection, in one single operation. 
-- Save to required format.
+**To export a combined 3d file**
+- Import all .STL block files into a [Blender Collection](https://docs.blender.org/manual/en/3.3/scene_layout/collections/introduction.htmlCollection) in one single operation. 
+- Save to required format (i.e. .FBX, .GLB).
 
 <p align="center">
   <img src="images/Blender_import.png" width="400">
@@ -366,7 +366,7 @@ To export combined 3d file:
 </p>
 
 
-To apply materials:
+**To apply materials**
 - Import .STL blocks as before.
 - Switch to Scripting Workspace and open or paste [this](https://github.com/hubmapconsortium/hra-millitome-generator/blob/41e272760435baabcaf571832ff99f6901dce323/OpenScad%20Code/V12/Pancreas%20Vanderbilt/Experimenting/Apply%20Materials) Python script:
 ```
@@ -392,9 +392,9 @@ for ob in bpy.context.selected_objects:
         thisMaterial = 0
 ```
 
-Apply a 'Fake User' to the script (otherwise it will get removed after you quit Blender).
+Apply a [Fake User](https://docs.blender.org/manual/en/2.79/data_system/data_blocks.html) to the script (otherwise it will get removed after you quit Blender).
 
-- Add the materials to be used. Each material should also have a Fake User to stay persistent. As the Python script goes down the list of blocks it will loop through the list of materials. 
+- Add the materials to be used. Each material should also have a [Fake User](https://docs.blender.org/manual/en/2.79/data_system/data_blocks.html) to stay persistent. While the Python script is going down the list of blocks, it will loop through the list of materials. 
 
 <p align="center">
   <img src="images/Blender_Materials_List.png" width="400">
@@ -403,9 +403,9 @@ Apply a 'Fake User' to the script (otherwise it will get removed after you quit 
   <sub>Fig.14 Blender materials list as used for example</sub>
 </p>
 
-- Select all blocks materials should be applied to and click the RUN button (arrow triangle) in the Scripting window.
+- Select all the blocks a material should be applied to, then click the RUN button (arrow triangle) in the Scripting window.
 
-To apply scaled bounding boxes and materials:
+**To apply scaled bounding boxes and materials**
 - Import .STL blocks as before.
 - Switch to Scripting Workspace and open or paste [this](https://github.com/hubmapconsortium/hra-millitome-generator/blob/41e272760435baabcaf571832ff99f6901dce323/OpenScad%20Code/V12/Pancreas%20Vanderbilt/Experimenting/Apply%20Bounding%20Boxes%20&%20Materials.py) Python script:
 
@@ -440,53 +440,23 @@ for ob in bpy.context.selected_objects:
         thisMaterial = 0
 ```
 
-Apply a 'Fake User' to the script (otherwise it will get removed after you quit Blender).
+Apply a [Fake User](https://docs.blender.org/manual/en/2.79/data_system/data_blocks.html) to the script (otherwise it will get removed after you quit Blender).
 
-- Add the materials to be used. Each material should also have a Fake User to stay persistent. As the Python script goes down the list of blocks it will loop through the list of materials.
-- This script also requires a Geometry Node to make the bounding boxes.
+- Add the materials to be used. Each material should also have a [Fake User](https://docs.blender.org/manual/en/2.79/data_system/data_blocks.html) to stay persistent. As the Python script is going down the list of blocks, it will loop through the list of materials.
+- This script also requires a [Geometry Node](https://docs.blender.org/manual/en/3.3/modeling/geometry_nodes/geometry/bounding_box.html?highlight=geometry%20nodes) to make the bounding boxes. The script requires this to be called "PeterBB". If it's named differently, the string in the script has to be changed accordingly.
 
-
-
-
-
-
-
-
-
-Bounding boxes:
-Blender to import and combine STLs into single file
-Blender to scale collection (for real size scale to 0.001 as STLs come in at 1000x) 
-- select all objects in collection, use Properties and enter x/y/z 0.001 !! confirm each scale with OPTION/ALT-RETURN to apply to all objects
-Blender 3+ - Python script to go through list
-?????
-The following three assets require a more involved generation process. 
-1. indiviual block segments are exported as .STL files from OpenScad.  
+<p align="center">
+  <img src="images/Blender_Geometry_Node.png" width="400">
+</p>
+<p align = "center">
+  <sub>Fig.15 Geometry Node to make bounding boxes</sub>
+</p>
 
 
 
-[MT-Organics](#toc_organics_scad) will read organ properties from [mt-organs.config](#toc_organs_config) and require STL files of individual organs in the [organs folder](#toc_organs)
-
-```
-//======properties configuration list. When called from bash script these are overridden
-genderID        = 1;    // 0=female, 1=male, needs to be integer selector
-organID         = 4;    // index for list lookup
-
-organ_scaleID   = 1;    // 0=large,1=medium,2=small                    
-asset_typeID    = 7;    // 6=organblocks, 7=boxblocks
-
-// segment counts along three available axis
-count_x          = 3;
-count_y          = 8;
-count_z          = 3;  
-
-// specific segment to cut (values must not be greater than total segments counts, above)
-location_x      = 2;    // wide (A-Z)
-location_y      = 2;    // long (1-n)
-location_z      = 1;    // high (I-r, roman numerals)
-//=======END configuration============
-```
 
 Source code: [MT-Organics.scad](https://github.com/hubmapconsortium/hra-millitome-generator/blob/b0c8e3b68240fbd42764fef540e56fcb9db5249e/OpenScad%20Code/V12/MT-Organics.scad)
+Blender example file: [Half Banana 3x8x3.blend](OpenScad Code/V12/Documentation/Half Banana 3x8x3.blend)
 
 
 ## <a id="toc_helper_files"></a> **Helper Files**
@@ -520,11 +490,10 @@ Folder: [organs (folder)](https://github.com/hubmapconsortium/hra-millitome-gene
 
 ## <a id=toc_code_details></a> **Code Details**
 
-## <a id="toc_open_properties"></a> Open properties code block
+### <a id="toc_open_properties"></a> MT-Generator & MT-Icebox open properties code block
 
-
-
-```// Open Properties Block=========
+```
+// Open Properties Block
 //  these variables must be defined here and are carried into MT-Generator & MT-Icebox
 //  in case this is run from a bash script the properties are over-ridden by the parameters passed in
 
@@ -553,6 +522,28 @@ output_flag     = 0;    // 0 = ECHO everything, 1 = ECHO insert line only, 2 = E
 ```
 
 
+
+
+
+```
+//======properties configuration list. When called from bash script these are overridden
+genderID        = 1;    // 0=female, 1=male, needs to be integer selector
+organID         = 4;    // index for list lookup
+
+organ_scaleID   = 1;    // 0=large,1=medium,2=small                    
+asset_typeID    = 7;    // 6=organblocks, 7=boxblocks
+
+// segment counts along three available axis
+count_x          = 3;
+count_y          = 8;
+count_z          = 3;  
+
+// specific segment to cut (values must not be greater than total segments counts, above)
+location_x      = 2;    // wide (A-Z)
+location_y      = 2;    // long (1-n)
+location_z      = 1;    // high (I-r, roman numerals)
+//=======END configuration============
+```
 
 
 
