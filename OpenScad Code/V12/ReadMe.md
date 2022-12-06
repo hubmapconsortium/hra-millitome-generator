@@ -1,6 +1,6 @@
 # **Millitome Generator Suite V12**
 
-2022-12-1
+2022-12-6
 
 ## Table of Contents
 - [Overview](#toc_overview)
@@ -27,8 +27,9 @@
     - [mt-organs.config](#toc_organs_config) 
     - [mt-export.bash](#toc_export_bash) 
     - [mt-organics.bash](#toc_organics_bash)
-  - [Open properties code block](#toc_open_properties)
-
+- [Code Details](#toc_code_details)
+  - [MT-Generator & MT-Icebox open properties code block](#toc_generator_open_properties)
+  - [MT-Oganics open properties code block](#toc_organics_open_properties)
 ---
 
 # <a id="toc_overview"></a> **Overview**
@@ -404,6 +405,7 @@ Apply a [Fake User](https://docs.blender.org/manual/en/2.79/data_system/data_blo
 </p>
 
 - Select all the blocks a material should be applied to, then click the RUN button (arrow triangle) in the Scripting window.
+- Save to required format (i.e. .FBX, .GLB).
 
 **To apply scaled bounding boxes and materials**
 - Import .STL blocks as before.
@@ -444,19 +446,21 @@ Apply a [Fake User](https://docs.blender.org/manual/en/2.79/data_system/data_blo
 
 - Add the materials to be used. Each material should also have a [Fake User](https://docs.blender.org/manual/en/2.79/data_system/data_blocks.html) to stay persistent. As the Python script is going down the list of blocks, it will loop through the list of materials.
 - This script also requires a [Geometry Node](https://docs.blender.org/manual/en/3.3/modeling/geometry_nodes/geometry/bounding_box.html?highlight=geometry%20nodes) to make the bounding boxes. The script requires this to be called "PeterBB". If it's named differently, the string in the script has to be changed accordingly.
+- Select all the blocks that should be altered, then click the RUN button (arrow triangle) in the Scripting window.
+- Save to required format (i.e. .FBX, .GLB).
 
 <p align="center">
-  <img src="images/Blender_Geometry_Node.png" width="400">
+  <img src="images/Blender_Geometry_Node.png" width="600">
 </p>
 <p align = "center">
   <sub>Fig.15 Geometry Node to make bounding boxes</sub>
 </p>
 
-
-
-
 Source code: [MT-Organics.scad](https://github.com/hubmapconsortium/hra-millitome-generator/blob/b0c8e3b68240fbd42764fef540e56fcb9db5249e/OpenScad%20Code/V12/MT-Organics.scad)
-Blender example file: [Half Banana 3x8x3.blend](OpenScad Code/V12/Documentation/Half Banana 3x8x3.blend)
+
+Blender example file: [Half Banana 3x8x3.blend](https://github.com/hubmapconsortium/hra-millitome-generator/blob/4c0753097e8e3b41b7203a0d0e9de6774c1279de/OpenScad%20Code/V12/Documentation/Half%20Banana%203x8x3.blend)
+
+---
 
 
 ## <a id="toc_helper_files"></a> **Helper Files**
@@ -487,10 +491,12 @@ Source code: [mt-organics.bash](https://github.com/hubmapconsortium/hra-millitom
 
 Folder: [organs (folder)](https://github.com/hubmapconsortium/hra-millitome-generator/tree/main/OpenScad%20Code/V12/organs)
 
+---
 
-## <a id=toc_code_details></a> **Code Details**
+# <a id=toc_code_details></a> **Code Details**
 
-### <a id="toc_open_properties"></a> MT-Generator & MT-Icebox open properties code block
+
+## <a id="toc_generator_open_properties"></a> [MT-Generator](#generator-scad) & [MT-Icebox](#icebox-scad) open properties code block
 
 ```
 // Open Properties Block
@@ -520,10 +526,15 @@ output_flag     = 0;    // 0 = ECHO everything, 1 = ECHO insert line only, 2 = E
 
 //===============================
 ```
+Full Source code:
 
+[MT-Master.scad](https://github.com/hubmapconsortium/hra-millitome-generator/blob/b0c8e3b68240fbd42764fef540e56fcb9db5249e/OpenScad%20Code/V12/MT-Master.scad)
 
+[MT-Icebox.scad](https://github.com/hubmapconsortium/hra-millitome-generator/blob/b0c8e3b68240fbd42764fef540e56fcb9db5249e/OpenScad%20Code/V12/MT-Icebox.scad)
 
+---
 
+## <a id="toc_organics_open_properties"></a> [MT-Organics](#toc_organics_scad) open properties code block
 
 ```
 //======properties configuration list. When called from bash script these are overridden
@@ -545,7 +556,7 @@ location_z      = 1;    // high (I-r, roman numerals)
 //=======END configuration============
 ```
 
-
+Full source code: [MT-Organics.scad](https://github.com/hubmapconsortium/hra-millitome-generator/blob/b0c8e3b68240fbd42764fef540e56fcb9db5249e/OpenScad%20Code/V12/MT-Organics.scad)
 
 
 
