@@ -1,7 +1,7 @@
-// Millitome Organics V12
+// Millitome Organics V13
 //  developer: Peter Kienle, CNS
 
-// V12  2022-12-1
+// V12  2022-12-7
 
 // everything new is in organBlock section
 // this runs stand-alone for individual segments as declared in Object Generation Area
@@ -57,7 +57,7 @@ count_z          = 3;
 
 // specific segment to cut (values must not be greater than total segments counts, above)
 location_x      = 2;    // wide (A-Z)
-location_y      = 2;    // long (1-n)
+location_y      = 5;    // long (1-n)
 location_z      = 1;    // high (I-r, roman numerals)
 //=======END configuration============
 output_flag     = 0;    // 0=ECHO everything, 1=ECHO insert line only, 2=ECHO col/row insert ONLY
