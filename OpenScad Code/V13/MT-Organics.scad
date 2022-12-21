@@ -1,7 +1,7 @@
 // Millitome Organics V13
 //  developer: Peter Kienle, CNS
 
-// V12  2022-12-7
+// V12  2022-12-21
 
 // everything new is in organBlock section
 // this runs stand-alone for individual segments as declared in Object Generation Area
@@ -343,7 +343,7 @@ module stamper() {
 3block_xdim      = (organ_xdim+cut_width)/blocks_x;
 3block_ydim      = (organ_ydim+cut_width)/blocks_y;
 
-echo ("3block_xdim=",3block_xdim," 3block_ydim=",3block_ydim);
+//echo ("3block_xdim=",3block_xdim," 3block_ydim=",3block_ydim);
 
 // put block sizes in x and y lists, then retrieve what we need based on type parameter as index
 xlist = [1block_xdim,2block_xdim,3block_xdim];

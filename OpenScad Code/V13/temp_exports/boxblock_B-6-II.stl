@@ -1,0 +1,86 @@
+solid OpenSCAD_Model
+  facet normal 0 1 -0
+    outer loop
+      vertex 37.3333 0 -7.66667
+      vertex 18.6667 0 7.66667
+      vertex 37.3333 0 7.66667
+    endloop
+  endfacet
+  facet normal 0 1 0
+    outer loop
+      vertex 18.6667 0 7.66667
+      vertex 37.3333 0 -7.66667
+      vertex 18.6667 0 -7.66667
+    endloop
+  endfacet
+  facet normal 1 -0 0
+    outer loop
+      vertex 37.3333 -24.5 7.66667
+      vertex 37.3333 0 -7.66667
+      vertex 37.3333 0 7.66667
+    endloop
+  endfacet
+  facet normal 1 0 0
+    outer loop
+      vertex 37.3333 0 -7.66667
+      vertex 37.3333 -24.5 7.66667
+      vertex 37.3333 -24.5 -7.66667
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 18.6667 0 7.66667
+      vertex 37.3333 -24.5 7.66667
+      vertex 37.3333 0 7.66667
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 37.3333 -24.5 7.66667
+      vertex 18.6667 0 7.66667
+      vertex 18.6667 -24.5 7.66667
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 18.6667 -24.5 -7.66667
+      vertex 37.3333 0 -7.66667
+      vertex 37.3333 -24.5 -7.66667
+    endloop
+  endfacet
+  facet normal -0 0 -1
+    outer loop
+      vertex 37.3333 0 -7.66667
+      vertex 18.6667 -24.5 -7.66667
+      vertex 18.6667 0 -7.66667
+    endloop
+  endfacet
+  facet normal -1 0 0
+    outer loop
+      vertex 18.6667 -24.5 -7.66667
+      vertex 18.6667 0 7.66667
+      vertex 18.6667 0 -7.66667
+    endloop
+  endfacet
+  facet normal -1 -0 0
+    outer loop
+      vertex 18.6667 0 7.66667
+      vertex 18.6667 -24.5 -7.66667
+      vertex 18.6667 -24.5 7.66667
+    endloop
+  endfacet
+  facet normal 0 -1 0
+    outer loop
+      vertex 18.6667 -24.5 -7.66667
+      vertex 37.3333 -24.5 7.66667
+      vertex 18.6667 -24.5 7.66667
+    endloop
+  endfacet
+  facet normal 0 -1 -0
+    outer loop
+      vertex 37.3333 -24.5 7.66667
+      vertex 18.6667 -24.5 -7.66667
+      vertex 37.3333 -24.5 -7.66667
+    endloop
+  endfacet
+endsolid OpenSCAD_Model
