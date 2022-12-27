@@ -1,5 +1,5 @@
 # MT Python pipeline
-# for V13
+# for V13 - prototype for concept testing
 
 # 2022-12-27
 
