@@ -52,13 +52,13 @@ asset_typeID    = 6;    // 6=organblocks, 7=boxblocks
 
 // segment counts along three available axis
 count_x          = 3;
-count_y          = 8;
+count_y          = 6;
 count_z          = 3;  
 
 // specific segment to cut (values must not be greater than total segments counts, above)
-location_x      = 2;    // wide (A-Z)
-location_y      = 2;    // long (1-n)
-location_z      = 1;    // high (I-r, roman numerals)
+location_x      = 1;    // wide (A-Z)
+location_y      = 3;    // long (1-n)
+location_z      = 0;    // high (I-r, roman numerals)
 //=======END configuration============
 output_flag     = 0;    // 0=ECHO everything, 1=ECHO insert line only, 2=ECHO col/row insert ONLY
 

@@ -27,7 +27,7 @@ asset_typeID=6  # 6 = organblocks, 7 = boxblocks
 
 # block segmentation
 count_x=3
-count_y=8
+count_y=6
 count_z=3
 
 # location_x=1

@@ -1,26 +1,34 @@
 # MT Python pipeline
-# for V13
+# for V13.003
 
-# 2022-12-27
+# 2022-12-29
+
+# - added support for all organs
+# - delete temp_exports folder when necessary
+# - OpenSCAD will not produce file when nothing to export, check if a STL file has been produced before importing
 
 # run in or call from Blender by running "runtest.py"
 # - creates, imports, applies bounding boxes and materials
 # - materials are added looping through a materials list
-# - organ type, gender, size, etc. are used as defined in "MT-Organics.scad"
+
 
 import bpy
 import subprocess
 import os
+import shutil
 
 # configuration is here=========================
+genderID        = 1         # 0=female, 1=male, needs to be integer selector
+organID         = 0         # 0=kidney_l, 1=kidney_r, 2=spleen, 3=pancreas, 4=banana, 5=vb_pancreas
+
 asset_typeID    = 6         # 6 = organblocks, 7 = boxblocks
-boundingBoxes   = False     # make bounding boxes?
+boundingBoxes   = False      # True/False make bounding boxes?
 
 # block segmentation, how many blocks in x,y,
 # x=width, y=length, z=height
-count_x=3
-count_y=6
-count_z=3
+count_x=2
+count_y=4
+count_z=2
 
 # which specific block?
 #location_x=2
@@ -42,6 +50,8 @@ def make_block(location_x,location_y,location_z,thisMaterial):
     args = [appName,\
         fileGenerator,\
         "-o",outputFileName,\
+        "-D genderID=" + str(genderID),\
+        "-D organID=" + str(organID),\
         "-D asset_typeID=" + str(asset_typeID),\
         "-D location_x=" + str(location_x),\
         "-D location_y=" + str(location_y),\
@@ -50,33 +60,36 @@ def make_block(location_x,location_y,location_z,thisMaterial):
         "-D count_y=" + str(count_y),\
         "-D count_z=" + str(count_z)]
     subprocess.call(args) 
+
+    print(*args)
         
             
     # import the temp file into Blender
-    bpy.ops.import_mesh.stl(filepath=workDirectory + outputFolderName + outputFileName)
-    # address first object in Scene Collection
-    objs = bpy.context.selected_objects
-    obj = objs[0]
-    # move it to myCollection
-    defaultCollection.objects.unlink(obj)
-    myCollection.objects.link(obj)     
-            
-    # ??? confirm active object???   
-    bpy.context.view_layer.objects.active = obj
+    if os.path.exists(workDirectory + outputFolderName + outputFileName):
+        bpy.ops.import_mesh.stl(filepath=workDirectory + outputFolderName + outputFileName)
+        # address first object in Scene Collection
+        objs = bpy.context.selected_objects
+        obj = objs[0]
+        # move it to myCollection
+        defaultCollection.objects.unlink(obj)
+        myCollection.objects.link(obj)     
+                
+        # ??? confirm active object???   
+        bpy.context.view_layer.objects.active = obj
 
-    # only need for organ blocks, bypass for boxes
-    if (asset_typeID == 6) and (boundingBoxes == True):
-        # create bounding box using geometry node
-        # first add a node
-        bpy.ops.object.modifier_add(type='NODES')
-        # then pick specific GeometryNode by name (modify the modifier)
-        bpy.data.objects[obj.name].modifiers["GeometryNodes"].node_group = bpy.data.node_groups["bounding_box"]
-        # then apply
-        bpy.ops.object.modifier_apply(modifier="GeometryNodes")
+        # only need for organ blocks, bypass for boxes
+        if (asset_typeID == 6) and (boundingBoxes == True):
+            # create bounding box using geometry node
+            # first add a node
+            bpy.ops.object.modifier_add(type='NODES')
+            # then pick specific GeometryNode by name (modify the modifier)
+            bpy.data.objects[obj.name].modifiers["GeometryNodes"].node_group = bpy.data.node_groups["bounding_box"]
+            # then apply
+            bpy.ops.object.modifier_apply(modifier="GeometryNodes")
 
-    # add material
-    mat = bpy.data.materials[thisMaterial]
-    obj.data.materials.append(mat)
+        # add material
+        mat = bpy.data.materials[thisMaterial]
+        obj.data.materials.append(mat)
 #==============================
 
 
@@ -88,11 +101,16 @@ outputFolderName    = 'temp_exports/' # main output folder
 
 # define base name for new collection and block naming
 if asset_typeID == 6:
-    collectionBaseName = "organblocks_"
-    outputTypeName = "organblock_"
+    if boundingBoxes == True:
+        collectionBaseName = "boundingboxes_"
+        outputTypeName = "boundingbox_"
+    else:
+        collectionBaseName = "organblocks_"
+        outputTypeName = "organblock_"
 if asset_typeID == 7:
     collectionBaseName = "boxblocks_"
     outputTypeName = "boxblock_"
+
 
 # lookup tables for columns and layers
 asciiList = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']  # lookup table for column IDs
@@ -115,9 +133,10 @@ fileGenerator   = workDirectory + mtGeneratorName
 numOfMaterials = len(bpy.data.materials)
 thisMaterial = 0
 
-# check if main export folder exists; if not, create it
-if not os.path.exists(workDirectory + outputFolderName):
-    os.makedirs(workDirectory + outputFolderName)
+# check if main export folder exists; delete and create new; existing files could interfere
+if os.path.exists(workDirectory + outputFolderName):
+    shutil.rmtree(workDirectory + outputFolderName)
+os.makedirs(workDirectory + outputFolderName)
     
 # switch to output folder - /temp_exports
 # may not be necessary if we use predefined string
@@ -134,6 +153,7 @@ for location_x in range(count_x):
             layer = (romanList[location_z])
 
             make_block(location_x,location_y,location_z,thisMaterial)
+            print("make_block: " + str(location_x) + " " + str(location_y) + " "  + str(location_z))
 
             # loop through materials, make sure materials stay within available range
             thisMaterial += 1
