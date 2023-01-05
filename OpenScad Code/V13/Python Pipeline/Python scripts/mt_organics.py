@@ -1,7 +1,7 @@
 # MT Python pipeline
-# for V13.003
+# for V13.004
 
-# 2022-12-29
+# 2023-1-5
 
 # - added support for all organs
 # - delete temp_exports folder when necessary
@@ -18,22 +18,26 @@ import os
 import shutil
 
 # configuration is here=========================
-genderID        = 1         # 0=female, 1=male, needs to be integer selector
-organID         = 0         # 0=kidney_l, 1=kidney_r, 2=spleen, 3=pancreas, 4=banana, 5=vb_pancreas
+#  these are passed on to Openscad
+genderID        = 1    # 0=female, 1=male, needs to be integer selector
+organID         = 1    # 0=kidney_l, 1=kidney_r, 2=spleen, 3=pancreas, 4=banana, 5=vb_pancreas
 
-asset_typeID    = 6         # 6 = organblocks, 7 = boxblocks
-boundingBoxes   = False      # True/False make bounding boxes?
+asset_typeID    = 6    # 6 = organblocks, 7 = boxblocks
+
 
 # block segmentation, how many blocks in x,y,
 # x=width, y=length, z=height
-count_x=2
-count_y=4
-count_z=2
+count_x=3
+count_y=5
+count_z=3
 
 # which specific block?
 #location_x=2
 #location_y=5
 #location_z=4
+
+#======this is handled in this script
+boundingBoxes   = False     # make bounding boxes?
 #========END=========================
 
 #======FUNCTIONS=========
@@ -50,6 +54,8 @@ def make_block(location_x,location_y,location_z,thisMaterial):
     args = [appName,\
         fileGenerator,\
         "-o",outputFileName,\
+        "-D genderID=" + str(genderID),\
+        "-D organID=" + str(organID),\
         "-D genderID=" + str(genderID),\
         "-D organID=" + str(organID),\
         "-D asset_typeID=" + str(asset_typeID),\
@@ -110,6 +116,9 @@ if asset_typeID == 6:
 if asset_typeID == 7:
     collectionBaseName = "boxblocks_"
     outputTypeName = "boxblock_"
+if asset_typeID < 6:
+    collectionBaseName = "tests_"
+    outputTypeName = "test_"
 
 
 # lookup tables for columns and layers
