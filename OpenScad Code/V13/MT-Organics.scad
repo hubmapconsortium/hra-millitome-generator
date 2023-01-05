@@ -47,7 +47,7 @@ $fs = 0.4;
 
 //======properties configuration list. When called from bash script these are overridden
 genderID        = 1;    // 0=female, 1=male, needs to be integer selector
-organID         = 0;    // index for list lookup
+organID         = 5;    // index for list lookup
 
 organ_scaleID   = 1;    // 0=large,1=medium,2=small                    
 asset_typeID    = 6;    // 6=organblocks, 7=boxblocks
