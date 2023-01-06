@@ -1,8 +1,12 @@
 # MT Python pipeline
-# for V13.005
+# for V13.006
 
-# 2023-1-5
+# 2023-1-6
 
+# check pancreas, does not make blocks!!
+
+# - organs and gender configured in this file
+# - collection names and block names reflect organ names & gender
 # - added support for all organs
 # - delete temp_exports folder when necessary
 # - OpenSCAD will not produce file when nothing to export, check if a STL file has been produced before importing
@@ -19,8 +23,8 @@ import shutil
 
 # configuration is here=========================
 #  these are passed on to Openscad
-genderID        = 0    # 0=female, 1=male, needs to be integer selector
-organID         = 1    # 0=kidney_l, 1=kidney_r, 2=spleen, 3=pancreas, 4=banana, 5=vb_pancreas
+genderID        = 1    # 0=female, 1=male, needs to be integer selector
+organID         = 4    # 0=kidney_l, 1=kidney_r, 2=spleen, 3=pancreas, 4=banana, 5=vb_pancreas
 
 asset_typeID    = 6    # 6 = organblocks, 7 = boxblocks
 
@@ -48,7 +52,7 @@ def make_block(location_x,location_y,location_z,thisMaterial):
     column = str(location_y + 1)
     layer = (romanList[location_z])
 
-    outputFileName = outputTypeName + row + '-' + column + '-' + layer + '.stl'
+    outputFileName = blockName + row + '-' + column + '-' + layer + '.stl'
 
     # set up commandline for openSCAD
     args = [appName,\
@@ -109,13 +113,13 @@ outputFolderName    = 'temp_exports/' # main output folder
 if asset_typeID == 6:
     if boundingBoxes == True:
         collectionBaseName = "boundingboxes_"
-        outputTypeName = "boundingbox_"
+        outputTypeName = "bb_"
     else:
         collectionBaseName = "organblocks_"
-        outputTypeName = "organblock_"
+        outputTypeName = "ob_"
 if asset_typeID == 7:
     collectionBaseName = "boxblocks_"
-    outputTypeName = "boxblock_"
+    outputTypeName = "bx_"
 if asset_typeID < 6:
     collectionBaseName = "tests_"
     outputTypeName = "test_"
@@ -125,7 +129,20 @@ if asset_typeID < 6:
 asciiList = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']  # lookup table for column IDs
 romanList = ['I','II','III','IV','V']   # lookup table for layer IDs
 
-collectionName = collectionBaseName + '_' + str(count_x) + 'x' + str(count_y) + 'x' + str(count_z)
+# lookup tables for organs
+organList = ('kidney_l','kidney_r','spleen','pancreas','banana','vb_pancreas')
+genderList = ('f','m')
+
+collectionName = genderList[genderID] + '_'\
+    + organList[organID] + '_'\
+    + collectionBaseName + '_'\
+    + str(count_x) + 'x'\
+    + str(count_y) + 'x'\
+    + str(count_z)
+
+blockName = genderList[genderID] + '_'\
+    + organList[organID] + '_'\
+    + outputTypeName
 
 # makes a new collection named collectionName
 myCollection = bpy.data.collections.new(collectionName)
