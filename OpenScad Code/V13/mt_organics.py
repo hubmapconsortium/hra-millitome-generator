@@ -1,7 +1,7 @@
 # MT Python pipeline
-# for V13.006
+# for V13.007
 
-# 2023-1-6
+# 2023-1-11
 
 # check pancreas, does not make blocks!!
 
@@ -23,17 +23,17 @@ import shutil
 
 # configuration is here=========================
 #  these are passed on to Openscad
-genderID        = 1    # 0=female, 1=male, needs to be integer selector
-organID         = 4    # 0=kidney_l, 1=kidney_r, 2=spleen, 3=pancreas, 4=banana, 5=vb_pancreas
+genderID        = 0    # 0=female, 1=male, needs to be integer selector
+organID         = 6    # 0=kidney_l, 1=kidney_r, 2=spleen, 3=pancreas, 4=banana, 5=vb_pancreas
 
 asset_typeID    = 6    # 6 = organblocks, 7 = boxblocks
 
 
 # block segmentation, how many blocks in x,y,
 # x=width, y=length, z=height
-count_x=3
-count_y=5
-count_z=3
+count_x=1
+count_y=8
+count_z=1
 
 # which specific block?
 #location_x=2
@@ -130,7 +130,7 @@ asciiList = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q'
 romanList = ['I','II','III','IV','V']   # lookup table for layer IDs
 
 # lookup tables for organs
-organList = ('kidney_l','kidney_r','spleen','pancreas','banana','vb_pancreas')
+organList = ('kidney_l','kidney_r','spleen','pancreas','banana','vb_pancreas','ovary_l')
 genderList = ('f','m')
 
 collectionName = genderList[genderID] + '_'\
