@@ -1,7 +1,7 @@
-// Millitome Generator V14
+// Millitome Generator V12
 //  developer: Peter Kienle, CNS
 
-// V14  2023-1-19
+// V12  2023-1-12å
 //  2022-9-12   lateralityID, mode 9 for bypass, mode 3 for bottom-only
 //  2022-9-22   moved to active github
 //  2022-10-25  added organ bisection
@@ -31,12 +31,12 @@ $fs = 0.4;
 //  - organ_scaleID 0=large (115%, 1.15), 1=medium (100%, 1), 2=small (85%, 0.85)
 //  - typeID        0=fixed block size, 1=user block size, 2=user block count
 
-//  - blocksize    10, 15, 20 (blocksize in mm)
+//  - block_size    10, 15, 20 (blocksize in mm)
 
-//  - blocksize_x   used for type 1, block x size
-//  - blocksize_y   used for type 1, block y size
+//  - block_xsize   used for type 1, block x size
+//  - block_ysize   used for type 1, block y size
 
-//  - blocks_x      used for type 2, number of blocks along x, used for calculated blocksize
+//  - blocks_x      used for type 2, number of blocks along x, used for calculated block_size
 //  - blocks_y      number of blocks along y
 
 //  - asset_typeID  // 0=physical MT, 1=virtual block array, 2=virtual block/organ cut, 3=virtual organ model
@@ -52,12 +52,12 @@ organ_scaleID   = 1;    // 0=large,1=medium,2=small
 
 typeID          = 0;    // 0=fixed block size, 1=user block size, 2=user block count
 
-blocksize      = 20 ;  // used for type 0, uniform x/y block size for cubes
+block_size      = 20 ;  // used for type 0, uniform x/y block size for cubes
 
-blocksize_x     = 10;   // used for type 1, different x/y block size
-blocksize_y     = 20;
+block_xsize     = 10;   // used for type 1, different x/y block size
+block_ysize     = 20;
 
-blocks_x        = 7;    // used for type 2, number of blocks along x, used for calculated blocksize
+blocks_x        = 7;    // used for type 2, number of blocks along x, used for calculated block_size
 blocks_y        = 14;   // number of blocks along y
 
 asset_typeID    = 0;    // 0=physical MT, 1=virtual block array, 2=virtual block/organ cut, 3=virtual organ model, 4=blockfull_bisection, 5=organ bisection
@@ -236,12 +236,12 @@ organ_zreal     = organ_properties[dimz_real] * scaling_factor;
 // calculated dimensions, don't mess with these!
 //================================================================
 // Type 1, square blocks, x=y
-1block_xdim      = blocksize;
-1block_ydim      = blocksize;
+1block_xdim      = block_size;
+1block_ydim      = block_size;
 
 // Type 2, rectangular blocks, x!=y
-2block_xdim      = blocksize_x;   // need to seperate x and y block size
-2block_ydim      = blocksize_y;  
+2block_xdim      = block_xsize;   // need to seperate x and y block size
+2block_ydim      = block_ysize;  
 
 // Type 3, number of blocks, user requested, dimensions => organ_size/no.of blocks
 3block_xdim      = (organ_xdim+cut_width)/blocks_x;
@@ -258,8 +258,8 @@ block_xdim      = xlist[typeID];
 block_ydim      = ylist[typeID];
 
 // insert box dim., rounded to next full blocksize, mode 1&2 only
-1insert_box_xdim = (((organ_xdim-(organ_xdim % block_xdim))/block_xdim)*block_xdim)+block_xdim;  // next full blocksize
-1insert_box_ydim = (((organ_ydim-(organ_ydim % block_ydim))/block_ydim)*block_ydim)+block_ydim;  // next full blocksize
+1insert_box_xdim = (((organ_xdim-(organ_xdim % block_xdim))/block_xdim)*block_xdim)+block_xdim;  // next full block_size
+1insert_box_ydim = (((organ_ydim-(organ_ydim % block_ydim))/block_ydim)*block_ydim)+block_ydim;  // next full block_size
 
 // insert box dim., no-rounding, mode 3 only
 3insert_box_xdim = organ_xdim;
@@ -272,7 +272,7 @@ insert_box_ydim= typeID<3 ? 1insert_box_ydim:3insert_box_ydim;
 //calculate height of insert_box, add 2mm for cutting depth
 insert_box_zdim = organ_zreal/2+bottom_height;
 
-// inner_frame_box dim., based on insert dim., added blocksize around
+// inner_frame_box dim., based on insert dim., added block_size around
 inner_box_xdim  = insert_box_xdim+2*inner_frame_block;  
 inner_box_ydim  = insert_box_ydim+2*inner_frame_block;
 inner_box_zdim  = insert_box_zdim+bottom_height;
@@ -391,12 +391,12 @@ module innertop_box() {
 
 // used to cut inner_box opening into outer_box to make outer_frame
 module inner_box_cut() {
-     translate([-inner_frame_block,-(inner_box_ydim-inner_frame_block),-(insert_box_zdim/2+blocksize)])
+     translate([-inner_frame_block,-(inner_box_ydim-inner_frame_block),-(insert_box_zdim/2+block_size)])
         cube([inner_box_xdim,inner_box_ydim,outer_box_zdim]);       
 }
 
 module innertop_box_cut() {
-     translate([-inner_frame_block,-(inner_box_ydim-inner_frame_block),insert_box_zdim/2+blocksize-outer_box_zdim])
+     translate([-inner_frame_block,-(inner_box_ydim-inner_frame_block),insert_box_zdim/2+block_size-outer_box_zdim])
         cube([inner_box_xdim,inner_box_ydim,outer_box_zdim]);       
 }
 
@@ -831,7 +831,7 @@ module dimensions()
             coa[_gender][genderID],",",
             coa[_organ1][organID],",",
             coa[_organ2][organID],",",
-            blocksize,",",
+            block_size,",",
             coa[_organ_scale][organ_scaleID],",",
             coa[_laterality][lateralityID],",",        
             insert_box_xdim/block_xdim,",",

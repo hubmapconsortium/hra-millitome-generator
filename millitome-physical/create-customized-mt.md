@@ -18,16 +18,24 @@
 
 ## Create and Export Customized Asset
 
-- launch "MT-Customizer.scad"
-(Peter will trim available assets in customizer?)
+- launch "MT-Customizer.scad
+- if Customizer panel is not open, use -> Window-> Customizer
+
 <p align="center">
   <img src="images/mt-customizer-1.png" height="500">
 </p>
 
-- if Customizer panel is not open, use -> Window-> Customizer
-- select gender, organ, laterality, size
-- select blocktype/size (needs a bit more explanation)
-- select product (MT-physical, IB-physical; should be only available options, or top of the list)
+- select product (Millitome, Icebox)
+- select gender (female, male)
+- select organ
+- select laterality (top, bottom)
+- select organ scale (medium=100%, large=115%, small=85%)
+- select blocktype (uniform-blocksize, XY-blocksize, XY-blockcount)
+- select blocksize for uniform-blocksize blocksize sets X and Y to selected value
+
+
+/size (needs a bit more explanation)
+
 - OpenSCAD renders preview (use Design->Preview if necessary)
 - to create geometry for export: execute render (can take a while)
 - after render is complete export as STL for millitome, DXF for Icebox
