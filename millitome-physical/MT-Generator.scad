@@ -1,7 +1,9 @@
 // Millitome Generator V14
 //  developer: Peter Kienle, CNS
+//  production version
 
-// V14  2023-1-19
+// V15  2023-2-2
+//  2023-2-2    uniform variable names
 //  2022-9-12   lateralityID, mode 9 for bypass, mode 3 for bottom-only
 //  2022-9-22   moved to active github
 //  2022-10-25  added organ bisection
@@ -28,7 +30,7 @@ $fs = 0.4;
 //  - genderID      0=female, 1=male
 //  - organID       0=kidney_l, 1=kidney_r, 2=spleen, 3=pancreas, 4=banana, 5=vb_pancreas
 //  - lateralityID  0=bottom, 1=top
-//  - organ_scaleID 0=large (115%, 1.15), 1=medium (100%, 1), 2=small (85%, 0.85)
+//  - organscaleID  0=large (115%, 1.15), 1=medium (100%, 1), 2=small (85%, 0.85)
 //  - typeID        0=fixed block size, 1=user block size, 2=user block count
 
 //  - blocksize    10, 15, 20 (blocksize in mm)
@@ -48,7 +50,7 @@ $fs = 0.4;
 genderID        = 0;    // 0=female, 1=male, needs to be integer selector
 organID         = 4;    // index for list lookup
 lateralityID    = 0;    // 0=bottom, 1=top, 2=bypass MT creation      
-organ_scaleID   = 1;    // 0=large,1=medium,2=small                    
+organscaleID   = 1;    // 0=large,1=medium,2=small                    
 
 typeID          = 0;    // 0=fixed block size, 1=user block size, 2=user block count
 
@@ -212,9 +214,9 @@ dimz_max    = 4;    // how much above baseline
 dimz_real   = 5;    // full height of organ, should be (abs(z_min))+z_max (or 2*z_max)
 
 
-// this is calculated from organ_scaleID
+// this is calculated from organscaleID
 scaling_array   = [1.15,1,0.85];
-scaling_factor  = scaling_array[organ_scaleID];
+scaling_factor  = scaling_array[organscaleID];
 
 include <mt-organs.config>;
 

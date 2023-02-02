@@ -22,12 +22,12 @@ module __Customizer_Limit__ () {}  // show in customizer up to here
 //=======any commented ('//') lines above this will be shown in the Customizer window!!=========================
 
 // MTD-Customizer
-// developer version can produce export all asset types
+// developer version; can produce export all asset types
 
 // Peter Kienle, CNS
 // master controller to launch MT-Generator & MT-Icebox applications
 
-// V0.3 2023-1-19
+// V0.4 2023-2-2
 //  2023-1-12   added ovary_l for testing
 //  2022-10-25  added organ bisection
 //  2022-10-26  added block full array

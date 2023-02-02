@@ -1,5 +1,6 @@
-// MT-Master, Peter Kienle, CNS 2022-11-1
-//
+// MT-Master, Peter Kienle, CNS 2023-2-2
+//  V0.4    Developer Version for testing; can produce all assets
+
 //  2022-10-25  added organ bisection
 //  2022-10-26  added block full array
 
@@ -7,7 +8,7 @@
 //  these variables must be defined here and are carried into MT-Generator & MT-Icebox
 //  in case this is run from a bash script the properties are over-ridden by the parameters passed in
 
-productID       = 6;    // 0=millitome_physical, 1=millitome_blockarray, 2=millitome_sampleblocks, 3=millitome_organ, 4=full_array_bisection, 5=organ_bisection, 6=icebox_physical, 7=icebox_virtual
+productID       = 1;    // 0=millitome_physical, 1=millitome_blockarray, 2=millitome_sampleblocks, 3=millitome_organ, 4=full_array_bisection, 5=organ_bisection, 6=icebox_physical, 7=icebox_virtual
 
 genderID        = 0;    // 0=female, 1=male, needs to be integer selector
 organID         = 5;    // index for list lookup
