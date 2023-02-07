@@ -3,14 +3,14 @@ gender          = "female";    // [female,male]
 organ           = "kidney_l";   // [kidney_l,kidney_r,spleen,pancreas,banana,vb_pancreas,ovary_l]
  
 laterality      = "bottom";    // [bottom,top,bottom no ID]
-organ_scale     = "medium";    // [large,medium,small]                   
+organscale      = "medium";    // [large,medium,small]                   
 
 blocktype       = "uniform";    // [uniform,userXY,blockCount]
 
-block_size      = 10 ;  // [10,15,20]
+blocksize       = 10 ;  // [10,15,20]
 
-block_xsize     = 10;   // [10,15,20]
-block_ysize     = 20;   // [10,15,20]
+blocksize_x     = 10;   // [10,15,20]
+blocksize_y     = 20;   // [10,15,20]
 
 blocks_x        = 7;    // used for type 3, number of blocks along x, used for calculated block_size
 blocks_y        = 14;   // number of blocks along y
@@ -48,8 +48,8 @@ organID = [ for (i = [0:1:len(organs)]) if (organ==organs[i]) i][0];
 lateralities = ["bottom","top","bottom no ID"];
 lateralityID = [ for (i = [0:1:len(lateralities)]) if (laterality==lateralities[i]) i][0];
     
-organ_scales = ["large","medium","small"];
-organ_scaleID = [ for (i = [0:1:len(organ_scales)]) if (organ_scale==organ_scales[i]) i][0];
+organscales = ["large","medium","small"];
+organscaleID = [ for (i = [0:1:len(organscales)]) if (organscale==organscales[i]) i][0];
     
 type_list = ["uniform","userXY","blockCount"];
 typeID = [ for (i = [0:1:len(type_list)]) if (blocktype==type_list[i]) i][0];
@@ -71,41 +71,41 @@ if (productID == 7) icebox_virtual();
 
 module millitome_physical() {
     asset_typeID = 0;
-    include<MT-Generator.scad>;
+    include<MTD-Generator.scad>;
 }
 
 module millitome_blockarray() {
     asset_typeID = 1;
-    include<MT-Generator.scad>;  
+    include<MTD-Generator.scad>;  
 }
 
 module millitome_sampleblocks() {
     asset_typeID = 2;
-    include<MT-Generator.scad>;  
+    include<MTD-Generator.scad>;  
 }
 
 module millitome_organ() {
     asset_typeID = 3;
-    include<MT-Generator.scad>;  
+    include<MTD-Generator.scad>;  
 }
 
 module blockfull_bisection() {
     asset_typeID = 4;
-    include<MT-Generator.scad>;
+    include<MTD-Generator.scad>;
 }
 
 module organ_bisection() {
     asset_typeID = 5;
-    include<MT-Generator.scad>;  
+    include<MTD-Generator.scad>;  
 }
 
 module icebox_physical() {
     asset_typeID = 0;
-    include<MT-Icebox.scad>;
+    include<MTD-Icebox.scad>;
 }
 
 module icebox_virtual() {
     asset_typeID = 1;
-    include<MT-Icebox.scad>;
+    include<MTD-Icebox.scad>;
 }
     
