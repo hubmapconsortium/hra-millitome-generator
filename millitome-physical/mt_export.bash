@@ -5,6 +5,8 @@
 #  2022-10-25
 #   properly handles organID 5 and user block counts
 
+# will not work properly with flexible organscale!! think about how to pass in organscale 1-nnn%-------------
+
 # run in terminal:
 # - navigate terminal to folder, this script resides in (V12) using 'cd'
 # - at prompt$ 'bash mt_export.bash'

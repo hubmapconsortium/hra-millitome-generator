@@ -1,21 +1,22 @@
 
-product         = "Millitome";   // [Millitome,Icebox]
+product         = "millitome";   // [millitome,icebox]
 
 gender          = "female";    // [female,male]
 organ           = "kidney_l";   // [kidney_l,kidney_r,spleen,pancreas,banana,vb_pancreas]
  
-laterality      = "bottom";    // [bottom,top,bottom no ID]
-organscale      = "medium";    // [large,medium,small]                   
+laterality      = "bottom";    // [bottom,top,bottom no ID]        
 
 blocktype       = "uniform-blocksize";    // [uniform-blocksize,XY-blocksize,XY-blockcount]
 
-blocksize       = 20 ;  // [10,15,20]
+blocksize       = 20;   // blocksize x&y 1-nn in mm
 
-blocksize_x     = 20;   // [10,15,20]
-blocksize_y     = 20;   // [10,15,20]
+blocksize_x     = 20;   // blocksize x 1-nn in mm
+blocksize_y     = 20;   // blocksize y 1-nn in mm
 
 blocks_x        = 3;    // used for blocktype=3, number of blocks along x, used for calculated blocksize
 blocks_y        = 5;   // number of blocks along y
+
+organscale      = 100;         
 
 module __Customizer_Limit__ () {}  // show in customizer up to here
     shown_by_customizer = false;
@@ -27,7 +28,8 @@ module __Customizer_Limit__ () {}  // show in customizer up to here
 // Peter Kienle, CNS
 // master controller to launch MT-Generator & MT-Icebox applications
 
-// V0.4 2023-2-2
+// V0.5 2023-2-2
+//  2023-2-16   modified organscale to use 1-nnn flexible values; flexible blocksizes
 //  2023-1-19   remove uncommon asset types
 //  2022-10-25  added organ bisection
 //  2022-10-26  added block full array
@@ -40,7 +42,7 @@ output_flag     = 0;    // 0 = ECHO everything, 1 = ECHO insert line only, 2 = E
 // property lists------------------------------------------------
 // extract property IDs from string lists in Customizer
 
-product_list = ["Millitome","Icebox"];
+product_list = ["millitome","icebox"];
 productID = [ for (i = [0:1:len(product_list)]) if (product==product_list[i]) i][0];
     
 genders = ["female","male"];
@@ -51,10 +53,7 @@ organID = [ for (i = [0:1:len(organs)]) if (organ==organs[i]) i][0];
 
 lateralities = ["bottom","top","bottom no ID"];
 lateralityID = [ for (i = [0:1:len(lateralities)]) if (laterality==lateralities[i]) i][0];
-    
-organscales = ["large","medium","small"];
-organscaleID = [ for (i = [0:1:len(organscales)]) if (organscale==organscales[i]) i][0];
-    
+       
 type_list = ["uniform-blocksize","XY-blocksize","XY-blockcount"];
 typeID = [ for (i = [0:1:len(type_list)]) if (blocktype==type_list[i]) i][0];
     

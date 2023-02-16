@@ -2,7 +2,7 @@
 //  developer: Peter Kienle, CNS
 //  developer  version
 
-// V15  2023-2-2
+// V15  2023-2-16
 //  2023-2-2    uniform variable names
 //  2022-9-12   lateralityID, mode 9 for bypass, mode 3 for bottom-only
 //  2022-9-22   moved to active github
@@ -30,7 +30,8 @@ $fs = 0.4;
 //  - genderID      0=female, 1=male
 //  - organID       0=kidney_l, 1=kidney_r, 2=spleen, 3=pancreas, 4=banana, 5=vb_pancreas
 //  - lateralityID  0=bottom, 1=top
-//  - organscaleID  0=large (115%, 1.15), 1=medium (100%, 1), 2=small (85%, 0.85)
+//  -DEPR organscaleID  0=large (115%, 1.15), 1=medium (100%, 1), 2=small (85%, 0.85)
+//  - organscale    1 to nnn
 //  - typeID        0=fixed block size, 1=user block size, 2=user block count
 
 //  - blocksize    10, 15, 20 (blocksize in mm)
@@ -50,7 +51,7 @@ $fs = 0.4;
 genderID        = 0;    // 0=female, 1=male, needs to be integer selector
 organID         = 4;    // index for list lookup
 lateralityID    = 0;    // 0=bottom, 1=top, 2=bypass MT creation      
-organscaleID   = 1;    // 0=large,1=medium,2=small                    
+organscale      = 100;                  
 
 typeID          = 0;    // 0=fixed block size, 1=user block size, 2=user block count
 
@@ -181,13 +182,13 @@ dimensions();
 //================================================================
 // construction variables - no need for user access
 //================================================================
-wall_width      = 20;       // thickness for walls and bottoms - only for outer_box
+wall_width      = 20;       // thickness for walls and bottoms - only for outer_box (default 20)
 wall_height     = 20;       // height of outer box wall
-bottom_height   = 5;        // was 10; bottom thickness of inner_box & insert (*2 for full MT bottom thickness)
+bottom_height   = 2;        // was 10; bottom thickness of inner_box & insert (*2 for full MT bottom thickness)
 
-inner_frame_block  = 15;    // was 20; inner frame block size around insert
+inner_frame_block  = 5;    // was 20; inner frame block size around insert
 
-cut_width       = 0.1;        // was 1; width of cutting tool
+cut_width       = 1;        // was 1; width of cutting tool
 cut_depth       = 1;        // how far to cut below specimen
 
 start_character = 65;       // is A - for column letters
@@ -215,8 +216,8 @@ dimz_real   = 5;    // full height of organ, should be (abs(z_min))+z_max (or 2*
 
 
 // this is calculated from organscaleID
-scaling_array   = [1.15,1,0.85];
-scaling_factor  = scaling_array[organscaleID];
+//scaling_array   = [1.15,1,0.85];
+scaling_factor  = organscale/100;
 
 include <mt-organs.config>;
 

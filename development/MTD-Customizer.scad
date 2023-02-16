@@ -1,9 +1,12 @@
 
+product         = "MT-physical";   // [MT-physical,MT-block array,MT-sample blocks,MT-organ,MT-full array,MT-full organ bisection,IB-physical,IB-virtual]
+
 gender          = "female";    // [female,male]
-organ           = "kidney_l";   // [kidney_l,kidney_r,spleen,pancreas,banana,vb_pancreas,ovary_l]
+organ           = "kidney_l";   // [kidney_l,kidney_r,spleen,pancreas,banana,vb_pancreas,ovary_l,ovalry_l]
  
 laterality      = "bottom";    // [bottom,top,bottom no ID]
-organscale      = "medium";    // [large,medium,small]                   
+   
+organscale      = 100;  
 
 blocktype       = "uniform";    // [uniform,userXY,blockCount]
 
@@ -15,7 +18,7 @@ blocksize_y     = 20;   // [10,15,20]
 blocks_x        = 7;    // used for type 3, number of blocks along x, used for calculated block_size
 blocks_y        = 14;   // number of blocks along y
 
-product         = "MT-physical";   // [MT-physical,MT-block array,MT-sample blocks,MT-organ,MT-full array,MT-full organ bisection,IB-physical,IB-virtual]
+
 
 module __Customizer_Limit__ () {}  // show in customizer up to here
     shown_by_customizer = false;
@@ -27,7 +30,8 @@ module __Customizer_Limit__ () {}  // show in customizer up to here
 // Peter Kienle, CNS
 // master controller to launch MT-Generator & MT-Icebox applications
 
-// V0.4 2023-2-2
+// V0.5 2023-2-16
+//  2023-2-16   added ovalry_l for testing; added flexible organ scale %
 //  2023-1-12   added ovary_l for testing
 //  2022-10-25  added organ bisection
 //  2022-10-26  added block full array
@@ -42,14 +46,14 @@ output_flag     = 0;    // 0 = ECHO everything, 1 = ECHO insert line only, 2 = E
 genders = ["female","male"];
 genderID = [ for (i = [0:1:len(genders)]) if (gender==genders[i]) i][0];    //returns a list!! Need [0] at the end to get first item
 
-organs = ["kidney_l","kidney_r","spleen","pancreas","banana", "vb_pancreas", "ovary_l"];
+organs = ["kidney_l","kidney_r","spleen","pancreas","banana","vb_pancreas","ovary_l","ovalry_l"];
 organID = [ for (i = [0:1:len(organs)]) if (organ==organs[i]) i][0];
 
 lateralities = ["bottom","top","bottom no ID"];
 lateralityID = [ for (i = [0:1:len(lateralities)]) if (laterality==lateralities[i]) i][0];
     
-organscales = ["large","medium","small"];
-organscaleID = [ for (i = [0:1:len(organscales)]) if (organscale==organscales[i]) i][0];
+//organscales = ["large","medium","small"];
+//organscaleID = [ for (i = [0:1:len(organscales)]) if (organscale==organscales[i]) i][0];
     
 type_list = ["uniform","userXY","blockCount"];
 typeID = [ for (i = [0:1:len(type_list)]) if (blocktype==type_list[i]) i][0];

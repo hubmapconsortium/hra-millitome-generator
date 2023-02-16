@@ -1,7 +1,8 @@
-// Millitome Generator Icebox Module V12
+// Millitome Generator Icebox Module V14
 //  developer: Peter Kienle, CNS
 
-// V12  2022-9-20
+// V14  2023-2-16
+//  2023-2-16   modified organscale to be flexible percentage 1-nnn
 //  2022-9-22   moved to active github
 
 // dimensions are in mm
@@ -25,15 +26,15 @@ $fs = 0.4;
 //  - genderID      0 = female, 1 = male
 //  - organID       0 = kidney_l, 1 = kidney_r, 2 = spleen, 3 = pancreas, 4 = banana
 //  - lateralityID  0 = bottom, 1 = top
-//  - organ_scaleID 0 = large (115%, 1.15), 1 = medium (100%, 1), 2 = small (85%, 0.85)
+//  - organscale    1-nnn%
 //  - typeID        0 = fixed block size, 1=user block size, 2=user block count
 
-//  - block_size    10, 15, 20 (blocksize in mm)
+//  - blocksize    10, 15, 20 (blocksize in mm)
 
-//  - block_xsize   used for type 1, block x size
-//  - block_ysize   used for type 1, block y size
+//  - blocksize_x   used for type 1, block x size
+//  - blocksize_y   used for type 1, block y size
 
-//  - blocks_x      used for type 2, number of blocks along x, used for calculated block_size
+//  - blocks_x      used for type 2, number of blocks along x, used for calculated blocksize
 //  - blocks_y      number of blocks along y
 
 //  - asset_typeID  0=physical, 1=virtual
@@ -47,16 +48,16 @@ $fs = 0.4;
 genderID        = 0;    // 0=female, 1=male, needs to be integer selector
 organID         = 2;    // index for list lookup
 lateralityID    = 0;    // 0=bottom, 1=top, 2=bypass MT creation      
-organ_scaleID   = 1;    // 0=large,1=medium,2=small                    
-
+organscale      = 100;  // 1-nnn percentage                    
+    
 typeID          = 0;    // 0=fixed block size, 1=user block size, 2=user block count
 
-block_size      = 20 ;  // used for type 0, uniform x/y block size for cubes
+blocksize      = 20 ;  // used for type 0, uniform x/y block size for cubes
 
-block_xsize     = 10;   // used for type 1, different x/y block size
-block_ysize     = 20;
+blocksize_x     = 10;   // used for type 1, different x/y block size
+blocksize_y     = 20;
 
-blocks_x        = 7;    // used for type 2, number of blocks along x, used for calculated block_size
+blocks_x        = 7;    // used for type 2, number of blocks along x, used for calculated blocksize
 blocks_y        = 14;   // number of blocks along y
 
 asset_typeID    = 0;    // 0=physical, 1=virtual
@@ -90,9 +91,6 @@ bottom_height   = 5;        // was 10; bottom thickness of inner_box & insert (*
 
 inner_frame_block  = 15;    // was 20; inner frame block size around insert
 
-cut_width       = 2;        // was 1; width of cutting tool
-cut_depth       = 1;        // how far to cut below specimen
-
 start_character = 65;       // is A - for column letters
 start_number    = 49;       // is 0 - for row numbers
 
@@ -116,9 +114,7 @@ dimz_min    = 3;    // how much below baseline
 dimz_max    = 4;    // how much above baseline
 dimz_real   = 5;    // full height of organ, should be (abs(z_min))+z_max (or 2*z_max)
 
-// this is calculated from organ_scale
-scaling_array   = [1.15,1,0.85];
-scaling_factor  = scaling_array[organ_scaleID];
+scaling_factor  = organscale/100;
 
 include <mt-organs.config>;
 
@@ -140,12 +136,12 @@ organ_zreal     = organ_properties[dimz_real] * scaling_factor;
 // calculated dimensions, don't mess with these!
 //================================================================
 // Type 1, square blocks, x=y
-1block_xdim      = block_size;
-1block_ydim      = block_size;
+1block_xdim      = blocksize;
+1block_ydim      = blocksize;
 
 // Type 2, rectangular blocks, x!=y
-2block_xdim      = block_xsize;   // need to seperate x and y block size
-2block_ydim      = block_ysize;  
+2block_xdim      = blocksize_x;   // need to seperate x and y block size
+2block_ydim      = blocksize_y;  
 
 // Type 3, number of blocks, user requested, dimensions => organ_size/no.of blocks
 3block_xdim      = organ_xdim/blocks_x;
@@ -160,8 +156,8 @@ block_xdim      = xlist[typeID];
 block_ydim      = ylist[typeID];
 
 // insert box dim., rounded to next full blocksize, mode 1&2 only
-1insert_box_xdim = (((organ_xdim-(organ_xdim % block_xdim))/block_xdim)*block_xdim)+block_xdim;  // next full block_size
-1insert_box_ydim = (((organ_ydim-(organ_ydim % block_ydim))/block_ydim)*block_ydim)+block_ydim;  // next full block_size
+1insert_box_xdim = (((organ_xdim-(organ_xdim % block_xdim))/block_xdim)*block_xdim)+block_xdim;  // next full blocksize
+1insert_box_ydim = (((organ_ydim-(organ_ydim % block_ydim))/block_ydim)*block_ydim)+block_ydim;  // next full blocksize
 
 // insert box dim., no-rounding, mode 3 only
 3insert_box_xdim = organ_xdim;
@@ -174,7 +170,7 @@ insert_box_ydim= typeID<3 ? 1insert_box_ydim:3insert_box_ydim;
 //calculate height of insert_box, add 2mm for cutting depth
 insert_box_zdim = organ_zreal/2+bottom_height;
 
-// inner_frame_box dim., based on insert dim., added block_size around
+// inner_frame_box dim., based on insert dim., added blocksize around
 inner_box_xdim  = insert_box_xdim+2*inner_frame_block;  
 inner_box_ydim  = insert_box_ydim+2*inner_frame_block;
 inner_box_zdim  = insert_box_zdim+bottom_height;
@@ -574,7 +570,7 @@ module dimensions()
             coa[_gender][genderID],",",
             coa[_organ1][organID],",",
             coa[_organ2][organID],",",
-            block_size,",",
+            blocksize,",",
             coa[_organ_scale][organ_scaleID],",",
             coa[_laterality][lateralityID],",",        
             insert_box_xdim/block_xdim,",",

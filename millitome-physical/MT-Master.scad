@@ -1,6 +1,6 @@
 // MT-Master, Peter Kienle, CNS
-// V0.4 2023-2-2
-//
+// V0.5 2023-2-16
+//  2023-2-16   modifed organscale to use flexibles percentage 1-nnn%
 //  2023-02-02  unified carry-over variable names to match with customizer  
 //  2022-10-25  added organ bisection
 //  2022-10-26  added block full array
@@ -14,7 +14,7 @@ product         = 0;    // 0=millitome_physical, 1=icebox_physical
 gender          = 0;    // 0=female, 1=male, needs to be integer selector
 organ           = 0;    // 0=kidney_l,1=kidney_r,2=spleen,3=pancreas,4=banana,5=vb_pancreas
 laterality      = 0;    // 0=bottom, 1=top, 2=bypass MT creation      
-organscale      = 1;    // 0=large,1=medium,2=small                    
+organscale      = 100;  // 1-nnn%                  
 
 blocktype       = 0;    // 0=fixed block size, 1=user block size, 2=user block count
 
@@ -37,7 +37,6 @@ productID       = product;
 genderID        = gender;
 organID         = organ;
 lateralityID    = laterality;
-organscaleID    = organscale;
 typeID          = blocktype;
 
 // call with appropriate asset type ID as per user request
