@@ -2,7 +2,8 @@
 //  developer: Peter Kienle, CNS
 //  developer  version
 
-// V15  2023-2-16
+// V15  2023-2-17
+//  2023-2-17   add "no cut" when "1" slot is requested; updated calculated dimension l240
 //  2023-2-2    uniform variable names
 //  2022-9-12   lateralityID, mode 9 for bypass, mode 3 for bottom-only
 //  2022-9-22   moved to active github
@@ -186,7 +187,7 @@ wall_width      = 20;       // thickness for walls and bottoms - only for outer_
 wall_height     = 20;       // height of outer box wall
 bottom_height   = 2;        // was 10; bottom thickness of inner_box & insert (*2 for full MT bottom thickness)
 
-inner_frame_block  = 5;    // was 20; inner frame block size around insert
+inner_frame_block  = 20;    // was 20; inner frame block size around insert
 
 cut_width       = 1;        // was 1; width of cutting tool
 cut_depth       = 1;        // how far to cut below specimen
@@ -238,7 +239,7 @@ organ_zreal     = organ_properties[dimz_real] * scaling_factor;
 //================================================================
 // calculated dimensions, don't mess with these!
 //================================================================
-// Type 1, square blocks, x=y
+/* // Type 1, square blocks, x=y
 1block_xdim      = blocksize;
 1block_ydim      = blocksize;
 
@@ -248,17 +249,17 @@ organ_zreal     = organ_properties[dimz_real] * scaling_factor;
 
 // Type 3, number of blocks, user requested, dimensions => organ_size/no.of blocks
 3block_xdim      = (organ_xdim+cut_width)/blocks_x;
-3block_ydim      = (organ_ydim+cut_width)/blocks_y;
-
-echo ("3block_xdim=",3block_xdim," 3block_ydim=",3block_ydim);
+3block_ydim      = (organ_ydim+cut_width)/blocks_y; */
 
 // put block sizes in x and y lists, then retrieve what we need based on type parameter as index
-xlist = [1block_xdim,2block_xdim,3block_xdim];
-ylist = [1block_ydim,2block_ydim,3block_ydim];
+xlist = [blocksize,blocksize_x,(organ_xdim+cut_width)/blocks_x];
+ylist = [blocksize,blocksize_y,(organ_ydim+cut_width)/blocks_y];
 
 // fetch block sizes according to requested type ID, corrected for 0 index
 block_xdim      = xlist[typeID];
 block_ydim      = ylist[typeID];
+
+echo ("block_xdim=",block_xdim," block_ydim=",block_ydim);
 
 // insert box dim., rounded to next full blocksize, mode 1&2 only
 1insert_box_xdim = (((organ_xdim-(organ_xdim % block_xdim))/block_xdim)*block_xdim)+block_xdim;  // next full blocksize
@@ -618,31 +619,34 @@ module bounding_box() {
 // column slots============================================
 // column cutting slot 
 module column_slot() {  
-    translate([-cut_width,-outer_box_ydim+block_ydim,-(organ_zreal/2+cut_depth)])
+    translate([-cut_width,-outer_box_ydim,-(organ_zreal/2+cut_depth)])
         cube([cut_width,outer_box_ydim+wall_width*2,organ_zreal+cut_depth*2]);
 }
  
 // column slot array
 module column_slot_array() {
-    for (dx = [0:block_xdim:insert_box_xdim]) {
-        translate([dx,0,0])
-            column_slot();
+    if (blocks_x > 1) {
+        for (dx = [0:block_xdim:insert_box_xdim]) {
+            translate([dx,0,0])
+                column_slot();
+        }
     }
 }
-
 
 // row slots===============================================
 // row cutting slot
 module row_slot() {
-    translate([-(block_xdim*2+wall_width),0,-(organ_zreal/2+cut_depth)])
+    translate([-(organ_xdim+wall_width),0,-(organ_zreal/2+cut_depth)])
         cube([outer_box_xdim+wall_width*2,cut_width,organ_zreal+cut_depth*2]);
 }
 
 // row slot array
 module row_slot_array() {
-    for (dy = [0:-block_ydim:-insert_box_ydim]) {
-        translate([0,dy,0])
-            row_slot();
+    if (blocks_y > 1) {
+        for (dy = [0:-block_ydim:-insert_box_ydim]) {
+            translate([0,dy,0])
+                row_slot();
+        }
     }
 }
 
