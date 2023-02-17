@@ -3,7 +3,9 @@
 //  developer  version
 
 // V15  2023-2-17
+//  2023-2-17   adjust letter & number columns
 //  2023-2-17   add "no cut" when "1" slot is requested; updated calculated dimension l240
+//  2023-2-16   modified organscale to use percentages 1-nnn
 //  2023-2-2    uniform variable names
 //  2022-9-12   lateralityID, mode 9 for bypass, mode 3 for bottom-only
 //  2022-9-22   moved to active github
@@ -31,17 +33,17 @@ $fs = 0.4;
 //  - genderID      0=female, 1=male
 //  - organID       0=kidney_l, 1=kidney_r, 2=spleen, 3=pancreas, 4=banana, 5=vb_pancreas
 //  - lateralityID  0=bottom, 1=top
-//  -DEPR organscaleID  0=large (115%, 1.15), 1=medium (100%, 1), 2=small (85%, 0.85)
-//  - organscale    1 to nnn
 //  - typeID        0=fixed block size, 1=user block size, 2=user block count
 
-//  - blocksize    10, 15, 20 (blocksize in mm)
+//  - blocksize     5-30
 
-//  - blocksize_x   used for type 1, block x size
-//  - blocksize_y   used for type 1, block y size
+//  - blocksize_x   5-30
+//  - blocksize_y   5-30
 
-//  - blocks_x      used for type 2, number of blocks along x, used for calculated blocksize
-//  - blocks_y      number of blocks along y
+//  - blocks_x      1-50
+//  - blocks_y      1-50
+
+//  - organscale    25-150
 
 //  - asset_typeID  // 0=physical MT, 1=virtual block array, 2=virtual block/organ cut, 3=virtual organ model
 
@@ -51,18 +53,19 @@ $fs = 0.4;
 /*
 genderID        = 0;    // 0=female, 1=male, needs to be integer selector
 organID         = 4;    // index for list lookup
-lateralityID    = 0;    // 0=bottom, 1=top, 2=bypass MT creation      
-organscale      = 100;                  
+lateralityID    = 0;    // 0=bottom, 1=top, 2=bypass MT creation                       
 
 typeID          = 0;    // 0=fixed block size, 1=user block size, 2=user block count
 
-blocksize      = 20 ;  // used for type 0, uniform x/y block size for cubes
+blocksize       = 20 ;  // used for type 0, uniform x/y block size for cubes
 
 blocksize_x     = 10;   // used for type 1, different x/y block size
 blocksize_y     = 20;
 
 blocks_x        = 7;    // used for type 2, number of blocks along x, used for calculated blocksize
 blocks_y        = 14;   // number of blocks along y
+
+organscale      = 100; 
 
 asset_typeID    = 0;    // 0=physical MT, 1=virtual block array, 2=virtual block/organ cut, 3=virtual organ model, 4=blockfull_bisection, 5=organ bisection
 
@@ -183,11 +186,11 @@ dimensions();
 //================================================================
 // construction variables - no need for user access
 //================================================================
-wall_width      = 20;       // thickness for walls and bottoms - only for outer_box (default 20)
+wall_width      = 10;       // thickness for walls and bottoms - only for outer_box (default 20)
 wall_height     = 20;       // height of outer box wall
-bottom_height   = 2;        // was 10; bottom thickness of inner_box & insert (*2 for full MT bottom thickness)
+bottom_height   = 5;        // was 10; bottom thickness of inner_box & insert (*2 for full MT bottom thickness)
 
-inner_frame_block  = 20;    // was 20; inner frame block size around insert
+inner_frame_block  = 10;    // was 20; inner frame block size around insert
 
 cut_width       = 1;        // was 1; width of cutting tool
 cut_depth       = 1;        // how far to cut below specimen
@@ -215,9 +218,6 @@ dimz_min    = 3;    // how much below baseline
 dimz_max    = 4;    // how much above baseline
 dimz_real   = 5;    // full height of organ, should be (abs(z_min))+z_max (or 2*z_max)
 
-
-// this is calculated from organscaleID
-//scaling_array   = [1.15,1,0.85];
 scaling_factor  = organscale/100;
 
 include <mt-organs.config>;
@@ -239,17 +239,6 @@ organ_zreal     = organ_properties[dimz_real] * scaling_factor;
 //================================================================
 // calculated dimensions, don't mess with these!
 //================================================================
-/* // Type 1, square blocks, x=y
-1block_xdim      = blocksize;
-1block_ydim      = blocksize;
-
-// Type 2, rectangular blocks, x!=y
-2block_xdim      = blocksize_x;   // need to seperate x and y block size
-2block_ydim      = blocksize_y;  
-
-// Type 3, number of blocks, user requested, dimensions => organ_size/no.of blocks
-3block_xdim      = (organ_xdim+cut_width)/blocks_x;
-3block_ydim      = (organ_ydim+cut_width)/blocks_y; */
 
 // put block sizes in x and y lists, then retrieve what we need based on type parameter as index
 xlist = [blocksize,blocksize_x,(organ_xdim+cut_width)/blocks_x];
@@ -636,7 +625,7 @@ module column_slot_array() {
 // row slots===============================================
 // row cutting slot
 module row_slot() {
-    translate([-(organ_xdim+wall_width),0,-(organ_zreal/2+cut_depth)])
+    translate([-wall_width*2,0,-(organ_zreal/2+cut_depth)])
         cube([outer_box_xdim+wall_width*2,cut_width,organ_zreal+cut_depth*2]);
 }
 
@@ -655,12 +644,12 @@ module row_slot_array() {
 // output one number character, position shifted, font size adjusted
 module block_number(character) {
     //for character centering in x (y can stay static) 
-    font_size   = block_ydim/2.5;
-    font_width  = font_size/1.375;
+    font_size   = block_ydim/4;
+    font_width  = font_size/1.1;
     font_gap    = (inner_frame_block-font_width)/2;
     
     linear_extrude(type_thickness)
-    translate([-(font_width+font_gap)-3,-block_ydim*0.6,0])    //-inner_frame_block*0.75
+    translate([-(font_width+font_gap*1.5),-block_ydim*0.6,0])    //-inner_frame_block*0.75
     
     // interprets two-digit numbers up to 29
     if (character < start_number+9)
@@ -679,25 +668,29 @@ module block_number(character) {
 
 // all numbers, line feed depends on block_ydim
 module number_array(character) {
-    for (dy = [0:-block_ydim:-insert_box_ydim+block_ydim]) {
-        translate([0,dy,0])
-        block_number(character+(-dy/block_ydim));
+    if (blocks_y > 1) {
+        for (dy = [0:-block_ydim:-insert_box_ydim+block_ydim]) {
+            translate([0,dy,0])
+            block_number(character+(-dy/block_ydim));
+        }
     }
 }
 
 // all numbers, for top half, reverse side and rotate
 module numbertop_array(character) {
-    for (dy = [0:-block_ydim:-insert_box_ydim+block_ydim]) {    
-        translate([block_xdim*(insert_box_xdim/block_xdim),dy,0])
-        rotate([0,180,0])
-        block_number(character+(-dy/block_ydim));
+    if (blocks_y > 1) {
+        for (dy = [0:-block_ydim:-insert_box_ydim+block_ydim]) {    
+            translate([block_xdim*(insert_box_xdim/block_xdim),dy,0])
+            rotate([0,180,0])
+            block_number(character+(-dy/block_ydim));
+        }
     }
 }
 
 // output one letter character, position shifted, font size&position adjusted
 module block_letter(character) {
-    font_size   = block_xdim/2.5;
-    font_gap    = (inner_frame_block-font_size)/2;
+    font_size   = block_xdim/6;
+    font_gap    = (inner_frame_block-font_size)/1.5;
     
     linear_extrude(type_thickness)
     translate([block_xdim*0.3,font_gap,0])
@@ -706,40 +699,44 @@ module block_letter(character) {
 
 // all letters, col. feed depends on block_xdim================
 module letter_array(character) {
-    for (dx = [0:block_xdim:insert_box_xdim-block_xdim]) {
-        translate([dx,0,0])
-        block_letter(character+dx/block_xdim);        
+    if (blocks_x > 1) {
+        for (dx = [0:block_xdim:insert_box_xdim-block_xdim]) {
+            translate([dx,0,0])
+            block_letter(character+dx/block_xdim);        
+        }
     }
 }
 
 // letters for top frame columns, reverse sequence, rotated================
 module lettertop_array(character) {
-    character = character-1;
-    for (dx = [block_xdim:block_xdim:insert_box_xdim]) {
-        translate([dx,0,0])
-        rotate([0,180,0])
-        block_letter(character+dx/block_xdim);        
+    if (blocks_x > 1) {
+        character = character-1;
+        for (dx = [block_xdim:block_xdim:insert_box_xdim]) {
+            translate([dx,0,0])
+            rotate([0,180,0])
+            block_letter(character+dx/block_xdim);        
+        }
     }
 }
 
 // create bottom layer info text ("b") in zero corner
 module layer_info_bottom() {
-    font_size   = block_xdim/2;
-    font_width  = font_size/1.375;
-    font_gap    = (inner_frame_block-font_width)/2;
+    font_size   = inner_frame_block*0.5;
+    font_width  = font_size/1.1;
+    font_gap    = (inner_frame_block-font_width)/1.5;
     
     linear_extrude(type_thickness)
-    translate([-(font_width+font_gap),wall_width*0.15,0])
+    translate([-(font_width+font_gap),wall_width*0.4,0])
     text("b",size=font_size);
 }
 
 // create top layer info text ("t") in zero corner
 module layer_info_top() {
-    font_size   = block_xdim/2;
-    font_width  = font_size/1.375;
-    font_gap    = (inner_frame_block-font_width)/2;
+    font_size   = inner_frame_block*0.5;
+    font_width  = font_size/1.1;
+    font_gap    = (inner_frame_block-font_width)/1.5;
     
-    translate([((insert_box_xdim/block_xdim)*block_xdim)+wall_width/2,wall_width*0.15,0])
+    translate([((insert_box_xdim/block_xdim)*block_xdim)+wall_width/2,wall_width*0.4,0])
     rotate([0,180,0])
     linear_extrude(type_thickness)    
     text("t",size=font_size);

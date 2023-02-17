@@ -1,7 +1,7 @@
-// Millitome Generator Icebox Module V12
+// Millitome Generator Icebox Module V15
 //  developer: Peter Kienle, CNS
 
-// V12  2022-9-20
+// V15  2023-2-17
 //  2022-9-22   moved to active github
 
 // dimensions are in mm
@@ -22,47 +22,48 @@ $fs = 0.4;
 //
 // change values here for single run from Openscad
 // or run from terminal using command line; variables can be overrides using -D <property>=n
-//  - genderID      0 = female, 1 = male
-//  - organID       0 = kidney_l, 1 = kidney_r, 2 = spleen, 3 = pancreas, 4 = banana
-//  - lateralityID  0 = bottom, 1 = top
-//  - organ_scaleID 0 = large (115%, 1.15), 1 = medium (100%, 1), 2 = small (85%, 0.85)
-//  - typeID        0 = fixed block size, 1=user block size, 2=user block count
+//  - genderID      0=female, 1=male
+//  - organID       0=kidney_l, 1=kidney_r, 2=spleen, 3=pancreas, 4=banana, 5=vb_pancreas
+//  - lateralityID  0=bottom, 1=top
+//  - typeID        0=fixed block size, 1=user block size, 2=user block count
 
-//  - block_size    10, 15, 20 (blocksize in mm)
+//  - blocksize     5-30
 
-//  - block_xsize   used for type 1, block x size
-//  - block_ysize   used for type 1, block y size
+//  - blocksize_x   5-30
+//  - blocksize_y   5-30
 
-//  - blocks_x      used for type 2, number of blocks along x, used for calculated block_size
-//  - blocks_y      number of blocks along y
+//  - blocks_x      1-50
+//  - blocks_y      1-50
 
-//  - asset_typeID  0=physical, 1=virtual
+//  - organscale    25-150
 
-//  - output_flag   0 = ECHO everything, 1 = ECHO insert line only, 2 = ECHO col/row insert ONLY
-//
-//===============================================================
+//  - asset_typeID  // 0=physical MT, 1=virtual block array, 2=virtual block/organ cut, 3=virtual organ model
 
+//  - output_flag   0=ECHO everything, 1=ECHO insert line only, 2=ECHO col/row insert ONLY
+//================================================================
 //------when running from MT-Customizer or MT-Master these variables must be disabled, otherwise they will override variables from master script!!
 /*
 genderID        = 0;    // 0=female, 1=male, needs to be integer selector
-organID         = 2;    // index for list lookup
-lateralityID    = 0;    // 0=bottom, 1=top, 2=bypass MT creation      
-organ_scaleID   = 1;    // 0=large,1=medium,2=small                    
+organID         = 4;    // index for list lookup
+lateralityID    = 0;    // 0=bottom, 1=top, 2=bypass MT creation                       
 
 typeID          = 0;    // 0=fixed block size, 1=user block size, 2=user block count
 
-block_size      = 20 ;  // used for type 0, uniform x/y block size for cubes
+blocksize       = 20 ;  // used for type 0, uniform x/y block size for cubes
 
-block_xsize     = 10;   // used for type 1, different x/y block size
-block_ysize     = 20;
+blocksize_x     = 10;   // used for type 1, different x/y block size
+blocksize_y     = 20;
 
-blocks_x        = 7;    // used for type 2, number of blocks along x, used for calculated block_size
+blocks_x        = 7;    // used for type 2, number of blocks along x, used for calculated blocksize
 blocks_y        = 14;   // number of blocks along y
 
-asset_typeID    = 0;    // 0=physical, 1=virtual
+organscale      = 100; 
+
+asset_typeID    = 0;    // 0=physical MT, 1=virtual block array, 2=virtual block/organ cut, 3=virtual organ model, 4=blockfull_bisection, 5=organ bisection
 
 output_flag     = 0;    // 0 = ECHO everything, 1 = ECHO insert line only, 2 = ECHO col/row insert ONLY
 */
+
 //================================================================
 // Object Generation Area
 //  uncomment function(s) to be executed when running program
@@ -84,13 +85,13 @@ if (asset_typeID == 1) icebox_3d();
 //================================================================
 // construction variables - no need for user access
 //================================================================
-wall_width      = 20;       // thickness for walls and bottoms - only for outer_box
-wall_height     = 20;       // height of outer box wall
+wall_width      = 10;       // thickness for walls and bottoms - only for outer_box
+wall_height     = 10;       // height of outer box wall
 bottom_height   = 5;        // was 10; bottom thickness of inner_box & insert (*2 for full MT bottom thickness)
 
-inner_frame_block  = 15;    // was 20; inner frame block size around insert
+inner_frame_block  = 10;    // was 20; inner frame block size around insert
 
-cut_width       = 2;        // was 1; width of cutting tool
+cut_width       = 1;        // was 1; width of cutting tool
 cut_depth       = 1;        // how far to cut below specimen
 
 start_character = 65;       // is A - for column letters
@@ -116,9 +117,7 @@ dimz_min    = 3;    // how much below baseline
 dimz_max    = 4;    // how much above baseline
 dimz_real   = 5;    // full height of organ, should be (abs(z_min))+z_max (or 2*z_max)
 
-// this is calculated from organ_scale
-scaling_array   = [1.15,1,0.85];
-scaling_factor  = scaling_array[organ_scaleID];
+scaling_factor  = organscale/100;
 
 include <mt-organs.config>;
 
@@ -139,25 +138,15 @@ organ_zreal     = organ_properties[dimz_real] * scaling_factor;
 //================================================================
 // calculated dimensions, don't mess with these!
 //================================================================
-// Type 1, square blocks, x=y
-1block_xdim      = block_size;
-1block_ydim      = block_size;
-
-// Type 2, rectangular blocks, x!=y
-2block_xdim      = block_xsize;   // need to seperate x and y block size
-2block_ydim      = block_ysize;  
-
-// Type 3, number of blocks, user requested, dimensions => organ_size/no.of blocks
-3block_xdim      = organ_xdim/blocks_x;
-3block_ydim      = organ_ydim/blocks_y;
-
 // put block sizes in x and y lists, then retrieve what we need based on type parameter as index
-xlist = [1block_xdim,2block_xdim,3block_xdim];
-ylist = [1block_ydim,2block_ydim,3block_ydim];
+xlist = [blocksize,blocksize_x,(organ_xdim+cut_width)/blocks_x];
+ylist = [blocksize,blocksize_y,(organ_ydim+cut_width)/blocks_y];
 
 // fetch block sizes according to requested type ID, corrected for 0 index
 block_xdim      = xlist[typeID];
 block_ydim      = ylist[typeID];
+
+echo ("block_xdim=",block_xdim," block_ydim=",block_ydim);
 
 // insert box dim., rounded to next full blocksize, mode 1&2 only
 1insert_box_xdim = (((organ_xdim-(organ_xdim % block_xdim))/block_xdim)*block_xdim)+block_xdim;  // next full block_size
@@ -456,28 +445,6 @@ module lettertop_array(character) {
     }
 }
 
-// create bottom layer info text ("b") in zero corner
-module layer_info_bottom() {
-    font_size   = block_xdim/2;
-    font_width  = font_size/1.375;
-    font_gap    = (inner_frame_block-font_width)/2;
-    
-    linear_extrude(type_thickness)
-    translate([-(font_width+font_gap),wall_width*0.15,0])
-    text("b",size=font_size);
-}
-
-// create top layer info text ("t") in zero corner
-module layer_info_top() {
-    font_size   = block_xdim/2;
-    font_width  = font_size/1.375;
-    font_gap    = (inner_frame_block-font_width)/2;
-    
-    translate([((insert_box_xdim/block_xdim)*block_xdim)+wall_width/2,wall_width*0.15,0])
-    rotate([0,180,0])
-    linear_extrude(type_thickness)    
-    text("t",size=font_size);
-}
 
 
 // all IDs for block_array===================

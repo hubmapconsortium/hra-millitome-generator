@@ -8,15 +8,15 @@ laterality      = "bottom";    // [bottom,top,bottom no ID]
 
 blocktype       = "uniform-blocksize";    // [uniform-blocksize,XY-blocksize,XY-blockcount]
 
-blocksize       = 20;   // blocksize x&y 1-nn in mm
+blocksize       = 20;   // [5:30]
 
-blocksize_x     = 20;   // blocksize x 1-nn in mm
-blocksize_y     = 20;   // blocksize y 1-nn in mm
+blocksize_x     = 20;   // [5:30]
+blocksize_y     = 20;   // [5:30]
 
-blocks_x        = 3;    // used for blocktype=3, number of blocks along x, used for calculated blocksize
-blocks_y        = 5;   // number of blocks along y
+blocks_x        = 3;    // [1:50]
+blocks_y        = 5;    // [1:50]
 
-organscale      = 100;         
+organscale      = 100;  // [25:150]         
 
 module __Customizer_Limit__ () {}  // show in customizer up to here
     shown_by_customizer = false;
@@ -28,7 +28,8 @@ module __Customizer_Limit__ () {}  // show in customizer up to here
 // Peter Kienle, CNS
 // master controller to launch MT-Generator & MT-Icebox applications
 
-// V0.5 2023-2-2
+// V0.5 2023-2-17
+//  2023-2-17   added sliders for numerical input
 //  2023-2-16   modified organscale to use 1-nnn flexible values; flexible blocksizes
 //  2023-1-19   remove uncommon asset types
 //  2022-10-25  added organ bisection

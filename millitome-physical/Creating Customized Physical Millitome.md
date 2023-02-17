@@ -20,9 +20,10 @@
 - The [OpenSCAD](https://openscad.org) application must be installed
 - Launch "MT-Customizer.scad"
 - If Customizer panel is not open, use ->Window->Customizer
+- If the parameter list is not showing, click the small disclosure triangle to the left of "Parameters"
 
 <p align="center">
-  <img src="images/mt-customizer-1.png" height="500">
+  <img src="images/mt-customizer-1.png" height="550">
 </p>
 
 ### **Choose and customize 3D asset**
@@ -32,12 +33,12 @@
 - organ
 - laterality: top, bottom
 - blocktype: uniform-blocksize, XY-blocksize, XY-blockcount
-- blocksize: set both X and Y to entered value (used by uniform-blocksize)
-- blocksize_x: set X to entered value (used by XY-blocksize)
-- blocksize_y: set Y to entered value (used by XY-blocksize)
-- blocks_x: number of blocks along X (used by XY-blockcount)
-- blocks_y: number of blocks along Y (used by XY-blockcount)
-- organscale: 1-nnn percent where 100 is default scale
+- blocksize: used by uniform-blocksize for X & Y
+- blocksize_x: used by XY-blocksize for X
+- blocksize_y: used by XY-blocksize for Y
+- blocks_x: number of blocks along X, used by XY-blockcount; if 1 no segmentation
+- blocks_y: number of blocks along Y, used by XY-blockcount; if 1 no segmentation
+- organscale: 1-150 percent where 100 is default scale
 
 Note: If Automatic Preview is checked, every change in the Customizer panel will initiate rendering of the requested asset. Some asset configurations such as large iceboxes can take several minutes to preview. To make multiple adjustments in the Customizer panel, it is recommended to uncheck Automatic Preview.
 
