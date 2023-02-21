@@ -5,6 +5,12 @@ generic_z    =   20; // [5:40]
 
 module __Customizer_Limit__ () {}  // show in customizer up to here
     shown_by_customizer = false;
+// MT_Generic 
+// by Peter Kienle, CNS
+//
+// uses configurable ellipsoid as organ cast
+//
+//  V0.1    2023/2/21
 
 $fa = 1;
 $fs = 0.1;
@@ -432,18 +438,12 @@ module column_slot_array() {
 
 // fake organ, generic ellipsoid
 module generic() {
-translate ([organ_xdim/2,-scale_y/2,0])
-    scale ([scale_x,scale_y,scale_z])
+translate ([organ_xdim/2,-organ_ydim/2,0])
+    scale ([organ_xdim,organ_ydim,organ_zreal])
         sphere (d = 1);
 }
 
 
-organ_xdim      = organ_properties[dimx] * scaling_factor;
-organ_ydim      = organ_properties[dimy] * scaling_factor;
-
-organ_zmin      = organ_properties[dimz_min] * scaling_factor;
-organ_zmax      = organ_properties[dimz_max] * scaling_factor;
-organ_zreal     = organ_properties[dimz_real] * scaling_factor;
 
 // row slots===============================================
 // row cutting slot
