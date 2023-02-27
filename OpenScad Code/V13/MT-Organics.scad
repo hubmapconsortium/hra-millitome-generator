@@ -50,7 +50,7 @@ genderID        = 0;    // 0=female, 1=male, needs to be integer selector
 organID         = 0;    // index for list lookup
 
 organ_scaleID   = 1;    // 0=large,1=medium,2=small                    
-asset_typeID    = 6;    // 6=organblocks, 7=boxblocks, 0=organ
+asset_typeID    = 7;    // 6=organblocks, 7=boxblocks, 0=organ
 
 // segment counts along three available axis
 count_x          = 3;

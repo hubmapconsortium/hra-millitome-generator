@@ -1,0 +1,86 @@
+solid OpenSCAD_Model
+  facet normal 1 -0 0
+    outer loop
+      vertex 72.01 -26.1021 24.31
+      vertex 72.01 -17.4014 0.0299997
+      vertex 72.01 -17.4014 24.31
+    endloop
+  endfacet
+  facet normal 1 0 0
+    outer loop
+      vertex 72.01 -17.4014 0.0299997
+      vertex 72.01 -26.1021 24.31
+      vertex 72.01 -26.1021 0.0299997
+    endloop
+  endfacet
+  facet normal -0 0 1
+    outer loop
+      vertex 61.7229 -17.4014 24.31
+      vertex 72.01 -26.1021 24.31
+      vertex 72.01 -17.4014 24.31
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 72.01 -26.1021 24.31
+      vertex 61.7229 -17.4014 24.31
+      vertex 61.7229 -26.1021 24.31
+    endloop
+  endfacet
+  facet normal 0 0 -1
+    outer loop
+      vertex 61.7229 -26.1021 0.0299997
+      vertex 72.01 -17.4014 0.0299997
+      vertex 72.01 -26.1021 0.0299997
+    endloop
+  endfacet
+  facet normal -0 0 -1
+    outer loop
+      vertex 72.01 -17.4014 0.0299997
+      vertex 61.7229 -26.1021 0.0299997
+      vertex 61.7229 -17.4014 0.0299997
+    endloop
+  endfacet
+  facet normal -1 0 0
+    outer loop
+      vertex 61.7229 -26.1021 0.0299997
+      vertex 61.7229 -17.4014 24.31
+      vertex 61.7229 -17.4014 0.0299997
+    endloop
+  endfacet
+  facet normal -1 -0 0
+    outer loop
+      vertex 61.7229 -17.4014 24.31
+      vertex 61.7229 -26.1021 0.0299997
+      vertex 61.7229 -26.1021 24.31
+    endloop
+  endfacet
+  facet normal 0 1 -0
+    outer loop
+      vertex 72.01 -17.4014 0.0299997
+      vertex 61.7229 -17.4014 24.31
+      vertex 72.01 -17.4014 24.31
+    endloop
+  endfacet
+  facet normal 0 1 0
+    outer loop
+      vertex 61.7229 -17.4014 24.31
+      vertex 72.01 -17.4014 0.0299997
+      vertex 61.7229 -17.4014 0.0299997
+    endloop
+  endfacet
+  facet normal 0 -1 0
+    outer loop
+      vertex 61.7229 -26.1021 0.0299997
+      vertex 72.01 -26.1021 24.31
+      vertex 61.7229 -26.1021 24.31
+    endloop
+  endfacet
+  facet normal 0 -1 -0
+    outer loop
+      vertex 72.01 -26.1021 24.31
+      vertex 61.7229 -26.1021 0.0299997
+      vertex 72.01 -26.1021 0.0299997
+    endloop
+  endfacet
+endsolid OpenSCAD_Model
