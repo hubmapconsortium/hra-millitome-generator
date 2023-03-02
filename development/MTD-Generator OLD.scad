@@ -1,9 +1,8 @@
-// Millitome Generator V15
+// Millitome Generator V14
 //  developer: Peter Kienle, CNS
-//  developer  version test
+//  developer  version
 
-// V15  2023-3-2
-//  2023-3-2    add support for generic() coming in through MTD-Generic; fixed bisection box
+// V15  2023-2-17
 //  2023-2-17   adjust letter & number columns
 //  2023-2-17   add "no cut" when "1" slot is requested; updated calculated dimension l240
 //  2023-2-16   modified organscale to use percentages 1-nnn
@@ -221,17 +220,13 @@ dimz_real   = 5;    // full height of organ, should be (abs(z_min))+z_max (or 2*
 
 scaling_factor  = organscale/100;
 
-generic_list = [
-    ["generic",generic_x,generic_y,generic_z/2,-generic_z/2,generic_z]
-];
-
 include <mt-organs.config>;
 
-echo (genderID);
 // populate organ dimensions from organ_lists
-organ_lists = [organ_list_f,organ_list_m,generic_list];     // genderID ID selects organ_list from here
-organ_list  = organ_lists[genderID];            // female, male or generic organ_list, genderID is selector
-organ_properties    = organ_list[organID];      // retrieve property list for this organ, organID is selector
+organ_lists = [organ_list_f,organ_list_m];      // genderID ID selects organ_list from here
+organ_list  = organ_lists[genderID];              // female or male organ_list, genderID is selector
+
+organ_properties    = organ_list[organID];     // retrieve property list for this organ, organID is selector
 
 organ_file      = organ_properties[filename];   // retrieve properties from list entry
 organ_xdim      = organ_properties[dimx] * scaling_factor;
@@ -553,8 +548,7 @@ module blockfull_array()
 // cut organ intro upper and lower sectors
 module bisection_box() {
     color("lightgreen")
-        //translate([-(block_xdim*2+wall_width),-outer_box_ydim+block_ydim,-(cut_width/2)])
-        translate([-block_xdim,-outer_box_ydim+block_ydim,-(cut_width/2)])
+        translate([-(block_xdim*2+wall_width),-outer_box_ydim+block_ydim,-(cut_width/2)])
         cube([outer_box_xdim+wall_width*2,outer_box_ydim+wall_width*2,cut_width]);
 }
 
@@ -577,30 +571,8 @@ module bisection_organ() {
 //organ==========================================================
 // organ import, aligned to top/left origin, z aligned to bisection plane
 
-module organ() {
-    if (genderID > 1) {generic();} else {organ_sub();}
-}
-
-module organ_bottom() {
-    if (genderID > 1) {generic();} else {organ_bottom_sub();}
-}
-
-module organ_top() {
-    if (genderID > 1) {generic();} else {organ_top_sub();}
-}
-
-
-// fake organ, generic ellipsoid
-module generic() {
-   echo ("using generic");
-    translate ([organ_xdim/2,-organ_ydim/2,0])
-    scale ([organ_xdim,organ_ydim,organ_zreal])
-        sphere (d = 1, $fa=1, $fs=0.1); // $fa, $fs used for better resolution
-}
-
 // imports regular organ polygon for display/rendering
-module organ_sub() {
-    echo ("using organic");
+module organ() {
     scale([scaling_factor,scaling_factor,scaling_factor])
     rotate([0,0,0])
         translate([0,0,0])
@@ -609,7 +581,7 @@ module organ_sub() {
 }
 
 // imports top-extended organ for mold-cutting in bottom box, name front extension
-module organ_bottom_sub() {
+module organ_bottom() {
     scale([scaling_factor,scaling_factor,scaling_factor])
     rotate([0,0,0])
         translate([0,0,0])
@@ -617,7 +589,7 @@ module organ_bottom_sub() {
 }
 
 // imports bottom-extended organ for mold-cutting in top box, name front extension
-module organ_top_sub() {
+module organ_top() {
     scale([scaling_factor,scaling_factor,scaling_factor])
     rotate([0,0,0])
         translate([0,0,0])
@@ -834,7 +806,7 @@ module dimensions()
     
     if (output_flag == 0) {
         echo(str("Organ Scale & Type: ",scaling_factor*100,"% ",organ_file));
-        echo(str("Organ dimensions: X = ",organ_xdim," Y = ",organ_ydim," Z = ",organ_zreal));  
+        echo(str("Organ dimensions: X = ",organ_xdim," Y = ",organ_ydim));  
         // dimensions of inner_box() = full perimeter size of millitome
         echo(str("Millitome dimensions: X = ",inner_box_xdim," Y = ",inner_box_ydim," Z = ",inner_box_zdim+type_thickness));
         echo(str("Columns: ",insert_box_xdim/block_xdim, " Rows: ",insert_box_ydim/block_ydim));

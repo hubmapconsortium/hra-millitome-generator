@@ -1,7 +1,33 @@
 
+// Width of generic (mm)
 generic_x    =   20; // [5:40]
+// Length of generic (mm)
 generic_y    =   30; // [5:60]
+// Height of generic (mm)
 generic_z    =   20; // [5:40]
+
+// select asset type
+product         = "MT-physical";   // [MT-physical,MT-block array,MT-sample blocks,MT-organ,MT-full array,MT-full organ bisection,IB-physical,IB-virtual]
+ 
+// select top or bottom
+laterality      = "bottom";    // [bottom,top,bottom no ID]        
+
+// select size of blocks or count of blocks 
+blocktype       = "uniform-blocksize";    // [uniform-blocksize,XY-blocksize,XY-blockcount]
+
+// size X/Y for uniform blocks
+blocksize       = 20;   // [5:30]
+
+// size X for blocks
+blocksize_x     = 20;   // [5:30]
+
+// size Y for blocks
+blocksize_y     = 20;   // [5:30]
+
+// number of segments along X
+blocks_x        = 3;    // [1:50]
+// number of segments along Y
+blocks_y        = 5;    // [1:50]
 
 module __Customizer_Limit__ () {}  // show in customizer up to here
     shown_by_customizer = false;
@@ -10,29 +36,31 @@ module __Customizer_Limit__ () {}  // show in customizer up to here
 //
 // uses configurable ellipsoid as organ cast
 //
-//  V0.1    2023/2/21
+//  V0.2    2023/3/2
+//  2023-3-2    full Customizer integration
+//  check line ~208 for info on how to generic_x is applied
 
 $fa = 1;
 $fs = 0.1;
 //==============================
 
 //genderID        = 0;    // 0=female, 1=male, needs to be integer selector
-organID         = 4;    // index for list lookup
-lateralityID    = 0;    // 0=bottom, 1=top, 2=bypass MT creation                       
+//organID         = 4;    // index for list lookup
+//lateralityID    = 0;    // 0=bottom, 1=top, 2=bypass MT creation                       
 
 typeID          = 2;    // 0=fixed block size, 1=user block size, 2=user block count
 
-blocksize       = 20 ;  // used for type 0, uniform x/y block size for cubes
+//blocksize       = 20 ;  // used for type 0, uniform x/y block size for cubes
 
-blocksize_x     = 10;   // used for type 1, different x/y block size
-blocksize_y     = 20;
+//blocksize_x     = 10;   // used for type 1, different x/y block size
+//blocksize_y     = 20;
 
-blocks_x        = 1;    // used for type 2, number of blocks along x, used for calculated blocksize
-blocks_y        = 7;   // number of blocks along y
+//blocks_x        = 1;    // used for type 2, number of blocks along x, used for calculated blocksize
+//blocks_y        = 12;   // number of blocks along y
 
-organscale      = 100; 
+//organscale      = 100; 
 
-asset_typeID    = 0;    // 0=physical MT, 1=virtual block array, 2=virtual block/organ cut, 3=virtual organ model, 4=blockfull_bisection, 5=organ bisection
+asset_typeID    = 1;    // 0=physical MT, 1=virtual block array, 2=virtual block/organ cut, 3=virtual organ model, 4=blockfull_bisection, 5=organ bisection
 
 output_flag     = 0;    // 0 = ECHO everything, 1 = ECHO insert line only, 2 = ECHO col/row insert ONLY
 
@@ -410,7 +438,8 @@ module bisection_box() {
 
 module bisection_organ() {
     difference() {
-        organ();
+        //organ();
+        generic();
         column_slot_array();
         row_slot_array();
         bisection_box();

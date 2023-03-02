@@ -1,40 +1,44 @@
 
+// Width of generic (mm)
+generic_x    =   20; // [5:40]
+// Length of generic (mm)
+generic_y    =   30; // [5:60]
+// Height of generic (mm)
+generic_z    =   20; // [5:40]
+
+// select asset type
 product         = "MT-physical";   // [MT-physical,MT-block array,MT-sample blocks,MT-organ,MT-full array,MT-full organ bisection,IB-physical,IB-virtual]
-
-gender          = "female";    // [female,male]
-organ           = "kidney_l";   // [kidney_l,kidney_r,spleen,pancreas,banana,vb_pancreas,ovary_l,ovalry_l,ovalry_l_penn,kidney_rotated]
  
-laterality      = "bottom";    // [bottom,top,bottom no ID]
+// select top or bottom
+laterality      = "bottom";    // [bottom,top,bottom no ID]        
 
+// select size of blocks or count of blocks 
 blocktype       = "uniform";    // [uniform,userXY,blockCount]
 
-blocksize       = 20 ;  // [5:30]
+// size X/Y for uniform blocks
+blocksize       = 20;   // [5:30]
 
+// size X for blocks
 blocksize_x     = 20;   // [5:30]
+
+// size Y for blocks
 blocksize_y     = 20;   // [5:30]
 
+// number of segments along X
 blocks_x        = 3;    // [1:50]
-blocks_y        = 6;   // [1:50]
-
-organscale      = 100; // [25:200]
+// number of segments along Y
+blocks_y        = 5;    // [1:50]
 
 module __Customizer_Limit__ () {}  // show in customizer up to here
     shown_by_customizer = false;
-//=======any commented ('//') lines above this will be shown in the Customizer window!!=========================
 
-// MTD-Customizer
-// developer version; can produce export all asset types
-
-// Peter Kienle, CNS
-// master controller to launch MT-Generator & MT-Icebox applications
-
-// V0.5 2023-2-20
-//  2023-2-20   added ovalry_l_penn for testing; extended organ scale top limit to 200%
-//  2023-2-17   added sliders for numerical input
-//  2023-2-16   added ovalry_l for testing; added flexible organ scale %
-//  2023-1-12   added ovary_l for testing
-//  2022-10-25  added organ bisection
-//  2022-10-26  added block full array
+// MT_Generic 
+// by Peter Kienle, CNS
+//
+// uses configurable ellipsoid as organ cast
+//
+//  V0.2    2023/3/2
+//  2023-3-2    full Customizer integration; use genderID & organID to switch organic/generic MT-Generator 224
 
 
 // defaults for MT building properties; [] items in comments are used by customizer; must match entries in property lists
@@ -43,17 +47,12 @@ output_flag     = 0;    // 0 = ECHO everything, 1 = ECHO insert line only, 2 = E
 
 // property lists------------------------------------------------
 // extract property IDs from string lists in Customizer
-genders = ["female","male"];
-genderID = [ for (i = [0:1:len(genders)]) if (gender==genders[i]) i][0];    //returns a list!! Need [0] at the end to get first item
-
-organs = ["kidney_l","kidney_r","spleen","pancreas","banana","vb_pancreas","ovary_l","ovalry_l","ovalry_l_penn","kidney_rotated"];
-organID = [ for (i = [0:1:len(organs)]) if (organ==organs[i]) i][0];
+//genders = ["female","male"];
+genderID = 2;   // selects for genric in MT_Generator
+organID = 0;    // default (use to decide on generator?
 
 lateralities = ["bottom","top","bottom no ID"];
 lateralityID = [ for (i = [0:1:len(lateralities)]) if (laterality==lateralities[i]) i][0];
-    
-//organscales = ["large","medium","small"];
-//organscaleID = [ for (i = [0:1:len(organscales)]) if (organscale==organscales[i]) i][0];
     
 type_list = ["uniform","userXY","blockCount"];
 typeID = [ for (i = [0:1:len(type_list)]) if (blocktype==type_list[i]) i][0];
@@ -61,9 +60,8 @@ typeID = [ for (i = [0:1:len(type_list)]) if (blocktype==type_list[i]) i][0];
 product_list = ["MT-physical","MT-block array","MT-sample blocks","MT-organ","MT-full array","MT-full organ bisection","IB-physical","IB-virtual"];
 productID = [ for (i = [0:1:len(product_list)]) if (product==product_list[i]) i][0];
     
-generic_x   = 1;
-generic_y   = 1;
-generic_z   = 1;
+organscale = 100;   // default
+    
 
 // call needed includes with appropriate asset type ID as per user request
 if (productID == 0) millitome_physical();
