@@ -29,15 +29,15 @@ organID         = 0    # 0=kidney_l, 1=kidney_r, 2=spleen, 3=pancreas, 4=banana,
 
 asset_typeID    = 6    # 6 = organblocks, 7 = boxblocks
 
-generic_x       = 40
-generic_y       = 60
-generic_z       = 30
+generic_x   = 30    # A-Z
+generic_y   = 60    # 1-n
+generic_z   = 20    # roman I-rn
 
 # block segmentation, how many blocks in x,y,
 # x=width, y=length, z=height
-count_x=2
-count_y=2
-count_z=2
+count_x     = 1
+count_y     = 12
+count_z     = 1
 
 # which specific block?
 #location_x=2
