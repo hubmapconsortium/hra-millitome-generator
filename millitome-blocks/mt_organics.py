@@ -1,7 +1,8 @@
 # MT Python pipeline
-# for V13.007
+# for V14
 
-# 2023-1-11
+# 2023-3-5
+# allow generics
 
 # check pancreas, does not make blocks!!
 
@@ -23,17 +24,20 @@ import shutil
 
 # configuration is here=========================
 #  these are passed on to Openscad
-genderID        = 0    # 0=female, 1=male, needs to be integer selector
-organID         = 6    # 0=kidney_l, 1=kidney_r, 2=spleen, 3=pancreas, 4=banana, 5=vb_pancreas
+genderID        = 2    # 0=female, 1=male, 2=generic (requires organID=0)
+organID         = 0    # 0=kidney_l, 1=kidney_r, 2=spleen, 3=pancreas, 4=banana, 5=vb_pancreas
 
 asset_typeID    = 6    # 6 = organblocks, 7 = boxblocks
 
+generic_x       = 40
+generic_y       = 60
+generic_z       = 30
 
 # block segmentation, how many blocks in x,y,
 # x=width, y=length, z=height
-count_x=1
-count_y=8
-count_z=1
+count_x=2
+count_y=2
+count_z=2
 
 # which specific block?
 #location_x=2
@@ -41,7 +45,7 @@ count_z=1
 #location_z=4
 
 #======this is handled in this script
-boundingBoxes   = True     # make bounding boxes?
+boundingBoxes   = False     # make bounding boxes?
 #========END=========================
 
 #======FUNCTIONS=========
@@ -60,8 +64,9 @@ def make_block(location_x,location_y,location_z,thisMaterial):
         "-o",outputFileName,\
         "-D genderID=" + str(genderID),\
         "-D organID=" + str(organID),\
-        "-D genderID=" + str(genderID),\
-        "-D organID=" + str(organID),\
+        "-D generic_x=" + str(generic_x),\
+        "-D generic_y=" + str(generic_y),\
+        "-D generic_z=" + str(generic_z),\
         "-D asset_typeID=" + str(asset_typeID),\
         "-D location_x=" + str(location_x),\
         "-D location_y=" + str(location_y),\
@@ -105,7 +110,7 @@ def make_block(location_x,location_y,location_z,thisMaterial):
 
 #======global defs===================
 appName             = '/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD' # path to OpenSCAD
-workDirectory       = '/Volumes/Venus/Earth/Projects/SICE/2021/HubMap/Millitome/hra-millitome-generator/OpenScad Code/V13/' # main output folder
+workDirectory       = '/Volumes/Venus/Earth/Projects/SICE/2021/HubMap/Millitome/hra-millitome-generator/millitome-blocks/' # main output folder
 mtGeneratorName     = 'MT-Organics.scad' # openscad program code to run
 outputFolderName    = 'temp_exports/' # main output folder
 
@@ -130,8 +135,11 @@ asciiList = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q'
 romanList = ['I','II','III','IV','V']   # lookup table for layer IDs
 
 # lookup tables for organs
-organList = ('kidney_l','kidney_r','spleen','pancreas','banana','vb_pancreas','ovary_l')
-genderList = ('f','m')
+organs = ('kidney_l','kidney_r','spleen','pancreas','banana','vb_pancreas','ovary_l')
+generics = ('oval','oval')
+genderList = ('f','m','g')
+organLists = (organs,organs,generics)
+organList = organLists[genderID]
 
 collectionName = genderList[genderID] + '_'\
     + organList[organID] + '_'\

@@ -1,7 +1,8 @@
 // Millitome Organics V13.005
 //  developer: Peter Kienle, CNS
 
-// V13  2023-4-5
+// V15  2023-3-5
+//  2023-3-5    add generics
 //  -added bounding_box_buffer, added to bounding box dimensions to ensure organ fits completely inside
 // check in mt-organs.config which organs are updated already
 
@@ -46,27 +47,28 @@ $fs = 0.4;
 //================================================================
 
 //======properties configuration list. When called from bash script these are overridden
-genderID        = 0;    // 0=female, 1=male, needs to be integer selector
+genderID        = 2;    // 0=female, 1=male, 2=generic
 organID         = 0;    // index for list lookup
+organscale      = 100;  // scale as percentage
 
-organ_scaleID   = 1;    // 0=large,1=medium,2=small                    
-asset_typeID    = 6;    // 6=organblocks, 7=boxblocks, 0=organ
+typeID          = 2;    // 0=fixed block size, 1=user block size, 2=user block count
 
 // segment counts along three available axis
-count_x          = 3;
-count_y          = 5;
-count_z          = 3;  
+count_x          = 2;
+count_y          = 2;
+count_z          = 2;  
 
 // specific segment to cut (values must not be greater than total segments counts, above)
 location_x      = 0;    // wide (A-Z)
-location_y      = 4;    // long (1-n)
+location_y      = 0;    // long (1-n)
 location_z      = 0;    // high (I-r, roman numerals)
+
+generic_x       = 50;
+generic_y       = 80;
+generic_z       = 40;
+
+asset_typeID    = 6;    // 6=organblocks, 7=boxblocks, 0=organ
 //=======END configuration============
-output_flag     = 0;    // 0=ECHO everything, 1=ECHO insert line only, 2=ECHO col/row insert ONLY
-
-
-//lateralityID    = 0;    // 0=bottom, 1=top, 2=bypass MT creation
-typeID          = 2;    // 0=fixed block size, 1=user block size, 2=user block count
 
 block_size      = 20 ;  // used for type 0, uniform x/y block size for cubes
 
@@ -76,6 +78,7 @@ block_ysize     = 20;
 blocks_x        = 2;    // used for type 2, number of blocks along x, used for calculated block_size
 blocks_y        = 5;   // number of blocks along y
 
+output_flag     = 0;    // 0=ECHO everything, 1=ECHO insert line only, 2=ECHO col/row insert ONLY
 
 //================================================================
 // Object Generation Area
@@ -234,7 +237,7 @@ bottom_height   = 5;        // was 10; bottom thickness of inner_box & insert (*
 
 inner_frame_block  = 15;    // was 20; inner frame block size around insert
 
-cut_width       = 0.5;        // was 1; width of cutting tool
+cut_width       = 0.1;      // was 1; width of cutting tool
 cut_depth       = 1;        // how far to cut below specimen
 bounding_box_buffer = 0.1;  // is added to organ size to make bounding box
 
@@ -262,17 +265,19 @@ dimz_max    = 4;    // how much above baseline
 dimz_real   = 5;    // full height of organ, should be (abs(z_min))+z_max (or 2*z_max)
 
 
-// this is calculated from organ_scaleID
-scaling_array   = [1.15,1,0.85];
-scaling_factor  = scaling_array[organ_scaleID];
+scaling_factor  = organscale/100;
+
+generic_list = [
+    ["generic",generic_x,generic_y,-generic_z/2,generic_z/2,generic_z]
+];
 
 include <mt-organs.config>;
 
+echo (genderID);
 // populate organ dimensions from organ_lists
-organ_lists = [organ_list_f,organ_list_m];      // genderID ID selects organ_list from here
-organ_list  = organ_lists[genderID];              // female or male organ_list, genderID is selector
-
-organ_properties    = organ_list[organID];     // retrieve property list for this organ, organID is selector
+organ_lists         = [organ_list_f,organ_list_m,generic_list];     // genderID ID selects organ_list from here
+organ_list          = organ_lists[genderID];            // female, male or generic organ_list, genderID is selector
+organ_properties    = organ_list[organID];      // retrieve property list for this organ, organID is selector
 
 organ_file      = organ_properties[filename];   // retrieve properties from list entry
 organ_xdim      = organ_properties[dimx] * scaling_factor;
@@ -295,7 +300,7 @@ module selective(dX,dY,dZ)
 }
 
 module cutBlock(dX,dY,dZ)
-{
+{   
     difference() {
         bounding_box();
         translate([0,-organ_ydim,-organ_zmax])
@@ -309,14 +314,14 @@ module organBlock(dX,dY,dZ) {
         organ();   
         cutBlock(dX,dY,dZ);
    }
+     
 }
 
 module boxBlock(dX,dY,dZ) {
     difference() {
         bounding_box();
         cutBlock(dX,dY,dZ);
-    }
-    
+    }  
 }
 
 
@@ -394,9 +399,14 @@ module bounding_box() {
         cube([organ_xdim+bounding_box_buffer,organ_ydim+bounding_box_buffer,organ_zreal+(2*bounding_box_buffer)],center=true);
 }
 
+module organ() {
+    if (genderID > 1) {generic();} else {organ_sub();}
+}
+
 
 // imports regular organ polygon for display/rendering
-module organ() {
+module organ_sub() {
+    echo ("using organic");
     scale([scaling_factor,scaling_factor,scaling_factor])
     rotate([0,0,0])
         translate([0,0,0])
@@ -404,6 +414,13 @@ module organ() {
             import(str(organ_folder,organ_file),convexity=3);
 }
 
+// fake organ, generic ellipsoid
+module generic() {
+   echo ("using generic");
+    translate ([organ_xdim/2,-organ_ydim/2,0])
+    scale ([organ_xdim,organ_ydim,organ_zreal])
+        sphere (d = 1, $fa=1, $fs=0.1); // $fa, $fs used for better resolution
+}
 
 
 

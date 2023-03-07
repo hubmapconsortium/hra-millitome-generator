@@ -1,17 +1,14 @@
-// Millitome Generator V15
+// Millitome Organics V13.005
 //  developer: Peter Kienle, CNS
-//  developer  version test
 
-// V15  2023-3-2
-//  2023-3-2    add support for generic() coming in through MTD-Generic; fixed bisection box
-//  2023-2-17   adjust letter & number columns
-//  2023-2-17   add "no cut" when "1" slot is requested; updated calculated dimension l240
-//  2023-2-16   modified organscale to use percentages 1-nnn
-//  2023-2-2    uniform variable names
-//  2022-9-12   lateralityID, mode 9 for bypass, mode 3 for bottom-only
-//  2022-9-22   moved to active github
-//  2022-10-25  added organ bisection
-//  2022-10-26  added block full bisection
+// V13  2023-4-5
+//  -added bounding_box_buffer, added to bounding box dimensions to ensure organ fits completely inside
+// check in mt-organs.config which organs are updated already
+
+// everything new is in organBlock section
+// this runs stand-alone for individual segments as declared in Object Generation Area
+// or is called from mt_organics.bash
+// 
 
 // dimensions are in mm
 //
@@ -33,86 +30,126 @@ $fs = 0.4;
 // or run from terminal using command line; variables can be overrides using -D <property>=n
 //  - genderID      0=female, 1=male
 //  - organID       0=kidney_l, 1=kidney_r, 2=spleen, 3=pancreas, 4=banana, 5=vb_pancreas
-//  - lateralityID  0=bottom, 1=top
-//  - typeID        0=fixed block size, 1=user block size, 2=user block count
-
-//  - blocksize     5-30
-
-//  - blocksize_x   5-30
-//  - blocksize_y   5-30
-
-//  - blocks_x      1-50
-//  - blocks_y      1-50
-
-//  - organscale    25-150
-
-//  - asset_typeID  // 0=physical MT, 1=virtual block array, 2=virtual block/organ cut, 3=virtual organ model
+//  - organ_scaleID 0=large (115%, 1.15), 1=medium (100%, 1), 2=small (85%, 0.85)
+//  - asset_typeID  6=organblocks, 7=boxblocks
 
 //  - output_flag   0=ECHO everything, 1=ECHO insert line only, 2=ECHO col/row insert ONLY
+
+//  - count_x       number of matrix segments along x
+//  - count_y       number of matrix segments along y
+//  - count_z       number of matrix segments along z
+
+//  - location_x    specific block to cut along x (width,columns, A-Z)
+//  - location_y    specific block to cut along y (length, rows, 1-n)
+//  - location_z    specific block to cut along z (height, layers, I-r; roman numerals)
+
 //================================================================
-//------when running from MT-Customizer or MT-Master these variables must be disabled, otherwise they will override variables from master script!!
-/*
+
+//======properties configuration list. When called from bash script these are overridden
 genderID        = 0;    // 0=female, 1=male, needs to be integer selector
-organID         = 4;    // index for list lookup
-lateralityID    = 0;    // 0=bottom, 1=top, 2=bypass MT creation                       
+organID         = 0;    // index for list lookup
 
-typeID          = 0;    // 0=fixed block size, 1=user block size, 2=user block count
+organ_scaleID   = 1;    // 0=large,1=medium,2=small                    
+asset_typeID    = 6;    // 6=organblocks, 7=boxblocks, 0=organ
 
-blocksize       = 20 ;  // used for type 0, uniform x/y block size for cubes
+// segment counts along three available axis
+count_x          = 3;
+count_y          = 5;
+count_z          = 3;  
 
-blocksize_x     = 10;   // used for type 1, different x/y block size
-blocksize_y     = 20;
+// specific segment to cut (values must not be greater than total segments counts, above)
+location_x      = 0;    // wide (A-Z)
+location_y      = 4;    // long (1-n)
+location_z      = 0;    // high (I-r, roman numerals)
+//=======END configuration============
+output_flag     = 0;    // 0=ECHO everything, 1=ECHO insert line only, 2=ECHO col/row insert ONLY
 
-blocks_x        = 7;    // used for type 2, number of blocks along x, used for calculated blocksize
-blocks_y        = 14;   // number of blocks along y
 
-organscale      = 100; 
+//lateralityID    = 0;    // 0=bottom, 1=top, 2=bypass MT creation
+typeID          = 2;    // 0=fixed block size, 1=user block size, 2=user block count
 
-asset_typeID    = 0;    // 0=physical MT, 1=virtual block array, 2=virtual block/organ cut, 3=virtual organ model, 4=blockfull_bisection, 5=organ bisection
+block_size      = 20 ;  // used for type 0, uniform x/y block size for cubes
 
-output_flag     = 0;    // 0 = ECHO everything, 1 = ECHO insert line only, 2 = ECHO col/row insert ONLY
-*/
+block_xsize     = 10;   // used for type 1, different x/y block size
+block_ysize     = 20;
+
+blocks_x        = 2;    // used for type 2, number of blocks along x, used for calculated block_size
+blocks_y        = 5;   // number of blocks along y
+
 
 //================================================================
 // Object Generation Area
 //  uncomment function(s) to be executed when running program
 //================================================================
-
-// asset_typeID = 0 - physical millitome
-if (asset_typeID == 0) {
-    if (lateralityID == 0) complete_bottom();       // complete bottom half
-    if (lateralityID == 1) complete_top();          // complete top half
-    if (lateralityID == 2) complete_bottom_noID();  // complete bottom half without layer ID
-}
-
-// asset_typeID = 1 - virtual block array
-if (asset_typeID == 1) {
-    if (lateralityID == 0 || lateralityID == 2) blockbottom_array();          // blocks, no ID labels are produced, bottom
-    if (lateralityID == 1) blocktop_array();             // same for top  
-}
-
-// asset_typeID = 2 - virtual block/organ cut
-if (asset_typeID == 2) {
-    if (lateralityID == 0 || lateralityID == 2) blockbottom_cutout();         // blocks overlapping with the organ, bottom
-    if (lateralityID == 1) blocktop_cutout();            // same for top
-}
-
-// asset_typeID = 3 - virtual unaltered organ model
-if (asset_typeID == 3) {
-    organ();
-}
-
-
-// asset_typeID = 4 - virtual fullblock bisection, in addition to X/Y cutting
-if (asset_typeID == 4){
-    blockfull_array();
-}
-
-// asset_typeID = 5 - virtual organ bisection, in addition to X/Y cutting
-if (asset_typeID == 5) {
-    bisection_organ();
-}
+if (asset_typeID == 6) organblocks();
+if (asset_typeID == 7) boxblocks();
+if (asset_typeID == 0) organ();
+if (asset_typeID == 1) bounding_box();
+if (asset_typeID == 2) cutBlock(location_x,location_y,location_z);
     
+module organblocks() {
+    organBlock(location_x,location_y,location_z);
+}
+
+module boxblocks() {
+    boxBlock(location_x,location_y,location_z);
+}
+
+//bounding_box();                 // box enclosing the organ exactly
+//organ();
+
+//stamper();
+//selective(1,3,1);
+//organBlock(1,3,1);
+
+
+
+/*
+module model()
+    organBlock(1,3,1);
+    
+//model();
+  color("red") 
+%bbox() model();
+
+module bbox() { 
+
+    // a 3D approx. of the children projection on X axis 
+    module xProjection() 
+        translate([0,1/2,-1/2]) 
+            linear_extrude(1) 
+                hull() 
+                    projection() 
+                        rotate([90,0,0]) 
+                            linear_extrude(1) 
+                                projection() children(); 
+  
+    // a bounding box with an offset of 1 in all axis
+    module bbx()  
+        minkowski() { 
+            xProjection() children(); // x axis
+            rotate(-90)               // y axis
+                xProjection() rotate(90) children(); 
+            rotate([0,-90,0])         // z axis
+                xProjection() rotate([0,90,0]) children(); 
+        } 
+    
+    // offset children() (a cube) by -1 in all axis
+    module shrink()
+   
+      intersection() {
+        translate([ 1, 1, 1]) children();
+        translate([-1,-1,-1]) children();
+      }
+
+   shrink() bbx() children(); 
+}
+
+*/
+
+    
+
+
 //===display of organ percentage user setting, organ name & size, millitome dimensions in console (look for ECHO:)
 // IMPORTANT: this must be activated when running from Terminal for automatic geometry/sheet creation
 // output_flag parameter controls what information is shown in console
@@ -140,7 +177,7 @@ dimensions();
 //outer_frame();                  // outer frame, with cutting slots, higher than inner frame (unused)
 
 //===shows the 3d model of the used organ for reference
-//organ();
+
 
 //========these functions produce individual components; for documentation, etc, makes it easier to texture
 //inner_frame();                  // inner frame (enclosure) around insert, no col/row IDs are produced
@@ -171,7 +208,7 @@ dimensions();
 
 //========most basic components, just boxes for various components                 
 //outer_box();                    // dimensions of outer frame box (unused)
-//bounding_box();                 // box enclosing the organ exactly
+
 //insert_box();                   // rastered box for insert
 //inserttop_box(); 
 
@@ -184,17 +221,22 @@ dimensions();
 //blockbottom_box();              // dimensions of block array box (type dependent)
 //blocktop_box();                 // same for top
 
+//====module test
+
+
+
 //================================================================
 // construction variables - no need for user access
 //================================================================
-wall_width      = 10;       // thickness for walls and bottoms - only for outer_box (default 20)
+wall_width      = 20;       // thickness for walls and bottoms - only for outer_box
 wall_height     = 20;       // height of outer box wall
 bottom_height   = 5;        // was 10; bottom thickness of inner_box & insert (*2 for full MT bottom thickness)
 
-inner_frame_block  = 10;    // was 20; inner frame block size around insert
+inner_frame_block  = 15;    // was 20; inner frame block size around insert
 
-cut_width       = 1;        // was 1; width of cutting tool
+cut_width       = 0.5;        // was 1; width of cutting tool
 cut_depth       = 1;        // how far to cut below specimen
+bounding_box_buffer = 0.1;  // is added to organ size to make bounding box
 
 start_character = 65;       // is A - for column letters
 start_number    = 49;       // is 0 - for row numbers
@@ -219,19 +261,18 @@ dimz_min    = 3;    // how much below baseline
 dimz_max    = 4;    // how much above baseline
 dimz_real   = 5;    // full height of organ, should be (abs(z_min))+z_max (or 2*z_max)
 
-scaling_factor  = organscale/100;
 
-generic_list = [
-    ["generic",generic_x,generic_y,-generic_z/2,generic_z/2,generic_z]
-];
+// this is calculated from organ_scaleID
+scaling_array   = [1.15,1,0.85];
+scaling_factor  = scaling_array[organ_scaleID];
 
 include <mt-organs.config>;
 
-echo (genderID);
 // populate organ dimensions from organ_lists
-organ_lists = [organ_list_f,organ_list_m,generic_list];     // genderID ID selects organ_list from here
-organ_list  = organ_lists[genderID];            // female, male or generic organ_list, genderID is selector
-organ_properties    = organ_list[organID];      // retrieve property list for this organ, organID is selector
+organ_lists = [organ_list_f,organ_list_m];      // genderID ID selects organ_list from here
+organ_list  = organ_lists[genderID];              // female or male organ_list, genderID is selector
+
+organ_properties    = organ_list[organID];     // retrieve property list for this organ, organID is selector
 
 organ_file      = organ_properties[filename];   // retrieve properties from list entry
 organ_xdim      = organ_properties[dimx] * scaling_factor;
@@ -241,23 +282,86 @@ organ_zmin      = organ_properties[dimz_min] * scaling_factor;
 organ_zmax      = organ_properties[dimz_max] * scaling_factor;
 organ_zreal     = organ_properties[dimz_real] * scaling_factor;
 
+// organ block section==========================================
+
+blockSizeX      = organ_xdim/count_x;
+blockSizeY      = organ_ydim/count_y;
+blockSizeZ      = organ_zreal/count_z;
+
+module selective(dX,dY,dZ)
+{
+    translate([dX*blockSizeX,dY*blockSizeY,dZ*blockSizeZ]) 
+        cube([blockSizeX,blockSizeY,blockSizeZ]);
+}
+
+module cutBlock(dX,dY,dZ)
+{
+    difference() {
+        bounding_box();
+        translate([0,-organ_ydim,-organ_zmax])
+           translate([dX*blockSizeX,dY*blockSizeY,dZ*blockSizeZ]) 
+                cube([blockSizeX,blockSizeY,blockSizeZ]);
+    }    
+}
+
+module organBlock(dX,dY,dZ) {
+    difference() {
+        organ();   
+        cutBlock(dX,dY,dZ);
+   }
+}
+
+module boxBlock(dX,dY,dZ) {
+    difference() {
+        bounding_box();
+        cutBlock(dX,dY,dZ);
+    }
+    
+}
+
+
+module stamper() {
+     translate([0,-organ_ydim,-organ_zmax])
+     for (dX = [0:1:count_x-1]) {
+        for (dY = [0:1:count_y-1]) {
+            for (dZ = [0:1:count_z-1]) {
+                echo((str("X=",dX*blockSizeX," Y=",dY*blockSizeY," Z=",dZ*blockSizeZ)));
+                 translate([dX*blockSizeX,dY*blockSizeY,dZ*blockSizeZ]) 
+                    cube([blockSizeX,blockSizeY,blockSizeZ]); 
+            }
+        }
+    }
+}
+
+
 //================================================================
 // calculated dimensions, don't mess with these!
 //================================================================
+// Type 1, square blocks, x=y
+1block_xdim      = block_size;
+1block_ydim      = block_size;
+
+// Type 2, rectangular blocks, x!=y
+2block_xdim      = block_xsize;   // need to seperate x and y block size
+2block_ydim      = block_ysize;  
+
+// Type 3, number of blocks, user requested, dimensions => organ_size/no.of blocks
+3block_xdim      = (organ_xdim+cut_width)/blocks_x;
+3block_ydim      = (organ_ydim+cut_width)/blocks_y;
+
+//echo ("3block_xdim=",3block_xdim," 3block_ydim=",3block_ydim);
 
 // put block sizes in x and y lists, then retrieve what we need based on type parameter as index
-xlist = [blocksize,blocksize_x,(organ_xdim+cut_width)/blocks_x];
-ylist = [blocksize,blocksize_y,(organ_ydim+cut_width)/blocks_y];
+xlist = [1block_xdim,2block_xdim,3block_xdim];
+ylist = [1block_ydim,2block_ydim,3block_ydim];
 
 // fetch block sizes according to requested type ID, corrected for 0 index
 block_xdim      = xlist[typeID];
 block_ydim      = ylist[typeID];
 
-echo ("block_xdim=",block_xdim," block_ydim=",block_ydim);
-
 // insert box dim., rounded to next full blocksize, mode 1&2 only
-1insert_box_xdim = (((organ_xdim-(organ_xdim % block_xdim))/block_xdim)*block_xdim)+block_xdim;  // next full blocksize
-1insert_box_ydim = (((organ_ydim-(organ_ydim % block_ydim))/block_ydim)*block_ydim)+block_ydim;  // next full blocksize
+1insert_box_xdim = (((organ_xdim-(organ_xdim % block_xdim))/block_xdim)*block_xdim)+block_xdim;  // next full block_size
+1insert_box_ydim = (((organ_ydim-(organ_ydim % block_ydim))/block_ydim)*block_ydim)+block_ydim;  // next full block_size
 
 // insert box dim., no-rounding, mode 3 only
 3insert_box_xdim = organ_xdim;
@@ -270,7 +374,7 @@ insert_box_ydim= typeID<3 ? 1insert_box_ydim:3insert_box_ydim;
 //calculate height of insert_box, add 2mm for cutting depth
 insert_box_zdim = organ_zreal/2+bottom_height;
 
-// inner_frame_box dim., based on insert dim., added blocksize around
+// inner_frame_box dim., based on insert dim., added block_size around
 inner_box_xdim  = insert_box_xdim+2*inner_frame_block;  
 inner_box_ydim  = insert_box_ydim+2*inner_frame_block;
 inner_box_zdim  = insert_box_zdim+bottom_height;
@@ -280,6 +384,28 @@ inner_box_zdim  = insert_box_zdim+bottom_height;
 outer_box_xdim  = inner_box_xdim+2*wall_width;
 outer_box_ydim  = inner_box_ydim+2*wall_width;
 outer_box_zdim  = inner_box_zdim+wall_height+bottom_height;
+
+
+
+// exact perimeter around the organ, based on organ dimensions
+module bounding_box() {
+    color("RoyalBlue")
+    translate([(organ_xdim+bounding_box_buffer)/2,-(organ_ydim+bounding_box_buffer)/2,0])
+        cube([organ_xdim+bounding_box_buffer,organ_ydim+bounding_box_buffer,organ_zreal+(2*bounding_box_buffer)],center=true);
+}
+
+
+// imports regular organ polygon for display/rendering
+module organ() {
+    scale([scaling_factor,scaling_factor,scaling_factor])
+    rotate([0,0,0])
+        translate([0,0,0])
+          //  import(organ_file,convexity=3);
+            import(str(organ_folder,organ_file),convexity=3);
+}
+
+
+
 
 //================================================================
 // functions
@@ -389,12 +515,12 @@ module innertop_box() {
 
 // used to cut inner_box opening into outer_box to make outer_frame
 module inner_box_cut() {
-     translate([-inner_frame_block,-(inner_box_ydim-inner_frame_block),-(insert_box_zdim/2+blocksize)])
+     translate([-inner_frame_block,-(inner_box_ydim-inner_frame_block),-(insert_box_zdim/2+block_size)])
         cube([inner_box_xdim,inner_box_ydim,outer_box_zdim]);       
 }
 
 module innertop_box_cut() {
-     translate([-inner_frame_block,-(inner_box_ydim-inner_frame_block),insert_box_zdim/2+blocksize-outer_box_zdim])
+     translate([-inner_frame_block,-(inner_box_ydim-inner_frame_block),insert_box_zdim/2+block_size-outer_box_zdim])
         cube([inner_box_xdim,inner_box_ydim,outer_box_zdim]);       
 }
 
@@ -553,8 +679,7 @@ module blockfull_array()
 // cut organ intro upper and lower sectors
 module bisection_box() {
     color("lightgreen")
-        //translate([-(block_xdim*2+wall_width),-outer_box_ydim+block_ydim,-(cut_width/2)])
-        translate([-block_xdim,-outer_box_ydim+block_ydim,-(cut_width/2)])
+        translate([-(block_xdim*2+wall_width),-outer_box_ydim+block_ydim,-(cut_width/2)])
         cube([outer_box_xdim+wall_width*2,outer_box_ydim+wall_width*2,cut_width]);
 }
 
@@ -577,39 +702,10 @@ module bisection_organ() {
 //organ==========================================================
 // organ import, aligned to top/left origin, z aligned to bisection plane
 
-module organ() {
-    if (genderID > 1) {generic();} else {organ_sub();}
-}
 
-module organ_bottom() {
-    if (genderID > 1) {generic();} else {organ_bottom_sub();}
-}
-
-module organ_top() {
-    if (genderID > 1) {generic();} else {organ_top_sub();}
-}
-
-
-// fake organ, generic ellipsoid
-module generic() {
-   echo ("using generic");
-    translate ([organ_xdim/2,-organ_ydim/2,0])
-    scale ([organ_xdim,organ_ydim,organ_zreal])
-        sphere (d = 1, $fa=1, $fs=0.1); // $fa, $fs used for better resolution
-}
-
-// imports regular organ polygon for display/rendering
-module organ_sub() {
-    echo ("using organic");
-    scale([scaling_factor,scaling_factor,scaling_factor])
-    rotate([0,0,0])
-        translate([0,0,0])
-          //  import(organ_file,convexity=3);
-            import(str(organ_folder,organ_file),convexity=3);
-}
 
 // imports top-extended organ for mold-cutting in bottom box, name front extension
-module organ_bottom_sub() {
+module organ_bottom() {
     scale([scaling_factor,scaling_factor,scaling_factor])
     rotate([0,0,0])
         translate([0,0,0])
@@ -617,7 +713,7 @@ module organ_bottom_sub() {
 }
 
 // imports bottom-extended organ for mold-cutting in top box, name front extension
-module organ_top_sub() {
+module organ_top() {
     scale([scaling_factor,scaling_factor,scaling_factor])
     rotate([0,0,0])
         translate([0,0,0])
@@ -625,45 +721,37 @@ module organ_top_sub() {
 }
 
 
-// exact perimeter around the organ, based on organ dimensions
-module bounding_box() {
-    color("RoyalBlue")
-    translate([organ_xdim/2,-organ_ydim/2,0])
-        cube([organ_xdim,organ_ydim,organ_zdim],center=true);
-}
+
 
 
 // column slots============================================
 // column cutting slot 
 module column_slot() {  
-    translate([-cut_width,-outer_box_ydim,-(organ_zreal/2+cut_depth)])
+    translate([-cut_width,-outer_box_ydim+block_ydim,-(organ_zreal/2+cut_depth)])
         cube([cut_width,outer_box_ydim+wall_width*2,organ_zreal+cut_depth*2]);
 }
  
 // column slot array
 module column_slot_array() {
-    if (blocks_x > 1) {
-        for (dx = [0:block_xdim:insert_box_xdim]) {
-            translate([dx,0,0])
-                column_slot();
-        }
+    for (dx = [0:block_xdim:insert_box_xdim]) {
+        translate([dx,0,0])
+            column_slot();
     }
 }
+
 
 // row slots===============================================
 // row cutting slot
 module row_slot() {
-    translate([-wall_width*2,0,-(organ_zreal/2+cut_depth)])
+    translate([-(block_xdim*2+wall_width),0,-(organ_zreal/2+cut_depth)])
         cube([outer_box_xdim+wall_width*2,cut_width,organ_zreal+cut_depth*2]);
 }
 
 // row slot array
 module row_slot_array() {
-    if (blocks_y > 1) {
-        for (dy = [0:-block_ydim:-insert_box_ydim]) {
-            translate([0,dy,0])
-                row_slot();
-        }
+    for (dy = [0:-block_ydim:-insert_box_ydim]) {
+        translate([0,dy,0])
+            row_slot();
     }
 }
 
@@ -672,12 +760,12 @@ module row_slot_array() {
 // output one number character, position shifted, font size adjusted
 module block_number(character) {
     //for character centering in x (y can stay static) 
-    font_size   = block_ydim/4;
-    font_width  = font_size/1.1;
+    font_size   = block_ydim/2.5;
+    font_width  = font_size/1.375;
     font_gap    = (inner_frame_block-font_width)/2;
     
     linear_extrude(type_thickness)
-    translate([-(font_width+font_gap*1.5),-block_ydim*0.6,0])    //-inner_frame_block*0.75
+    translate([-(font_width+font_gap)-3,-block_ydim*0.6,0])    //-inner_frame_block*0.75
     
     // interprets two-digit numbers up to 29
     if (character < start_number+9)
@@ -696,29 +784,25 @@ module block_number(character) {
 
 // all numbers, line feed depends on block_ydim
 module number_array(character) {
-    if (blocks_y > 1) {
-        for (dy = [0:-block_ydim:-insert_box_ydim+block_ydim]) {
-            translate([0,dy,0])
-            block_number(character+(-dy/block_ydim));
-        }
+    for (dy = [0:-block_ydim:-insert_box_ydim+block_ydim]) {
+        translate([0,dy,0])
+        block_number(character+(-dy/block_ydim));
     }
 }
 
 // all numbers, for top half, reverse side and rotate
 module numbertop_array(character) {
-    if (blocks_y > 1) {
-        for (dy = [0:-block_ydim:-insert_box_ydim+block_ydim]) {    
-            translate([block_xdim*(insert_box_xdim/block_xdim),dy,0])
-            rotate([0,180,0])
-            block_number(character+(-dy/block_ydim));
-        }
+    for (dy = [0:-block_ydim:-insert_box_ydim+block_ydim]) {    
+        translate([block_xdim*(insert_box_xdim/block_xdim),dy,0])
+        rotate([0,180,0])
+        block_number(character+(-dy/block_ydim));
     }
 }
 
 // output one letter character, position shifted, font size&position adjusted
 module block_letter(character) {
-    font_size   = block_xdim/6;
-    font_gap    = (inner_frame_block-font_size)/1.5;
+    font_size   = block_xdim/2.5;
+    font_gap    = (inner_frame_block-font_size)/2;
     
     linear_extrude(type_thickness)
     translate([block_xdim*0.3,font_gap,0])
@@ -727,44 +811,40 @@ module block_letter(character) {
 
 // all letters, col. feed depends on block_xdim================
 module letter_array(character) {
-    if (blocks_x > 1) {
-        for (dx = [0:block_xdim:insert_box_xdim-block_xdim]) {
-            translate([dx,0,0])
-            block_letter(character+dx/block_xdim);        
-        }
+    for (dx = [0:block_xdim:insert_box_xdim-block_xdim]) {
+        translate([dx,0,0])
+        block_letter(character+dx/block_xdim);        
     }
 }
 
 // letters for top frame columns, reverse sequence, rotated================
 module lettertop_array(character) {
-    if (blocks_x > 1) {
-        character = character-1;
-        for (dx = [block_xdim:block_xdim:insert_box_xdim]) {
-            translate([dx,0,0])
-            rotate([0,180,0])
-            block_letter(character+dx/block_xdim);        
-        }
+    character = character-1;
+    for (dx = [block_xdim:block_xdim:insert_box_xdim]) {
+        translate([dx,0,0])
+        rotate([0,180,0])
+        block_letter(character+dx/block_xdim);        
     }
 }
 
 // create bottom layer info text ("b") in zero corner
 module layer_info_bottom() {
-    font_size   = inner_frame_block*0.5;
-    font_width  = font_size/1.1;
-    font_gap    = (inner_frame_block-font_width)/1.5;
+    font_size   = block_xdim/2;
+    font_width  = font_size/1.375;
+    font_gap    = (inner_frame_block-font_width)/2;
     
     linear_extrude(type_thickness)
-    translate([-(font_width+font_gap),wall_width*0.4,0])
+    translate([-(font_width+font_gap),wall_width*0.15,0])
     text("b",size=font_size);
 }
 
 // create top layer info text ("t") in zero corner
 module layer_info_top() {
-    font_size   = inner_frame_block*0.5;
-    font_width  = font_size/1.1;
-    font_gap    = (inner_frame_block-font_width)/1.5;
+    font_size   = block_xdim/2;
+    font_width  = font_size/1.375;
+    font_gap    = (inner_frame_block-font_width)/2;
     
-    translate([((insert_box_xdim/block_xdim)*block_xdim)+wall_width/2,wall_width*0.4,0])
+    translate([((insert_box_xdim/block_xdim)*block_xdim)+wall_width/2,wall_width*0.15,0])
     rotate([0,180,0])
     linear_extrude(type_thickness)    
     text("t",size=font_size);
@@ -863,7 +943,7 @@ module dimensions()
             coa[_gender][genderID],",",
             coa[_organ1][organID],",",
             coa[_organ2][organID],",",
-            blocksize,",",
+            block_size,",",
             coa[_organ_scale][organ_scaleID],",",
             coa[_laterality][lateralityID],",",        
             insert_box_xdim/block_xdim,",",
