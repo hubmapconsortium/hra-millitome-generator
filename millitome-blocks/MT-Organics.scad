@@ -1,7 +1,8 @@
-// Millitome Organics V14.001
+// Millitome Organics V15.001
 //  developer: Peter Kienle, CNS
 
 // V15  2023-3-14
+//  2023-3-16   adjustments for Z=100% (whole organ is z positive)
 //  2023-3-14   corrected alignment for multilayer and correct origin
 //  2023-3-5    add generics
 //  -added bounding_box_buffer, added to bounding box dimensions to ensure organ fits completely inside
@@ -61,14 +62,14 @@ count_z          = 2;
 
 // specific segment to cut (values must not be greater than total segments counts, above)
 location_x      = 0;    // wide (A-Z)
-location_y      = 1;    // long (1-n)
-location_z      = 0;    // high (I-r, roman numerals)
+location_y      = 0;    // long (1-n)
+location_z      = 1;    // high (I-r, roman numerals)
 
 generic_x       = 50;
 generic_y       = 80;
 generic_z       = 40;
 
-asset_typeID    = 7;    // 6=organblocks, 7=boxblocks, 0=organ
+asset_typeID    = 6;    // 6=organblocks, 7=boxblocks, 0=organ
 //=======END configuration============
 
 block_size      = 20 ;  // used for type 0, uniform x/y block size for cubes
@@ -413,8 +414,8 @@ module organ_sub() {
     echo ("using organic");
     scale([scaling_factor,scaling_factor,scaling_factor])
     rotate([0,0,0])
-        //translate([0,0,0])
-        translate([0,0,organ_zreal/2])
+        translate([0,0,0])
+        //translate([0,0,organ_zreal/2])
           //  import(organ_file,convexity=3);
             import(str(organ_folder,organ_file),convexity=3);
 }
