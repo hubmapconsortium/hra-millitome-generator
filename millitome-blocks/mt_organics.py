@@ -1,7 +1,7 @@
 # MT Python pipeline
 # for V14
 
-# 2023-3-5
+# 2023-3-14
 # allow generics
 
 # check pancreas, does not make blocks!!
@@ -24,10 +24,10 @@ import shutil
 
 # configuration is here=========================
 #  these are passed on to Openscad
-genderID        = 2    # 0=female, 1=male, 2=generic (requires organID=0)
-organID         = 0    # 0=kidney_l, 1=kidney_r, 2=spleen, 3=pancreas, 4=banana, 5=vb_pancreas
+genderID        = 0    # 0=female, 1=male, 2=generic (requires organID=0)
+organID         = 9    # 0=kidney_l, 1=kidney_r, 2=spleen, 3=pancreas, 4=banana, 5=vb_pancreas (look up in mt_organs.config)
 
-asset_typeID    = 6    # 6 = organblocks, 7 = boxblocks
+asset_typeID    = 7    # 6 = organblocks, 7 = boxblocks
 
 generic_x   = 30    # A-Z
 generic_y   = 60    # 1-n
@@ -35,9 +35,9 @@ generic_z   = 20    # roman I-rn
 
 # block segmentation, how many blocks in x,y,
 # x=width, y=length, z=height
-count_x     = 1
-count_y     = 12
-count_z     = 1
+count_x     = 2
+count_y     = 3
+count_z     = 2
 
 # which specific block?
 #location_x=2
@@ -45,7 +45,7 @@ count_z     = 1
 #location_z=4
 
 #======this is handled in this script
-boundingBoxes   = False     # make bounding boxes?
+boundingBoxes   = True     # make bounding boxes - use asset_typeID=6
 #========END=========================
 
 #======FUNCTIONS=========
@@ -134,8 +134,8 @@ if asset_typeID < 6:
 asciiList = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']  # lookup table for column IDs
 romanList = ['I','II','III','IV','V']   # lookup table for layer IDs
 
-# lookup tables for organs
-organs = ('kidney_l','kidney_r','spleen','pancreas','banana','vb_pancreas','ovary_l')
+# lookup tables for organs (needs to match mt_organs.config)
+organs = ('kidney_l','kidney_r','spleen','pancreas','banana','vb_pancreas','ovary_l','ovalry_l','ovalry_l_penn','kidney_x')
 generics = ('oval','oval')
 genderList = ('f','m','g')
 organLists = (organs,organs,generics)

@@ -1,8 +1,7 @@
-// Millitome Organics V14.001
+// Millitome Organics V13.005
 //  developer: Peter Kienle, CNS
 
-// V15  2023-3-14
-//  2023-3-14   corrected alignment for multilayer and correct origin
+// V15  2023-3-5
 //  2023-3-5    add generics
 //  -added bounding_box_buffer, added to bounding box dimensions to ensure organ fits completely inside
 // check in mt-organs.config which organs are updated already
@@ -61,8 +60,8 @@ count_z          = 2;
 
 // specific segment to cut (values must not be greater than total segments counts, above)
 location_x      = 0;    // wide (A-Z)
-location_y      = 1;    // long (1-n)
-location_z      = 0;    // high (I-r, roman numerals)
+location_y      = 2;    // long (1-n)
+location_z      = 3;    // high (I-r, roman numerals)
 
 generic_x       = 50;
 generic_y       = 80;
@@ -304,10 +303,8 @@ module cutBlock(dX,dY,dZ)
 {   
     difference() {
         bounding_box();
-        //translate([0,-organ_ydim,-organ_zmax])
-        translate([0,-blockSizeY,0])
-            //translate([dX*blockSizeX,dY*blockSizeY,dZ*blockSizeZ]) 
-            translate([dX*blockSizeX,-dY*blockSizeY,dZ*blockSizeZ])
+        translate([0,-organ_ydim,-organ_zmax])
+           translate([dX*blockSizeX,dY*blockSizeY,dZ*blockSizeZ]) 
                 cube([blockSizeX,blockSizeY,blockSizeZ]);
     }    
 }
@@ -398,8 +395,7 @@ outer_box_zdim  = inner_box_zdim+wall_height+bottom_height;
 // exact perimeter around the organ, based on organ dimensions
 module bounding_box() {
     color("RoyalBlue")
-    //translate([(organ_xdim+bounding_box_buffer)/2,-(organ_ydim+bounding_box_buffer)/2,0])
-    translate([(organ_xdim+bounding_box_buffer)/2,-(organ_ydim+bounding_box_buffer)/2,organ_zreal/2])
+    translate([(organ_xdim+bounding_box_buffer)/2,-(organ_ydim+bounding_box_buffer)/2,0])
         cube([organ_xdim+bounding_box_buffer,organ_ydim+bounding_box_buffer,organ_zreal+(2*bounding_box_buffer)],center=true);
 }
 
@@ -413,8 +409,7 @@ module organ_sub() {
     echo ("using organic");
     scale([scaling_factor,scaling_factor,scaling_factor])
     rotate([0,0,0])
-        //translate([0,0,0])
-        translate([0,0,organ_zreal/2])
+        translate([0,0,0])
           //  import(organ_file,convexity=3);
             import(str(organ_folder,organ_file),convexity=3);
 }
@@ -422,8 +417,7 @@ module organ_sub() {
 // fake organ, generic ellipsoid
 module generic() {
    echo ("using generic");
-    //translate ([organ_xdim/2,-organ_ydim/2,0])
-    translate ([organ_xdim/2,-organ_ydim/2,organ_zreal/2])
+    translate ([organ_xdim/2,-organ_ydim/2,0])
     scale ([organ_xdim,organ_ydim,organ_zreal])
         sphere (d = 1, $fa=1, $fs=0.1); // $fa, $fs used for better resolution
 }
