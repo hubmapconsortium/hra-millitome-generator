@@ -2,7 +2,7 @@
 product         = "MT-physical";   // [MT-physical,MT-block array,MT-sample blocks,MT-organ,MT-full array,MT-full organ bisection,IB-physical,IB-virtual]
 
 gender          = "female";    // [female,male]
-organ           = "kidney_l";   // [kidney_l,kidney_r,spleen,pancreas,banana,vb_pancreas,ovary_l,ovalry_l,ovalry_l_penn,kidney_rotated]
+organ           = "kidney_l";   // [kidney_l,kidney_r,spleen,pancreas,banana,vb_pancreas,ovary_l,ovalry_l,ovalry_l_penn,kidney_x,pnnl_pancreas,pnnl_pancreas_head]
  
 laterality      = "bottom";    // [bottom,top,bottom no ID]
 
@@ -46,7 +46,7 @@ output_flag     = 0;    // 0 = ECHO everything, 1 = ECHO insert line only, 2 = E
 genders = ["female","male"];
 genderID = [ for (i = [0:1:len(genders)]) if (gender==genders[i]) i][0];    //returns a list!! Need [0] at the end to get first item
 
-organs = ["kidney_l","kidney_r","spleen","pancreas","banana","vb_pancreas","ovary_l","ovalry_l","ovalry_l_penn","kidney_rotated"];
+organs = ["kidney_l","kidney_r","spleen","pancreas","banana","vb_pancreas","ovary_l","ovalry_l","ovalry_l_penn","kidney_x","pnnl_pancreas","pnnl_pancreas_head"];
 organID = [ for (i = [0:1:len(organs)]) if (organ==organs[i]) i][0];
 
 lateralities = ["bottom","top","bottom no ID"];
