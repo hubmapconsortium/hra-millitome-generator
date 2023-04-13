@@ -1,0 +1,111 @@
+{
+    "@context": {
+        "@base": "http://purl.org/ccf/latest/ccf-entity.owl#",
+        "@vocab": "http://purl.org/ccf/latest/ccf-entity.owl#",
+        "ccf": "http://purl.org/ccf/latest/ccf.owl#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "label": "rdfs:label",
+        "description": "rdfs:comment",
+        "link": {
+            "@id": "rdfs:seeAlso",
+            "@type": "@id"
+        },
+        "samples": {
+            "@reverse": "has_donor"
+        },
+        "sections": {
+            "@id": "has_tissue_section",
+            "@type": "@id"
+        },
+        "datasets": {
+            "@id": "has_dataset",
+            "@type": "@id"
+        },
+        "rui_location": {
+            "@id": "has_spatial_entity",
+            "@type": "@id"
+        },
+        "ontologyTerms": {
+            "@id": "has_ontology_term",
+            "@type": "@id"
+        },
+        "cellTypeTerms": {
+            "@id": "has_cell_type_term",
+            "@type": "@id"
+        },
+        "thumbnail": {
+            "@id": "has_thumbnail"
+        }
+    },
+    "@graph": [
+        {
+            "@id": "https://gtexportal.org/home/tissue/Breast#FDonors",
+            "@type": "Donor",
+            "label": "Donor 1",
+            "description": "Donor 1",
+            "link": "",
+            "sex": "Female",
+            "consortium_name": "Millitome",
+            "provider_name": "Millitome",
+            "provider_uuid": "083882bb-6cc6-4c12-a205-eac37c1a2641",
+            "samples": [
+                {
+                    "@id": "f_kidney_x_bx_A-1-I",
+                    "@type": "Sample",
+                    "label": "f_kidney_x_bx_A-1-I",
+                    "description": "",
+                    "link": "",
+                    "sample_type": "Tissue Block",
+                    "section_count": 1,
+                    "section_size": 0.11,
+                    "section_units": "millimeter",
+                    "rui_location": {
+                        "@context": "https://hubmapconsortium.github.io/ccf-ontology/ccf-context.jsonld",
+                        "@id": "http://purl.org/ccf/1.5/df396a56-00ca-405c-9112-4fdaac0b3372",
+                        "@type": "SpatialEntity",
+                        "creator": "s s",
+                        "creator_first_name": "s",
+                        "creator_last_name": "s",
+                        "creation_date": "2023-03-16",
+                        "ccf_annotations": [
+                            "http://purl.obolibrary.org/obo/UBERON_0002015",
+                            "http://purl.obolibrary.org/obo/UBERON_0000362",
+                            "http://purl.obolibrary.org/obo/UBERON_0004200",
+                            "http://purl.obolibrary.org/obo/UBERON_0001225",
+                            "http://purl.obolibrary.org/obo/UBERON_0001284",
+                            "http://purl.obolibrary.org/obo/UBERON_0002189"
+                        ],
+                        "x_dimension": 32.6,
+                        "y_dimension": 44.5,
+                        "z_dimension": 31.7,
+                        "dimension_units": "millimeter",
+                        "placement": {
+                            "@context": "https://hubmapconsortium.github.io/ccf-ontology/ccf-context.jsonld",
+                            "@id": "http://purl.org/ccf/1.5/df396a56-00ca-405c-9112-4fdaac0b3372_placement",
+                            "@type": "SpatialPlacement",
+                            "target": "f_kidney_x_bx_A-1-I",
+                            "placement_date": "2023-03-16",
+                            "x_scaling": 1,
+                            "y_scaling": 1,
+                            "z_scaling": 1,
+                            "scaling_units": "ratio",
+                            "x_rotation": 145.256010874,
+                            "y_rotation": 50.586655329,
+                            "z_rotation": 12.0653657319,
+                            "rotation_order": "XYZ",
+                            "rotation_units": "degree",
+                            "x_translation": 51.3069892626,
+                            "y_translation": 32.4104766686,
+                            "z_translation": -76.0844330479,
+                            "translation_units": "millimeter"
+                        }
+                    },
+                    "datasets": [
+                        {
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

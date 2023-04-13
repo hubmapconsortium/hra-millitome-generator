@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>CCF-GTEx Pilot -- ASCT+B / Anatogram Data Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/tabulator-tables/dist/css/tabulator.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/tabulator-tables/dist/js/tabulator.min.js"></script>
+    <script src="main.js"></script>
+  </head>
+  <body>
+    <header class="main-header"><div class="main-logo"><a href="https://hubmapconsortium.github.io/ccf-gtex-pilot/" title="Link to HuBMAP CCF GTEx Pilot Page"><img src="img/logo-hubmap.svg" alt="HuBMAP logo" class="logo"></a></div></header>
+    <div class="main">
+      <h1>CCF-GTEx Data Dashboard</h1>
+
+      <div id="visualization" style="width: 100%"></div>
+
+      <div style="text-align: right; width: 100%; margin: 5px;">
+        <button onclick="downloadTable()">Download Table as CSV</button>
+      </div>
+      <div id="table" style="width: 100%; height: 600px;"></div>
+    </div>
+  </body>
+</html>
