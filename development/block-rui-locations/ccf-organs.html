@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>CCF-GTEx Pilot -- HuBMAP and GTEx tissue comparison by organ</title>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const organInfo = document.querySelector('ccf-organ-info');
+      organInfo.dataSources = [
+        'https://ccf-api.hubmapconsortium.org/v1/gtex/rui_locations.jsonld',
+        'https://ccf-api.hubmapconsortium.org/v1/hubmap/rui_locations.jsonld'
+      ];
+      organInfo.highlightProviders = ['GTEx Project'];
+      organInfo.useRemoteApi = false;
+
+      document.getElementById('organ-chooser').addEventListener('change', (event) => {
+        const iri = event.target.value;
+        organInfo.organIri = iri;
+      });
+    });
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet">
+  <link href="styles.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/hubmapconsortium/ccf-ui@gh-pages/organ-info/styles.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/gh/hubmapconsortium/ccf-ui@gh-pages/organ-info/wc.js" async></script>
+</head>
+<body class="mat-typography">
+  <header class="main-header"><div class="main-logo"><a href="https://hubmapconsortium.github.io/ccf-gtex-pilot/" title="Link to HuBMAP CCF GTEx Pilot Page"><img src="img/logo-hubmap.svg" alt="HuBMAP logo" class="logo"></a></div></header>
+  <div class="main">
+    <h1>HuBMAP and GTEx tissue comparison by organ</h1>
+
+    <select id="organ-chooser">
+      <option value="http://purl.obolibrary.org/obo/UBERON_0000059">Large Intestine</option>
+      <option value="http://purl.obolibrary.org/obo/UBERON_0000948">Heart</option>
+      <option value="http://purl.obolibrary.org/obo/UBERON_0002113" selected>Kidney</option>
+      <option value="http://purl.obolibrary.org/obo/UBERON_0002106">Spleen</option>
+      <option value="http://purl.obolibrary.org/obo/UBERON_0001004">Lung</option>
+    </select>
+
+    <ccf-organ-info organ-iri="http://purl.obolibrary.org/obo/UBERON_0002113" sex="Male" side="Left"></ccf-organ-info>
+  </div>
+</body>
+</html>
