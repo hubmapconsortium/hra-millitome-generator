@@ -102,7 +102,14 @@
                     },
                     "datasets": [
                         {
-                        }
+                            "@id": "Dataset1",
+                            "@type": "Dataset1",
+                            "label": "Dataset1",
+                            "description": "Dataset1",
+                            "link": "",
+                            "technology": "OTHER",
+                            "thumbnail": ""
+                          }
                     ]
                 }
             ]
