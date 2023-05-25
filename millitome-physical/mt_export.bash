@@ -2,7 +2,7 @@
 
 # V4.1 - works with V12 of MT_generator
 # Peter Kienle, CNS
-#  2022-10-25
+#  2023-5-24
 #   properly handles organID 5 and user block counts
 
 # will not work properly with flexible organscale!! think about how to pass in organscale 1-nnn%-------------
@@ -24,18 +24,18 @@ then
 fi
 
 # IDs used to configure Openscad output. Must match 'exposed properties' in MT_Generator
-# this is the task list! Assets in these lists are created are created.
+# this is the task list! Assets in these lists are created.
 genderIDs=(0)
 organIDs=(5)
 blocksizeIDs=(2)    #====only if blocktypeID=0
 blockxsizeIDs=(1)   #====only if blocktypeID=1
 blockysizeIDs=(1)   #====only if blocktypeID=1
 lateralityIDs=(0)
-scaleIDs=(1)
-productIDs=(0 1)  # can't use ID 3 alone, no col/row info to console, CSV creation will fail
+scaleIDs=(0 1 2)
+productIDs=(0 1 2)  # can't use ID 3 alone, no col/row info to console, CSV creation will fail
 
 blocktypeID=2       # 0=uniform, 1=userXY, 2=blockcount !! ID=1 is not covered yet!!
-blocksx=2           #=====only if blocktypeID=2
+blocksx=1           #=====only if blocktypeID=2
 blocksy=25          #=====only if blocktypeID=2
 
 # Used to assemble filenames for .STL & .CSV files. Lists must match MT_Generator & ID lists (above)
@@ -124,12 +124,12 @@ for genderID in ${genderIDs[@]}; do     # genders: 2
                         if [ $blocktypeID -eq 2 ] ; then
                             #runs openscad program, properly configured for blockcount version, blocktypeID=2
                             openscad ${mtGenerator} -o ${outputFolder}/${outputSubfolder}/VH_${gender}_${organ}_${blocksx}x${blocksy}blocks_${scale}_${laterality}_${product}.${fileSuffix} \
-                            -D productID=${productID} \
-                            -D lateralityID=${lateralityID} \
-                            -D genderID=${genderID} \
-                            -D organID=${organID} \
-                            -D organ_scaleID=${scaleID} \
-                            -D typeID=${blocktypeID} \
+                            -D product=${productID} \
+                            -D laterality=${lateralityID} \
+                            -D gender=${genderID} \
+                            -D organ=${organID} \
+                            -D organ_scale=${scaleID} \
+                            -D blocktype=${blocktypeID} \
                             -D blocks_x=${blocksx} \
                             -D blocks_y=${blocksy} \
                             -D output_flag=${outputFlag}

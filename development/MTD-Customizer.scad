@@ -1,5 +1,5 @@
 
-product         = "MT-physical";   // [MT-physical,MT-block array,MT-sample blocks,MT-organ,MT-full array,MT-full organ bisection,IB-physical,IB-virtual]
+product         = "MT-physical";   // [MT-physical,MT-block array,MT-sample blocks,MT-organ,MT-full array,MT-full organ bisection,UI-organ,IB-physical,IB-virtual]
 
 gender          = "female";    // [female,male]
 organ           = "kidney_l";   // [kidney_l,kidney_r,spleen,pancreas,banana,vb_pancreas,ovary_l,ovalry_l,ovalry_l_penn,kidney_x,pnnl_pancreas,pnnl_pancreas_head,pnnl_pancreas_nothead]
@@ -59,7 +59,7 @@ lateralityID = [ for (i = [0:1:len(lateralities)]) if (laterality==lateralities[
 type_list = ["uniform","userXY","blockCount"];
 typeID = [ for (i = [0:1:len(type_list)]) if (blocktype==type_list[i]) i][0];
     
-product_list = ["MT-physical","MT-block array","MT-sample blocks","MT-organ","MT-full array","MT-full organ bisection","IB-physical","IB-virtual"];
+product_list = ["MT-physical","MT-block array","MT-sample blocks","MT-organ","MT-full array","MT-full organ bisection","UI-organ","IB-physical","IB-virtual"];
 productID = [ for (i = [0:1:len(product_list)]) if (product==product_list[i]) i][0];
     
 generic_x   = 1;
@@ -73,8 +73,9 @@ if (productID == 2) millitome_sampleblocks();
 if (productID == 3) millitome_organ();
 if (productID == 4) blockfull_bisection();
 if (productID == 5) organ_bisection();
-if (productID == 6) icebox_physical();
-if (productID == 7) icebox_virtual();
+if (productID == 6) ui_organ();
+if (productID == 7) icebox_physical();
+if (productID == 8) icebox_virtual();
 
 
 module millitome_physical() {
@@ -106,6 +107,21 @@ module organ_bisection() {
     asset_typeID = 5;
     include<MTD-Generator.scad>;  
 }
+
+module ui_organ() {
+   asset_typeID = 0;
+   
+    rotate([0,0,0])
+        translate([-32.07,69.87,266.48])
+            import("organs/f_3_pancreas.stl",convexity=3);
+    
+    translate([-32.07,69.87,266.48])
+        rotate([248,-105,162])
+            import("organs/f_3_pancreas.stl",convexity=3);
+    
+    import ("organs/original.stl",convexity=3);
+}
+
 
 module icebox_physical() {
     asset_typeID = 0;
