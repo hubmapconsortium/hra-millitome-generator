@@ -2,7 +2,7 @@
 product         = "millitome";   // [millitome,icebox]
 
 gender          = "female";    // [female,male]
-organ           = "kidney_l";   // [kidney_l,kidney_r,spleen,pancreas,banana,vb_pancreas]
+organ           = "kidney_l";   // [kidney_l,kidney_r,spleen,pancreas,banana,g_pancreas]
  
 laterality      = "bottom";    // [bottom,top,bottom no ID]        
 
@@ -28,7 +28,8 @@ module __Customizer_Limit__ () {}  // show in customizer up to here
 // Peter Kienle, CNS
 // master controller to launch MT-Generator & MT-Icebox applications
 
-// V0.5 2023-2-17
+// V0.6 2023-5-24
+//  2023-5-24   changed #5 vb_pancreas->g_pancreas
 //  2023-2-17   added sliders for numerical input
 //  2023-2-16   modified organscale to use 1-nnn flexible values; flexible blocksizes
 //  2023-1-19   remove uncommon asset types
@@ -49,7 +50,7 @@ productID = [ for (i = [0:1:len(product_list)]) if (product==product_list[i]) i]
 genders = ["female","male"];
 genderID = [ for (i = [0:1:len(genders)]) if (gender==genders[i]) i][0];    //returns a list!! Need [0] at the end to get first item
 
-organs = ["kidney_l","kidney_r","spleen","pancreas","banana", "vb_pancreas"];
+organs = ["kidney_l","kidney_r","spleen","pancreas","banana", "g_pancreas"];
 organID = [ for (i = [0:1:len(organs)]) if (organ==organs[i]) i][0];
 
 lateralities = ["bottom","top","bottom no ID"];

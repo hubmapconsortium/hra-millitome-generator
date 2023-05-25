@@ -2,7 +2,7 @@
 product         = "MT-physical";   // [MT-physical,MT-block array,MT-sample blocks,MT-organ,MT-full array,MT-full organ bisection,UI-organ,IB-physical,IB-virtual]
 
 gender          = "female";    // [female,male]
-organ           = "kidney_l";   // [kidney_l,kidney_r,spleen,pancreas,banana,vb_pancreas,ovary_l,ovalry_l,ovalry_l_penn,kidney_x,pnnl_pancreas,pnnl_pancreas_head,pnnl_pancreas_nothead]
+organ           = "kidney_l";   // [kidney_l,kidney_r,spleen,pancreas,banana,g_pancreas,ovary_l,ovalry_l,ovalry_l_penn,kidney_x,pnnl_pancreas,pnnl_pancreas_head,pnnl_pancreas_nothead]
  
 laterality      = "bottom";    // [bottom,top,bottom no ID]
 
@@ -28,7 +28,8 @@ module __Customizer_Limit__ () {}  // show in customizer up to here
 // Peter Kienle, CNS
 // master controller to launch MT-Generator & MT-Icebox applications
 
-// V0.51 2023-3-23
+// V0.6 2023-5-24
+//  2023-5-24   changed #5 vb_pancreas->g_pancreas
 //  2023-3-23   added f10,f11,f12 pnnl_pancreas
 //  2023-2-20   added ovalry_l_penn for testing; extended organ scale top limit to 200%
 //  2023-2-17   added sliders for numerical input
@@ -47,7 +48,7 @@ output_flag     = 0;    // 0 = ECHO everything, 1 = ECHO insert line only, 2 = E
 genders = ["female","male"];
 genderID = [ for (i = [0:1:len(genders)]) if (gender==genders[i]) i][0];    //returns a list!! Need [0] at the end to get first item
 
-organs = ["kidney_l","kidney_r","spleen","pancreas","banana","vb_pancreas","ovary_l","ovalry_l","ovalry_l_penn","kidney_x","pnnl_pancreas","pnnl_pancreas_head","pnnl_pancreas_nothead"];
+organs = ["kidney_l","kidney_r","spleen","pancreas","banana","g_pancreas","ovary_l","ovalry_l","ovalry_l_penn","kidney_x","pnnl_pancreas","pnnl_pancreas_head","pnnl_pancreas_nothead"];
 organID = [ for (i = [0:1:len(organs)]) if (organ==organs[i]) i][0];
 
 lateralities = ["bottom","top","bottom no ID"];

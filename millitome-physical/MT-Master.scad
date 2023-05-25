@@ -12,7 +12,7 @@
 product         = 0;    // 0=millitome_physical, 1=icebox_physical
 
 gender          = 0;    // 0=female, 1=male, needs to be integer selector
-organ           = 0;    // 0=kidney_l,1=kidney_r,2=spleen,3=pancreas,4=banana,5=vb_pancreas
+organ           = 0;    // 0=kidney_l,1=kidney_r,2=spleen,3=pancreas,4=banana,5=g_pancreas
 laterality      = 0;    // 0=bottom, 1=top, 2=bypass MT creation      
 organscale      = 100;  // 1-nnn%                  
 

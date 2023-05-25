@@ -1,35 +1,18 @@
-ECHO: "inner_box: 70.6,199.68,34.71"
 ECHO: ">col:1<col"
 ECHO: ">row:25<row"
 ECHO: "block_xdim=", 50.6, " block_ydim=", 7.1872
-Geometries in cache: 144
-Geometry cache size in bytes: 2163368
+Geometries in cache: 170
+Geometry cache size in bytes: 2789888
 CGAL Polyhedrons in cache: 8
-CGAL cache size in bytes: 30706440
-Total rendering time: 0:01:15.437
+CGAL cache size in bytes: 30605080
+Total rendering time: 0:01:11.290
    Top level object is a 3D object:
    Simple:        yes
-   Vertices:     7581
-   Halfedges:   24270
-   Edges:       12135
-   Halffacets:   9224
-   Facets:       4612
+   Vertices:     7457
+   Halfedges:   24042
+   Edges:       12021
+   Halffacets:   9242
+   Facets:       4621
    Volumes:         2
-ECHO: ">col:2<col"
-ECHO: ">row:25<row"
-Geometries in cache: 166
-Geometry cache size in bytes: 2540400
-CGAL Polyhedrons in cache: 47
-CGAL cache size in bytes: 25978160
-Total rendering time: 0:02:25.970
-   Top level object is a 2D object:
-   Contours:       93
-Current top level object is not a 3D object.
-Geometries in cache: 1
-Geometry cache size in bytes: 0
-CGAL Polyhedrons in cache: 0
-CGAL cache size in bytes: 0
-Total rendering time: 0:00:00.000
-Current top level object is empty.
-mt_export.bash: line 214: syntax error near unexpected token `done'
-mt_export.bash: line 214: `done'
+mt_export.bash: line 223: syntax error near unexpected token `done'
+mt_export.bash: line 223: `done'

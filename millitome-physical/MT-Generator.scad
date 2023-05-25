@@ -31,7 +31,7 @@ $fs = 0.4;
 // change values here for single run from Openscad
 // or run from terminal using command line; variables can be overrides using -D <property>=n
 //  - genderID      0=female, 1=male
-//  - organID       0=kidney_l, 1=kidney_r, 2=spleen, 3=pancreas, 4=banana, 5=vb_pancreas
+//  - organID       0=kidney_l, 1=kidney_r, 2=spleen, 3=pancreas, 4=banana, 5=g_pancreas
 //  - lateralityID  0=bottom, 1=top
 //  - organscale    percentage 1-nnn 
 //  - typeID        0=fixed block size, 1=user block size, 2=user block count

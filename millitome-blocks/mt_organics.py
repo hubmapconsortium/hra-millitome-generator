@@ -25,9 +25,9 @@ import shutil
 # configuration is here=========================
 #  these are passed on to Openscad
 genderID        = 0    # 0=female, 1=male, 2=generic (requires organID=0)
-organID         = 9    # 0=kidney_l, 1=kidney_r, 2=spleen, 3=pancreas, 4=banana, 5=vb_pancreas (look up in mt_organs.config)
+organID         = 5    # 0=kidney_l, 1=kidney_r, 2=spleen, 3=pancreas, 4=banana, 5=g_pancreas (look up in mt_organs.config)
 
-asset_typeID    = 7    # 6 = organblocks, 7 = boxblocks
+asset_typeID    = 6    # 6 = organblocks, 7 = boxblocks
 
 generic_x   = 30    # A-Z
 generic_y   = 60    # 1-n
@@ -36,7 +36,7 @@ generic_z   = 20    # roman I-rn
 # block segmentation, how many blocks in x,y,
 # x=width, y=length, z=height
 count_x     = 2
-count_y     = 3
+count_y     = 25
 count_z     = 2
 
 # which specific block?
@@ -110,7 +110,7 @@ def make_block(location_x,location_y,location_z,thisMaterial):
 
 #======global defs===================
 appName             = '/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD' # path to OpenSCAD
-workDirectory       = '/Volumes/Venus/Earth/Projects/SICE/2021/HubMap/Millitome/hra-millitome-generator/millitome-blocks/' # main output folder
+workDirectory       = '/Volumes/d-venus/Earth/Projects/SICE/2021/HubMap/Millitome/hra-millitome-generator/millitome-blocks/' # main output folder
 mtGeneratorName     = 'MT-Organics.scad' # openscad program code to run
 outputFolderName    = 'temp_exports/' # main output folder
 
@@ -135,7 +135,7 @@ asciiList = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q'
 romanList = ['I','II','III','IV','V']   # lookup table for layer IDs
 
 # lookup tables for organs (needs to match mt_organs.config)
-organs = ('kidney_l','kidney_r','spleen','pancreas','banana','vb_pancreas','ovary_l','ovalry_l','ovalry_l_penn','kidney_x')
+organs = ('kidney_l','kidney_r','spleen','pancreas','banana','g_pancreas','ovary_l','ovalry_l','ovalry_l_penn','kidney_x')
 generics = ('oval','oval')
 genderList = ('f','m','g')
 organLists = (organs,organs,generics)

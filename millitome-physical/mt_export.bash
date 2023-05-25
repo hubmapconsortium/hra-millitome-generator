@@ -1,8 +1,9 @@
 #!/bin/bash
 
-# V4.1 - works with V12 of MT_generator
+# V4.2 - works with post-V13 of MT_generator
 # Peter Kienle, CNS
 #  2023-5-24
+#   changed 5-VB_pancreas->G-Pancreas
 #   properly handles organID 5 and user block counts
 
 # will not work properly with flexible organscale!! think about how to pass in organscale 1-nnn%-------------
@@ -30,9 +31,9 @@ organIDs=(5)
 blocksizeIDs=(2)    #====only if blocktypeID=0
 blockxsizeIDs=(1)   #====only if blocktypeID=1
 blockysizeIDs=(1)   #====only if blocktypeID=1
-lateralityIDs=(0)
+lateralityIDs=(0 1)
 scaleIDs=(0 1 2)
-productIDs=(0 1 2)  # can't use ID 3 alone, no col/row info to console, CSV creation will fail
+productIDs=(0)  # can't use ID 3 alone, no col/row info to console, CSV creation will fail
 
 blocktypeID=2       # 0=uniform, 1=userXY, 2=blockcount !! ID=1 is not covered yet!!
 blocksx=1           #=====only if blocktypeID=2
@@ -41,8 +42,8 @@ blocksy=25          #=====only if blocktypeID=2
 # Used to assemble filenames for .STL & .CSV files. Lists must match MT_Generator & ID lists (above)
 genderList=(F M)
 genderNamesList=(Female Male)
-organList=(Kidney_L Kidney_R Spleen Pancreas Banana VB_Pancreas)
-organList2=("Kidney left" "Kidney right" Spleen Pancreas Banana VB_Pancreas)
+organList=(Kidney_L Kidney_R Spleen Pancreas Banana G_Pancreas)
+organList2=("Kidney left" "Kidney right" Spleen Pancreas Banana G_Pancreas)
 blockTypeList=("uniform" "userXY" "blockcount")
 blocksizeList=(10 15 20)
 blockxsizeList=(10 15 20)
@@ -74,10 +75,18 @@ for genderID in ${genderIDs[@]}; do     # genders: 2
             # create output subfolder if it doesn't exist------------
             if [ $blocktypeID -eq 0 ] ; then
                 outputSubfolder=VH_${gender}_${organ}_${blocksize}_Millitomes
+
+                if [ $organID -eq 5 ] ; then
+                    outputSubfolder=${organ}_${blocksize}_Millitomes
+                fi
             fi
 
             if [ $blocktypeID -eq 2 ] ; then
                 outputSubfolder=VH_${gender}_${organ}_${blocksx}x${blocksy}blocks_Millitomes
+
+                if [ $organID -eq 5 ] ; then
+                    outputSubfolder=${organ}_${blocksx}x${blocksy}blocks_Millitomes
+                fi
             fi
 
 
