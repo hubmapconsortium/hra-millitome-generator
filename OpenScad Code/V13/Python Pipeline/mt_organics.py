@@ -23,16 +23,16 @@ import shutil
 
 # configuration is here=========================
 #  these are passed on to Openscad
-genderID        = 1    # 0=female, 1=male, needs to be integer selector
+genderID        = 0    # 0=female, 1=male, needs to be integer selector
 organID         = 0    # 0=kidney_l, 1=kidney_r, 2=spleen, 3=pancreas, 4=banana, 5=vb_pancreas
 
-asset_typeID    = 7    # 6 = organblocks, 7 = boxblocks
+asset_typeID    = 6    # 6 = organblocks, 7 = boxblocks
 
 
 # block segmentation, how many blocks in x,y,
 # x=width, y=length, z=height
-count_x=7
-count_y=14
+count_x=4
+count_y=7
 count_z=2
 
 # which specific block?
@@ -41,7 +41,7 @@ count_z=2
 #location_z=4
 
 #======this is handled in this script
-boundingBoxes   = True     # make bounding boxes?
+boundingBoxes   = False     # make bounding boxes?
 #========END=========================
 
 #======FUNCTIONS=========
@@ -105,7 +105,8 @@ def make_block(location_x,location_y,location_z,thisMaterial):
 
 #======global defs===================
 appName             = '/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD' # path to OpenSCAD
-workDirectory       = '/Volumes/Venus/Earth/Projects/SICE/2021/HubMap/Millitome/hra-millitome-generator/OpenScad Code/V13/' # main output folder
+# workDirectory       = '/Volumes/Venus/Earth/Projects/SICE/2021/HubMap/Millitome/hra-millitome-generator/OpenScad Code/V13/' # main output folder
+workDirectory       = '/Volumes/Little Cloudy/CNS/github/hra-millitome-generator/OpenScad Code/V13' # main output folder' # main output folder
 mtGeneratorName     = 'MT-Organics.scad' # openscad program code to run
 outputFolderName    = 'temp_exports/' # main output folder
 

@@ -2,7 +2,7 @@
 product         = "MT-physical";   // [MT-physical,MT-block array,MT-sample blocks,MT-organ,MT-full array,MT-full organ bisection,UI-organ,IB-physical,IB-virtual]
 
 gender          = "female";    // [female,male]
-organ           = "kidney_l";   // [kidney_l,kidney_r,spleen,pancreas,banana,g_pancreas,ovary_l,ovalry_l,ovalry_l_penn,kidney_x,pnnl_pancreas,pnnl_pancreas_head,pnnl_pancreas_nothead]
+organ           = "kidney_l";   // [kidney_l,kidney_r,spleen,pancreas,banana,g_pancreas,ovary_l,ovalry_l,ovalry_l_penn,kidney_y,pnnl_pancreas,pnnl_pancreas_head,pnnl_pancreas_nothead]
  
 laterality      = "bottom";    // [bottom,top,bottom no ID]
 
@@ -28,7 +28,8 @@ module __Customizer_Limit__ () {}  // show in customizer up to here
 // Peter Kienle, CNS
 // master controller to launch MT-Generator & MT-Icebox applications
 
-// V0.6 2023-5-24
+// V0.61 2023-5-30
+//  2023-5-30   replace kidney_x with kidney_y
 //  2023-5-24   changed #5 vb_pancreas->g_pancreas
 //  2023-3-23   added f10,f11,f12 pnnl_pancreas
 //  2023-2-20   added ovalry_l_penn for testing; extended organ scale top limit to 200%
@@ -48,7 +49,7 @@ output_flag     = 0;    // 0 = ECHO everything, 1 = ECHO insert line only, 2 = E
 genders = ["female","male"];
 genderID = [ for (i = [0:1:len(genders)]) if (gender==genders[i]) i][0];    //returns a list!! Need [0] at the end to get first item
 
-organs = ["kidney_l","kidney_r","spleen","pancreas","banana","g_pancreas","ovary_l","ovalry_l","ovalry_l_penn","kidney_x","pnnl_pancreas","pnnl_pancreas_head","pnnl_pancreas_nothead"];
+organs = ["kidney_l","kidney_r","spleen","pancreas","banana","g_pancreas","ovary_l","ovalry_l","ovalry_l_penn","kidney_y","pnnl_pancreas","pnnl_pancreas_head","pnnl_pancreas_nothead"];
 organID = [ for (i = [0:1:len(organs)]) if (organ==organs[i]) i][0];
 
 lateralities = ["bottom","top","bottom no ID"];
@@ -112,15 +113,19 @@ module organ_bisection() {
 module ui_organ() {
    asset_typeID = 0;
    
-    rotate([0,0,0])
-        translate([-32.07,69.87,266.48])
-            import("organs/f_3_pancreas.stl",convexity=3);
+//    rotate([248,-105,162])
+//        translate([-32.07,69.87,266.48])
+//            color("indianred")
+//            import("organs/f_3_pancreas.stl",convexity=3);
     
-    translate([-32.07,69.87,266.48])
-        rotate([248,-105,162])
-            import("organs/f_3_pancreas.stl",convexity=3);
+    translate([0,0,0])
+        rotate([-112,-9.5,0])
+            color("lightblue")
+            import("organs/f_9_kidney_y.stl",convexity=3);
     
-    import ("organs/original.stl",convexity=3);
+    rotate([0,00,0])
+        color("indianred")
+        import ("organs/kidney_y_source.stl",convexity=3);
 }
 
 

@@ -27,7 +27,7 @@ import shutil
 genderID        = 0    # 0=female, 1=male, 2=generic (requires organID=0)
 organID         = 5    # 0=kidney_l, 1=kidney_r, 2=spleen, 3=pancreas, 4=banana, 5=g_pancreas (look up in mt_organs.config)
 
-asset_typeID    = 6    # 6 = organblocks, 7 = boxblocks
+asset_typeID    = 7    # 6 = organblocks, 7 = boxblocks
 
 generic_x   = 30    # A-Z
 generic_y   = 60    # 1-n
@@ -45,7 +45,7 @@ count_z     = 2
 #location_z=4
 
 #======this is handled in this script
-boundingBoxes   = True     # make bounding boxes - use asset_typeID=6
+boundingBoxes   = False     # make bounding boxes - use asset_typeID=6
 #========END=========================
 
 #======FUNCTIONS=========
@@ -110,7 +110,7 @@ def make_block(location_x,location_y,location_z,thisMaterial):
 
 #======global defs===================
 appName             = '/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD' # path to OpenSCAD
-workDirectory       = '/Volumes/d-venus/Earth/Projects/SICE/2021/HubMap/Millitome/hra-millitome-generator/millitome-blocks/' # main output folder
+workDirectory       = '/Volumes/Little Cloudy/CNS/github/hra-millitome-generator/millitome-blocks/' # main output folder
 mtGeneratorName     = 'MT-Organics.scad' # openscad program code to run
 outputFolderName    = 'temp_exports/' # main output folder
 
